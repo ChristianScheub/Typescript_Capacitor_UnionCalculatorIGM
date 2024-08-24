@@ -1,0 +1,102 @@
+import { ITaxCalculatorService } from "./ITaxCalculatorService";
+import { store } from "../../stateManagement/store";
+import Logger from "../logger/logger";
+import { incomeLimits, soliThresholdMarried, soliThresholdSingle, taxClassFactors, taxRates } from "../../config/taxConfig";
+
+
+const taxCalculatorService: ITaxCalculatorService = {
+
+
+  calculateTax: (income: number, forYear: boolean): number => {
+    const state = store.getState();
+    if(!forYear){
+      income = income*12;
+    }
+
+    const taxClass = state.salaryCalculator.taxClass;
+
+    if (income === null || taxClass === null) {
+      return 0;
+    }
+
+    let tax: number = 0;
+
+     const taxFreeAllowance = (taxClassFactors[taxClass]);
+     // Subtract tax-free allowance from adjusted income
+     const adjustedIncome = income - taxFreeAllowance;
+    Logger.info("Einkommen nach Abzug des Grundfreibetrags: " + adjustedIncome);
+
+    if (income <= incomeLimits.lowerLimit1) {
+      // a) Up to 11,604 EUR: Tax is 0
+      tax = 0;
+    } else if (income <= incomeLimits.upperLimit1) {
+      // b) From 11,605 EUR to 17,005 EUR
+      const y = (adjustedIncome - incomeLimits.lowerLimit1) / 10000;
+      tax = (taxRates.b1Coefficient * y + taxRates.b1Intercept) * y;
+    } else if (income <= incomeLimits.upperLimit2) {
+      // c) From 17,006 EUR to 66,760 EUR
+      const z = (adjustedIncome - incomeLimits.lowerLimit2) / 10000;
+      tax = (taxRates.c1Coefficient * z + taxRates.c1Intercept) * z + taxRates.c2Intercept;
+    } else if (income <= incomeLimits.upperLimit3) {
+      // d) From 66,761 EUR to 277,825 EUR
+      tax = taxRates.dRate * adjustedIncome - taxRates.dIntercept;
+    } else if (income >= incomeLimits.lowerLimit4) {
+      // e) From 277,826 EUR and above
+      tax = taxRates.eRate * adjustedIncome - taxRates.eIntercept;
+    }
+    
+    if (tax) {
+      if(!forYear){
+        tax = tax*12;
+      }
+    }
+
+    Logger.info("Steuerbetrag: " + tax);
+    const shortTax= Number(tax.toFixed(2));
+    return shortTax;
+  },
+
+  calculateSoli: (income: number, forYear: boolean): number => {
+    const state = store.getState();
+    const taxClass = state.salaryCalculator.taxClass;
+    if(!forYear){
+      income = income*12;
+    }
+    const tax = taxCalculatorService.calculateTax(income,true)
+
+
+    Logger.info("Einkommen für Soli: " + income);
+
+    const soliThreshold =
+      taxClass === 3 || taxClass === 4
+        ? soliThresholdMarried
+        : soliThresholdSingle;
+
+    if (tax && income) {
+      if (income > soliThreshold) {
+        const soli = tax * 0.055;
+        const shortSoli = Number(soli.toFixed(2));
+        Logger.info("Solidaritätszuschlag: " + shortSoli);
+        return shortSoli;
+      }
+    }
+    return 0;
+  },
+
+  calculateSalaryAfterAllTax: (): number => {
+    const state = store.getState();
+    const income = state.salaryCalculator.salaryWithBonus!;
+    Logger.info("Einkommen: " + income);
+
+    if (income) {
+      let netIncome = income - taxCalculatorService.calculateSoli(income,false);
+      netIncome = (netIncome - taxCalculatorService.calculateTax(income,false));
+      const shortNetIncome = Number(netIncome.toFixed(2));
+      Logger.info("Nettoeinkommen nach Soli: " + shortNetIncome);
+      return shortNetIncome;
+    }
+    return 0;
+  },
+};
+
+export default taxCalculatorService;
