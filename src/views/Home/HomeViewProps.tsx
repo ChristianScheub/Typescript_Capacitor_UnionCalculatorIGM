@@ -6,6 +6,7 @@ export interface HomeViewProps {
   solidarityTax: number;
   pensionInsurance: number;
   unemploymentInsurance: number;
+  healthInsuranceSupplement: number;
   healthInsurance: number;
   careInsurance: number;
   calcultedSalaryAfterSocialSecurity: number;
@@ -21,6 +22,7 @@ export interface HomeViewProps {
   salaryAfterAllTaxYear: number;
   calcultedSalaryAfterSocialSecurityYear: number;
   careInsuranceYear: number;
+  healthInsuranceSupplementYear: number;
   healthInsuranceYear: number;
   unemploymentInsurancYear: number;
   pensionInsuranceYear: number;

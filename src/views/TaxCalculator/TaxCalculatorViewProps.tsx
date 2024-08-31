@@ -3,4 +3,6 @@ export interface TaxCalculatorViewProps {
     onChange: (taxClass: string) => void;
     isChildless: boolean;
     onIsChildlessChange: (value: string) => void;
+    healthInsuranceSupplement: number;
+    onHealthInsuranceSupplement: (event: React.ChangeEvent<HTMLInputElement>) => void;
   }

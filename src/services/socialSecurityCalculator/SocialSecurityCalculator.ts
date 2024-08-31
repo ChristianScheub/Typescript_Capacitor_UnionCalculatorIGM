@@ -22,6 +22,15 @@ const SocialSecurityCalculator: ISocialSecurityCalculator = {
     return effectiveIncome * socialSecurityRates.healthInsurance;
   },
 
+  calculateHealthInsuranceSupplement: (income: number): number => {
+    const state = store.getState();
+    const healthInsuranceSupplement = state.salaryCalculator.healthInsuranceSupplement / 200;
+    Logger.info("Es wird abgezogen an Zusatzbeitrag:"+healthInsuranceSupplement);
+    const limit = contributionLimits.healthInsurance;
+    const effectiveIncome = Math.min(income, limit);
+    return effectiveIncome * healthInsuranceSupplement;
+  },
+
   calculateCareInsurance: (income: number, isChildless: boolean): number => {
     const careInsuranceRate = isChildless ? socialSecurityRates.careInsuranceChildless : socialSecurityRates.careInsurance;
     const limit = contributionLimits.careInsurance;
@@ -36,9 +45,11 @@ const SocialSecurityCalculator: ISocialSecurityCalculator = {
     const pension = SocialSecurityCalculator.calculatePensionInsurance(salaryBeforeTax);
     const unemployment = SocialSecurityCalculator.calculateUnemploymentInsurance(salaryBeforeTax);
     const health = SocialSecurityCalculator.calculateHealthInsurance(salaryBeforeTax);
+    const healthSupplemnt = SocialSecurityCalculator.calculateHealthInsuranceSupplement(salaryBeforeTax);
     const care = SocialSecurityCalculator.calculateCareInsurance(salaryBeforeTax, isChildless);
 
-    const totalSocialSecurity = pension + unemployment + health + care;
+
+    const totalSocialSecurity = pension + unemployment + health + care+healthSupplemnt;
     const shortTotalSocialSecurity = Number(totalSocialSecurity.toFixed(2));
     Logger.info("Gesamte Sozialabgaben (Arbeitnehmeranteil): " + shortTotalSocialSecurity);
     return shortTotalSocialSecurity;

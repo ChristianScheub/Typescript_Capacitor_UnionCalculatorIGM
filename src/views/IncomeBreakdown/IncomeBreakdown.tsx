@@ -12,6 +12,7 @@ const IncomeBreakdown: React.FC<IncomeBreakdownProps> = ({
   solidarityTax,
   pensionInsurance,
   unemploymentInsurance,
+  healthInsuranceSupplement,
   healthInsurance,
   careInsurance,
   calcultedSalaryAfterSocialSecurity,
@@ -131,6 +132,10 @@ const IncomeBreakdown: React.FC<IncomeBreakdownProps> = ({
       <div style={styles.item}>
         <span style={styles.textLeft}>Krankenversicherung:</span>
         <span style={styles.textRight}>{healthInsurance.toFixed(2)} €</span>
+      </div>
+      <div style={styles.item}>
+        <span style={styles.textLeft}>Krankenversicherung Zusatzbetrag:</span>
+        <span style={styles.textRight}>{healthInsuranceSupplement.toFixed(2)} €</span>
       </div>
       <div style={styles.item}>
         <span style={styles.textLeft}>Pflegeversicherung:</span>

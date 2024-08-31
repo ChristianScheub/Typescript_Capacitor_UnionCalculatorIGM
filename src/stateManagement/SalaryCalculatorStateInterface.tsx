@@ -13,4 +13,5 @@ export interface SalaryCalculatorState {
     isChildless: boolean;
     christmasBonusP: string;
     profitSharingP: string;
+    healthInsuranceSupplement: number;
   }

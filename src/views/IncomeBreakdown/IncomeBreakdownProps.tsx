@@ -7,6 +7,7 @@ export interface IncomeBreakdownProps {
   solidarityTax: number | null;
   pensionInsurance: number;
   unemploymentInsurance: number;
+  healthInsuranceSupplement: number;
   healthInsurance: number;
   careInsurance: number;
   calcultedSalaryAfterSocialSecurity: number;

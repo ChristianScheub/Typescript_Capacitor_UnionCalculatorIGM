@@ -17,7 +17,8 @@ const initialState: SalaryCalculatorState = {
   isChildless: true,
   christmasBonusP: "0",
   profitSharingP: "0",
-};
+  healthInsuranceSupplement: 0.015
+}; 
 
 const salaryCalculatorSlice = createSlice({
   name: "salaryCalculator",
@@ -86,6 +87,10 @@ const salaryCalculatorSlice = createSlice({
       Logger.infoRedux("ProfitSharing % was set to " + action.payload);
       state.profitSharingP = action.payload;
     },
+    setHealthInsuranceSupplement: (state, action: PayloadAction<number>) => {
+      Logger.infoRedux("HealthInsuranceSupplement % was set to " + action.payload);
+      state.healthInsuranceSupplement = action.payload;
+    },
   },
 });
 
@@ -103,7 +108,8 @@ export const {
   setTaxClass,
   setChildless,
   setChristmasBonusP,
-  setProfitSharingP
+  setProfitSharingP,
+  setHealthInsuranceSupplement
 } = salaryCalculatorSlice.actions;
 
 export default salaryCalculatorSlice.reducer;

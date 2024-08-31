@@ -3,12 +3,15 @@ import Select from "../../ui/Select";
 import { taxClassOptions } from "../../config/taxConfig";
 import { TaxCalculatorViewProps } from "./TaxCalculatorViewProps";
 import Card from "../../ui/Card";
+import MaterialInput from "../../ui/MaterialInput";
 
 const TaxCalculatorView: React.FC<TaxCalculatorViewProps> = ({
   selectedTaxClass,
   onChange,
   isChildless,
   onIsChildlessChange,
+  healthInsuranceSupplement,
+  onHealthInsuranceSupplement
 }) => {
   return (
     <Card>
@@ -31,6 +34,16 @@ const TaxCalculatorView: React.FC<TaxCalculatorViewProps> = ({
         onChange={onIsChildlessChange}
         placeholder="Kinderlos"
       />
+
+      <div>
+        <label>Krankenkasse Zusatzbeitrag:</label>
+        <MaterialInput
+          value={healthInsuranceSupplement.toString()}
+          onChange={(event) => onHealthInsuranceSupplement(event)}
+          placeholder={healthInsuranceSupplement.toString()}
+          type="number"
+        />
+      </div>
     </Card>
   );
 };
