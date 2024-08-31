@@ -1,59 +1,89 @@
 import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import HomeView from "../views/Home/HomeView";
-import { AppDispatch, RootState } from "../stateManagement/store";
+import { RootState } from "../stateManagement/store";
 import TaxCalculatorService from "../services/taxCalculator/TaxCalculatorService";
 import SocialSecurityCalculator from "../services/socialSecurityCalculator/SocialSecurityCalculator";
-import unionContractCalculatorService from "../services/unionContractCalculatorService";
+import UnionContractCalculatorService from "../services/unionContractCalculatorService";
 import Logger from "../services/logger/logger";
 
 const HomeContainer: React.FC = () => {
-  const { salary, salaryWithBonus, selectedSalaryGroup, isChildless } =
+  const { salary, salaryWithBonus, isChildless } =
     useSelector((state: RootState) => state.salaryCalculator);
 
   Logger.info("salaryWithBonus salaryWithBonus: " + salaryWithBonus);
 
-  const dispatch = useDispatch<AppDispatch>();
 
-  let christmasBonus = 0,
-    transformationsGeld = 0,
-    tZugA = 0,
-    tZugB = 0,
-    urlaubsgeld = 0,
-    profitSharing = 0,
-    salaryWithAllBonus = 0,
-    taxMonthly = 0,
-    solidarityTaxMonthly = 0,
-    salaryAfterAllTaxMonthly = 0;
+  let christmasBonus = UnionContractCalculatorService.caclulateChristmasBonus();
+  let transformationsGeld = UnionContractCalculatorService.calculateTransformationsGeld();
+  let tZugA = UnionContractCalculatorService.calculateTZugA();
+  let tZugB = UnionContractCalculatorService.calculateTZugB();
+  let urlaubsgeld = UnionContractCalculatorService.calculateUrlaubsgeld();
+  let profitSharing = UnionContractCalculatorService.calculateProfitSharing();
+  let salaryWithAllBonusYear = UnionContractCalculatorService.calculateSalaryWithAllBonus();
+  let taxMonthly = 0;
+  let solidarityTaxMonthly = 0;
+  let salaryAfterAllTaxMonthly = 0;
+  let taxYear = 0;
+  let solidarityTaxYear = 0;
+  let salaryAfterAllTaxYear = 0;
+
+  if (salaryWithBonus) {
+    taxMonthly = TaxCalculatorService.calculateTax(salaryWithBonus, false);
+    solidarityTaxMonthly = TaxCalculatorService.calculateSoli(salaryWithBonus, false)
+    salaryAfterAllTaxMonthly = TaxCalculatorService.calculateSalaryAfterAllTax(salaryWithBonus, false);
+    taxYear = TaxCalculatorService.calculateTax(salaryWithAllBonusYear, true);
+    solidarityTaxYear = TaxCalculatorService.calculateSoli(salaryWithAllBonusYear, true);
+    salaryAfterAllTaxYear = TaxCalculatorService.calculateSalaryAfterAllTax(salaryWithAllBonusYear, true);
+  }
+
+
+  let calcultedSalaryAfterSocialSecurityYear = SocialSecurityCalculator.calculateNetIncomeAfterSocialSecurity(
+    salaryAfterAllTaxYear,salaryWithAllBonusYear,true
+  );
+  let careInsuranceYear = SocialSecurityCalculator.calculateCareInsurance(salaryWithAllBonusYear/12,isChildless ?? false)*12;
+  let healthInsuranceYear = SocialSecurityCalculator.calculateHealthInsurance(salaryWithAllBonusYear/12)*12;
+  let unemploymentInsurancYear = SocialSecurityCalculator.calculateUnemploymentInsurance(salaryWithAllBonusYear/12)*12;
+  let pensionInsuranceYear = SocialSecurityCalculator.calculatePensionInsurance(salaryWithAllBonusYear/12)*12;
 
   useEffect(() => {
-    //dispatch(setSalary(unionContractCalculatorService.getSalary()));
+    //dispatch(setSalary(UnionContractCalculatorService.getSalary()));
     /* dispatch(
       setSalaryWithBonus(
-        unionContractCalculatorService.calculateSalaryWithBonus()
+        UnionContractCalculatorService.calculateSalaryWithBonus()
       )
     );*/
 
-    christmasBonus = unionContractCalculatorService.caclulateChristmasBonus();
+    christmasBonus = UnionContractCalculatorService.caclulateChristmasBonus();
     transformationsGeld =
-      unionContractCalculatorService.calculateTransformationsGeld();
+      UnionContractCalculatorService.calculateTransformationsGeld();
 
-    tZugA = unionContractCalculatorService.calculateTZugA();
-    tZugB = unionContractCalculatorService.calculateTZugB();
-    urlaubsgeld = unionContractCalculatorService.calculateUrlaubsgeld();
-    profitSharing = unionContractCalculatorService.calculateProfitSharing();
-    salaryWithAllBonus =
-      unionContractCalculatorService.calculateSalaryWithAllBonus();
+    tZugA = UnionContractCalculatorService.calculateTZugA();
+    tZugB = UnionContractCalculatorService.calculateTZugB();
+    urlaubsgeld = UnionContractCalculatorService.calculateUrlaubsgeld();
+    profitSharing = UnionContractCalculatorService.calculateProfitSharing();
+    salaryWithAllBonusYear =
+      UnionContractCalculatorService.calculateSalaryWithAllBonus();
 
     if (salaryWithBonus) {
+
       taxMonthly = TaxCalculatorService.calculateTax(salaryWithBonus, false);
-      solidarityTaxMonthly = TaxCalculatorService.calculateSoli(
-        salaryWithBonus,
-        false
-      );
-      salaryAfterAllTaxMonthly =
-        TaxCalculatorService.calculateSalaryAfterAllTax();
+      solidarityTaxMonthly = TaxCalculatorService.calculateSoli(salaryWithBonus, false)
+      salaryAfterAllTaxMonthly = TaxCalculatorService.calculateSalaryAfterAllTax(salaryWithBonus, false);
+      taxYear = TaxCalculatorService.calculateTax(salaryWithAllBonusYear, true);
+      solidarityTaxYear = TaxCalculatorService.calculateSoli(salaryWithAllBonusYear, true);
+      salaryAfterAllTaxYear = TaxCalculatorService.calculateSalaryAfterAllTax(salaryWithAllBonusYear, true);
     }
+
+
+    calcultedSalaryAfterSocialSecurityYear = SocialSecurityCalculator.calculateNetIncomeAfterSocialSecurity(
+      salaryAfterAllTaxYear,salaryWithAllBonusYear,true
+    );
+    careInsuranceYear = SocialSecurityCalculator.calculateCareInsurance(salaryWithAllBonusYear/12,isChildless ?? false)*12;
+    healthInsuranceYear = SocialSecurityCalculator.calculateHealthInsurance(salaryWithAllBonusYear/12)*12;
+    unemploymentInsurancYear = SocialSecurityCalculator.calculateUnemploymentInsurance(salaryWithAllBonusYear/12)*12;
+    pensionInsuranceYear = SocialSecurityCalculator.calculatePensionInsurance(salaryWithAllBonusYear/12)*12;
+  
   }, []);
 
   return (
@@ -71,25 +101,25 @@ const HomeContainer: React.FC = () => {
       unemploymentInsurance={
         salaryWithBonus !== null
           ? SocialSecurityCalculator.calculateUnemploymentInsurance(
-              salaryWithBonus
-            )
+            salaryWithBonus
+          )
           : 0
       }
       healthInsurance={
         salaryWithBonus !== null
           ? SocialSecurityCalculator.calculateHealthInsurance(salaryWithBonus)
           : 0
-      }
+      } // Es gibt eigentlich noch den KV Zusatzbeitrag
       careInsurance={
         salaryWithBonus !== null
           ? SocialSecurityCalculator.calculateCareInsurance(
-              salaryWithBonus,
-              isChildless ?? false
-            )
+            salaryWithBonus,
+            isChildless ?? false
+          )
           : 0
       }
       calcultedSalaryAfterSocialSecurity={SocialSecurityCalculator.calculateNetIncomeAfterSocialSecurity(
-        salaryWithBonus ?? 0
+        salaryAfterAllTaxMonthly ?? 0,salaryWithBonus??0,false
       )}
       transformationsGeld={transformationsGeld}
       tZugA={tZugA}
@@ -97,10 +127,19 @@ const HomeContainer: React.FC = () => {
       urlaubsgeld={urlaubsgeld}
       profitSharing={profitSharing}
       christmasBonus={christmasBonus}
-      salaryWithAllBonus={salaryWithAllBonus}
+      salaryWithAllBonus={salaryWithAllBonusYear}
+      taxYear={taxYear}
+      solidarityTaxYear = {solidarityTaxYear}
+      salaryAfterAllTaxYear={salaryAfterAllTaxYear}
+      calcultedSalaryAfterSocialSecurityYear={calcultedSalaryAfterSocialSecurityYear}
+      careInsuranceYear={careInsuranceYear}
+      healthInsuranceYear={healthInsuranceYear}
+      unemploymentInsurancYear={unemploymentInsurancYear}
+      pensionInsuranceYear={pensionInsuranceYear}
     />
   );
 };
 
-//ToDO: Steuern für das Jahr anpassen wegen Bonis
+//ToDO: Sozialabgabeb für das Jahr anpassen wegen Bonis
+// done furs jahr
 export default HomeContainer;

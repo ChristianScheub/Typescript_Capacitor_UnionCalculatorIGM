@@ -3,6 +3,6 @@ export interface ISocialSecurityCalculator {
     calculateUnemploymentInsurance: (income: number) => number;
     calculateHealthInsurance: (income: number) => number;
     calculateCareInsurance: (income: number, isChildless: boolean) => number;
-    calculateTotalSocialSecurity: () => number;
-    calculateNetIncomeAfterSocialSecurity: (salaryAfterTax: number) => number;
+    calculateTotalSocialSecurity: (salaryBeforeTax: number) => number;
+    calculateNetIncomeAfterSocialSecurity: (salaryAfterTax: number,salaryBeforeTax: number,forYear: boolean) => number;
   }  

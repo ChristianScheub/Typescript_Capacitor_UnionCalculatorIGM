@@ -4,12 +4,16 @@ import { socialSecurityRates, contributionLimits } from "../../config/socialSecu
 import { ISocialSecurityCalculator } from "./ISocialSecurityCalculator";
 
 const SocialSecurityCalculator: ISocialSecurityCalculator = {
-    calculatePensionInsurance: (income: number): number => {
-    return income * socialSecurityRates.pensionInsurance;
+  calculatePensionInsurance: (income: number): number => {
+    const limit = contributionLimits.pensionInsuranceWestGermany; //ToDo basierend auf Bundesland
+    const effectiveIncome = Math.min(income, limit);
+    return effectiveIncome * socialSecurityRates.pensionInsurance;
   },
 
   calculateUnemploymentInsurance: (income: number): number => {
-    return income * socialSecurityRates.unemploymentInsurance;
+    const limit = contributionLimits.unemploymentInsuranceWestGermany; //ToDo basierend auf Bundesland
+    const effectiveIncome = Math.min(income, limit);
+    return effectiveIncome * socialSecurityRates.unemploymentInsurance;
   },
 
   calculateHealthInsurance: (income: number): number => {
@@ -20,18 +24,19 @@ const SocialSecurityCalculator: ISocialSecurityCalculator = {
 
   calculateCareInsurance: (income: number, isChildless: boolean): number => {
     const careInsuranceRate = isChildless ? socialSecurityRates.careInsuranceChildless : socialSecurityRates.careInsurance;
-    return income * careInsuranceRate;
+    const limit = contributionLimits.careInsurance;
+    const effectiveIncome = Math.min(income, limit);
+    return effectiveIncome * careInsuranceRate;
   },
 
-  calculateTotalSocialSecurity: (): number => {
+  calculateTotalSocialSecurity: (salaryBeforeTax: number): number => {
     const state = store.getState();
-    const income = state.salaryCalculator.salaryWithBonus!;
     const isChildless = state.salaryCalculator.isChildless;
 
-    const pension = SocialSecurityCalculator.calculatePensionInsurance(income);
-    const unemployment = SocialSecurityCalculator.calculateUnemploymentInsurance(income);
-    const health = SocialSecurityCalculator.calculateHealthInsurance(income);
-    const care = SocialSecurityCalculator.calculateCareInsurance(income, isChildless);
+    const pension = SocialSecurityCalculator.calculatePensionInsurance(salaryBeforeTax);
+    const unemployment = SocialSecurityCalculator.calculateUnemploymentInsurance(salaryBeforeTax);
+    const health = SocialSecurityCalculator.calculateHealthInsurance(salaryBeforeTax);
+    const care = SocialSecurityCalculator.calculateCareInsurance(salaryBeforeTax, isChildless);
 
     const totalSocialSecurity = pension + unemployment + health + care;
     const shortTotalSocialSecurity = Number(totalSocialSecurity.toFixed(2));
@@ -39,17 +44,25 @@ const SocialSecurityCalculator: ISocialSecurityCalculator = {
     return shortTotalSocialSecurity;
   },
 
-  calculateNetIncomeAfterSocialSecurity: (salaryAfterTax: number): number => {
-    const state = store.getState();
-    
+  calculateNetIncomeAfterSocialSecurity: (salaryAfterTax: number, salaryBeforeTax: number, forYear: boolean): number => {
+    if (forYear) {
+      salaryBeforeTax = salaryBeforeTax / 12;
+    }
     if (salaryAfterTax !== null) {
-      const totalSocialSecurity = SocialSecurityCalculator.calculateTotalSocialSecurity();
+      const totalSocialSecurity = SocialSecurityCalculator.calculateTotalSocialSecurity(salaryBeforeTax);
       Logger.info("Sozialabgaben: " + totalSocialSecurity);
 
-      const netIncome = salaryAfterTax - totalSocialSecurity;
-      const shortNetIncome = Number(netIncome.toFixed(2));
-      Logger.info("Nettoeinkommen nach Sozialabgaben: " + shortNetIncome);
-      return shortNetIncome;
+      let netIncome = 0;
+      if (forYear) {
+        netIncome = salaryAfterTax - (totalSocialSecurity * 12);
+      }
+      else {
+        netIncome = salaryAfterTax - (totalSocialSecurity);
+      }
+
+      netIncome = Number(netIncome.toFixed(2));
+      Logger.info("Nettoeinkommen nach Sozialabgaben: " + netIncome);
+      return netIncome;
     }
     return 0;
   },

@@ -65,7 +65,7 @@ const salaryCalculatorSlice = createSlice({
     },
     setSalaryWithBonus: (state, action: PayloadAction<number | null>) => {
       Logger.infoRedux("Salary wurde gesetzt mit Wert: " + action.payload);
-      state.salary = action.payload;
+      state.salaryWithBonus = action.payload;
     },
     setWorkingHours: (state, action: PayloadAction<number>) => {
       state.workingHours = action.payload;

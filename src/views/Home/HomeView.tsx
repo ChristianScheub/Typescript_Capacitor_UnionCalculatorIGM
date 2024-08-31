@@ -2,6 +2,7 @@ import React from "react";
 import { HomeViewProps } from "./HomeViewProps";
 import { CSSProperties } from "react";
 import IncomeBreakdown from "../IncomeBreakdown/IncomeBreakdown";
+import { tab } from "@testing-library/user-event/dist/tab";
 
 const HomeView: React.FC<HomeViewProps> = ({
   salary,
@@ -20,7 +21,15 @@ const HomeView: React.FC<HomeViewProps> = ({
   urlaubsgeld,
   profitSharing,
   christmasBonus,
-  salaryWithAllBonus
+  salaryWithAllBonus,
+  taxYear,
+  solidarityTaxYear,
+  salaryAfterAllTaxYear,
+  calcultedSalaryAfterSocialSecurityYear,
+  careInsuranceYear,
+  healthInsuranceYear,
+  unemploymentInsurancYear,
+  pensionInsuranceYear
 }) => {
   return (
     <div>
@@ -44,18 +53,14 @@ const HomeView: React.FC<HomeViewProps> = ({
         title="Jahres Gehalt"
         salary={parseFloat((salary * 12).toFixed(2))}
         salaryWithBonus={parseFloat((salaryWithBonus * 12).toFixed(2))}
-        salaryAfterTax={parseFloat((salaryAfterTax * 12).toFixed(2))}
-        tax={parseFloat((tax * 12).toFixed(2))}
-        solidarityTax={parseFloat((solidarityTax * 12).toFixed(2))}
-        pensionInsurance={parseFloat((pensionInsurance * 12).toFixed(2))}
-        unemploymentInsurance={parseFloat(
-          (unemploymentInsurance * 12).toFixed(2)
-        )}
-        healthInsurance={parseFloat((healthInsurance * 12).toFixed(2))}
-        careInsurance={parseFloat((careInsurance * 12).toFixed(2))}
-        calcultedSalaryAfterSocialSecurity={parseFloat(
-          (calcultedSalaryAfterSocialSecurity * 12).toFixed(2)
-        )}
+        salaryAfterTax={salaryAfterAllTaxYear}
+        tax={taxYear}
+        solidarityTax={solidarityTaxYear}
+        pensionInsurance={pensionInsuranceYear}
+        unemploymentInsurance={unemploymentInsurancYear}
+        healthInsurance={healthInsuranceYear}
+        careInsurance={careInsuranceYear}
+        calcultedSalaryAfterSocialSecurity={calcultedSalaryAfterSocialSecurityYear}
         transformationsGeld={transformationsGeld}
         tZugA={tZugA}
         tZugB={tZugB}

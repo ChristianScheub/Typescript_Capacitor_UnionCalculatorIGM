@@ -26,10 +26,10 @@ export const incomeLimits = {
   
   // Steuerklassenfaktoren
   export const taxClassFactors: Record<number, number> = {
-    1: 11604, // Ledig 10908
+    1: 11604, // Ledig 11604
     2: 12816, // Alleinerziehend
     3: 21816, // Verheiratet (besserverdienender Partner)
-    4: 10908, // Verheiratet (beide Partner gleich verdienend)
+    4: 11604, // Verheiratet (beide Partner gleich verdienend)
     5: 0, // Verheiratet (weniger verdienender Partner)
     6: 0, // Zweitjob
   };
@@ -45,5 +45,3 @@ export const incomeLimits = {
   
   export const soliThresholdSingle =  96820 ; // für Alleinstehende
   export const soliThresholdMarried = 193641; // für Verheiratete
-
-

@@ -47,7 +47,7 @@ const taxCalculatorService: ITaxCalculatorService = {
     
     if (tax) {
       if(!forYear){
-        tax = tax*12;
+        tax = tax/12;
       }
     }
 
@@ -83,14 +83,12 @@ const taxCalculatorService: ITaxCalculatorService = {
     return 0;
   },
 
-  calculateSalaryAfterAllTax: (): number => {
-    const state = store.getState();
-    const income = state.salaryCalculator.salaryWithBonus!;
+  calculateSalaryAfterAllTax: (income: number, forYear: boolean): number => {
     Logger.info("Einkommen: " + income);
 
     if (income) {
-      let netIncome = income - taxCalculatorService.calculateSoli(income,false);
-      netIncome = (netIncome - taxCalculatorService.calculateTax(income,false));
+      let netIncome = income - taxCalculatorService.calculateSoli(income,forYear);
+      netIncome = (netIncome - taxCalculatorService.calculateTax(income,forYear));
       const shortNetIncome = Number(netIncome.toFixed(2));
       Logger.info("Nettoeinkommen nach Soli: " + shortNetIncome);
       return shortNetIncome;
