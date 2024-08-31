@@ -1,8 +1,6 @@
 import React from "react";
 import { HomeViewProps } from "./HomeViewProps";
-import { CSSProperties } from "react";
 import IncomeBreakdown from "../IncomeBreakdown/IncomeBreakdown";
-import { tab } from "@testing-library/user-event/dist/tab";
 
 const HomeView: React.FC<HomeViewProps> = ({
   salary,

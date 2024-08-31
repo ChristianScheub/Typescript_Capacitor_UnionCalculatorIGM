@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import { useSelector } from "react-redux";
 import HomeView from "../views/Home/HomeView";
 import { RootState } from "../stateManagement/store";
@@ -8,134 +8,98 @@ import UnionContractCalculatorService from "../services/unionContractCalculatorS
 import Logger from "../services/logger/logger";
 
 const HomeContainer: React.FC = () => {
-  const { salary, salaryWithBonus, isChildless } =
-    useSelector((state: RootState) => state.salaryCalculator);
+  const { salary, salaryWithBonus, isChildless } = useSelector((state: RootState) => state.salaryCalculator);
 
   Logger.info("salaryWithBonus salaryWithBonus: " + salaryWithBonus);
 
+  const christmasBonus = useRef(UnionContractCalculatorService.caclulateChristmasBonus());
+  const transformationsGeld = useRef(UnionContractCalculatorService.calculateTransformationsGeld());
+  const tZugA = useRef(UnionContractCalculatorService.calculateTZugA());
+  const tZugB = useRef(UnionContractCalculatorService.calculateTZugB());
+  const urlaubsgeld = useRef(UnionContractCalculatorService.calculateUrlaubsgeld());
+  const profitSharing = useRef(UnionContractCalculatorService.calculateProfitSharing());
+  const salaryWithAllBonusYear = useRef(UnionContractCalculatorService.calculateSalaryWithAllBonus());
+  
+  const taxMonthly = useRef(0);
+  const solidarityTaxMonthly = useRef(0);
+  const salaryAfterAllTaxMonthly = useRef(0);
+  const taxYear = useRef(0);
+  const solidarityTaxYear = useRef(0);
+  const salaryAfterAllTaxYear = useRef(0);
 
-  let christmasBonus = UnionContractCalculatorService.caclulateChristmasBonus();
-  let transformationsGeld = UnionContractCalculatorService.calculateTransformationsGeld();
-  let tZugA = UnionContractCalculatorService.calculateTZugA();
-  let tZugB = UnionContractCalculatorService.calculateTZugB();
-  let urlaubsgeld = UnionContractCalculatorService.calculateUrlaubsgeld();
-  let profitSharing = UnionContractCalculatorService.calculateProfitSharing();
-  let salaryWithAllBonusYear = UnionContractCalculatorService.calculateSalaryWithAllBonus();
-  let taxMonthly = 0;
-  let solidarityTaxMonthly = 0;
-  let salaryAfterAllTaxMonthly = 0;
-  let taxYear = 0;
-  let solidarityTaxYear = 0;
-  let salaryAfterAllTaxYear = 0;
-
-  if (salaryWithBonus) {
-    taxMonthly = TaxCalculatorService.calculateTax(salaryWithBonus, false);
-    solidarityTaxMonthly = TaxCalculatorService.calculateSoli(salaryWithBonus, false)
-    salaryAfterAllTaxMonthly = TaxCalculatorService.calculateSalaryAfterAllTax(salaryWithBonus, false);
-    taxYear = TaxCalculatorService.calculateTax(salaryWithAllBonusYear, true);
-    solidarityTaxYear = TaxCalculatorService.calculateSoli(salaryWithAllBonusYear, true);
-    salaryAfterAllTaxYear = TaxCalculatorService.calculateSalaryAfterAllTax(salaryWithAllBonusYear, true);
-  }
-
-
-  let calcultedSalaryAfterSocialSecurityYear = SocialSecurityCalculator.calculateNetIncomeAfterSocialSecurity(
-    salaryAfterAllTaxYear,salaryWithAllBonusYear,true
-  );
-  let careInsuranceYear = SocialSecurityCalculator.calculateCareInsurance(salaryWithAllBonusYear/12,isChildless ?? false)*12;
-  let healthInsuranceYear = SocialSecurityCalculator.calculateHealthInsurance(salaryWithAllBonusYear/12)*12;
-  let unemploymentInsurancYear = SocialSecurityCalculator.calculateUnemploymentInsurance(salaryWithAllBonusYear/12)*12;
-  let pensionInsuranceYear = SocialSecurityCalculator.calculatePensionInsurance(salaryWithAllBonusYear/12)*12;
+  const calcultedSalaryAfterSocialSecurityYear = useRef(0);
+  const careInsuranceYear = useRef(0);
+  const healthInsuranceYear = useRef(0);
+  const unemploymentInsurancYear = useRef(0);
+  const pensionInsuranceYear = useRef(0);
 
   useEffect(() => {
-    //dispatch(setSalary(UnionContractCalculatorService.getSalary()));
-    /* dispatch(
-      setSalaryWithBonus(
-        UnionContractCalculatorService.calculateSalaryWithBonus()
-      )
-    );*/
-
-    christmasBonus = UnionContractCalculatorService.caclulateChristmasBonus();
-    transformationsGeld =
-      UnionContractCalculatorService.calculateTransformationsGeld();
-
-    tZugA = UnionContractCalculatorService.calculateTZugA();
-    tZugB = UnionContractCalculatorService.calculateTZugB();
-    urlaubsgeld = UnionContractCalculatorService.calculateUrlaubsgeld();
-    profitSharing = UnionContractCalculatorService.calculateProfitSharing();
-    salaryWithAllBonusYear =
-      UnionContractCalculatorService.calculateSalaryWithAllBonus();
-
     if (salaryWithBonus) {
-
-      taxMonthly = TaxCalculatorService.calculateTax(salaryWithBonus, false);
-      solidarityTaxMonthly = TaxCalculatorService.calculateSoli(salaryWithBonus, false)
-      salaryAfterAllTaxMonthly = TaxCalculatorService.calculateSalaryAfterAllTax(salaryWithBonus, false);
-      taxYear = TaxCalculatorService.calculateTax(salaryWithAllBonusYear, true);
-      solidarityTaxYear = TaxCalculatorService.calculateSoli(salaryWithAllBonusYear, true);
-      salaryAfterAllTaxYear = TaxCalculatorService.calculateSalaryAfterAllTax(salaryWithAllBonusYear, true);
+      taxMonthly.current = TaxCalculatorService.calculateTax(salaryWithBonus, false);
+      solidarityTaxMonthly.current = TaxCalculatorService.calculateSoli(salaryWithBonus, false);
+      salaryAfterAllTaxMonthly.current = TaxCalculatorService.calculateSalaryAfterAllTax(salaryWithBonus, false);
+      taxYear.current = TaxCalculatorService.calculateTax(salaryWithAllBonusYear.current, true);
+      solidarityTaxYear.current = TaxCalculatorService.calculateSoli(salaryWithAllBonusYear.current, true);
+      salaryAfterAllTaxYear.current = TaxCalculatorService.calculateSalaryAfterAllTax(salaryWithAllBonusYear.current, true);
     }
 
-
-    calcultedSalaryAfterSocialSecurityYear = SocialSecurityCalculator.calculateNetIncomeAfterSocialSecurity(
-      salaryAfterAllTaxYear,salaryWithAllBonusYear,true
+    calcultedSalaryAfterSocialSecurityYear.current = SocialSecurityCalculator.calculateNetIncomeAfterSocialSecurity(
+      salaryAfterAllTaxYear.current,
+      salaryWithAllBonusYear.current,
+      true
     );
-    careInsuranceYear = SocialSecurityCalculator.calculateCareInsurance(salaryWithAllBonusYear/12,isChildless ?? false)*12;
-    healthInsuranceYear = SocialSecurityCalculator.calculateHealthInsurance(salaryWithAllBonusYear/12)*12;
-    unemploymentInsurancYear = SocialSecurityCalculator.calculateUnemploymentInsurance(salaryWithAllBonusYear/12)*12;
-    pensionInsuranceYear = SocialSecurityCalculator.calculatePensionInsurance(salaryWithAllBonusYear/12)*12;
-  
-  }, []);
+    careInsuranceYear.current = SocialSecurityCalculator.calculateCareInsurance(
+      salaryWithAllBonusYear.current / 12,
+      isChildless ?? false
+    ) * 12;
+    healthInsuranceYear.current = SocialSecurityCalculator.calculateHealthInsurance(
+      salaryWithAllBonusYear.current / 12
+    ) * 12;
+    unemploymentInsurancYear.current = SocialSecurityCalculator.calculateUnemploymentInsurance(
+      salaryWithAllBonusYear.current / 12
+    ) * 12;
+    pensionInsuranceYear.current = SocialSecurityCalculator.calculatePensionInsurance(
+      salaryWithAllBonusYear.current / 12
+    ) * 12;
+  }, [salaryWithBonus, isChildless]);
 
   return (
     <HomeView
       salary={salary ?? 0}
       salaryWithBonus={salaryWithBonus ?? 0}
-      salaryAfterTax={salaryAfterAllTaxMonthly ?? 0}
-      tax={taxMonthly ?? 0}
-      solidarityTax={solidarityTaxMonthly ?? 0}
-      pensionInsurance={
-        salaryWithBonus !== null
-          ? SocialSecurityCalculator.calculatePensionInsurance(salaryWithBonus)
-          : 0
-      }
+      salaryAfterTax={salaryAfterAllTaxMonthly.current ?? 0}
+      tax={taxMonthly.current ?? 0}
+      solidarityTax={solidarityTaxMonthly.current ?? 0}
+      pensionInsurance={salaryWithBonus !== null ? SocialSecurityCalculator.calculatePensionInsurance(salaryWithBonus) : 0}
       unemploymentInsurance={
-        salaryWithBonus !== null
-          ? SocialSecurityCalculator.calculateUnemploymentInsurance(
-            salaryWithBonus
-          )
-          : 0
+        salaryWithBonus !== null ? SocialSecurityCalculator.calculateUnemploymentInsurance(salaryWithBonus) : 0
       }
-      healthInsurance={
-        salaryWithBonus !== null
-          ? SocialSecurityCalculator.calculateHealthInsurance(salaryWithBonus)
-          : 0
-      } // Es gibt eigentlich noch den KV Zusatzbeitrag
+      healthInsurance={salaryWithBonus !== null ? SocialSecurityCalculator.calculateHealthInsurance(salaryWithBonus) : 0}
       careInsurance={
         salaryWithBonus !== null
-          ? SocialSecurityCalculator.calculateCareInsurance(
-            salaryWithBonus,
-            isChildless ?? false
-          )
+          ? SocialSecurityCalculator.calculateCareInsurance(salaryWithBonus, isChildless ?? false)
           : 0
       }
       calcultedSalaryAfterSocialSecurity={SocialSecurityCalculator.calculateNetIncomeAfterSocialSecurity(
-        salaryAfterAllTaxMonthly ?? 0,salaryWithBonus??0,false
+        salaryAfterAllTaxMonthly.current ?? 0,
+        salaryWithBonus ?? 0,
+        false
       )}
-      transformationsGeld={transformationsGeld}
-      tZugA={tZugA}
-      tZugB={tZugB}
-      urlaubsgeld={urlaubsgeld}
-      profitSharing={profitSharing}
-      christmasBonus={christmasBonus}
-      salaryWithAllBonus={salaryWithAllBonusYear}
-      taxYear={taxYear}
-      solidarityTaxYear = {solidarityTaxYear}
-      salaryAfterAllTaxYear={salaryAfterAllTaxYear}
-      calcultedSalaryAfterSocialSecurityYear={calcultedSalaryAfterSocialSecurityYear}
-      careInsuranceYear={careInsuranceYear}
-      healthInsuranceYear={healthInsuranceYear}
-      unemploymentInsurancYear={unemploymentInsurancYear}
-      pensionInsuranceYear={pensionInsuranceYear}
+      transformationsGeld={transformationsGeld.current}
+      tZugA={tZugA.current}
+      tZugB={tZugB.current}
+      urlaubsgeld={urlaubsgeld.current}
+      profitSharing={profitSharing.current}
+      christmasBonus={christmasBonus.current}
+      salaryWithAllBonus={salaryWithAllBonusYear.current}
+      taxYear={taxYear.current}
+      solidarityTaxYear={solidarityTaxYear.current}
+      salaryAfterAllTaxYear={salaryAfterAllTaxYear.current}
+      calcultedSalaryAfterSocialSecurityYear={calcultedSalaryAfterSocialSecurityYear.current}
+      careInsuranceYear={careInsuranceYear.current}
+      healthInsuranceYear={healthInsuranceYear.current}
+      unemploymentInsurancYear={unemploymentInsurancYear.current}
+      pensionInsuranceYear={pensionInsuranceYear.current}
     />
   );
 };

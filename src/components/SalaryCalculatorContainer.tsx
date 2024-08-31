@@ -84,7 +84,7 @@ const SalaryCalculatorContainer: React.FC = () => {
 
       Logger.warn("Triggered get Salary");
     }
-  }, [selectedRegion, selectedYear, selectedSalaryGroup, workingHours,bonus]);
+  }, [selectedRegion, selectedYear, selectedSalaryGroup, workingHours,bonus,dispatch]);
 
   const handleRegionChange = (region: string) => {
     dispatch(setSelectedRegion(region));
