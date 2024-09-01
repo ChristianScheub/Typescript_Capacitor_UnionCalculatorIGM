@@ -2,9 +2,9 @@ import React from 'react';
 import TextField from '@mui/material/TextField';
 
 interface MaterialInputProps {
-  value: string;
+  value: string | number;
   onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
-  placeholder?: string;
+  placeholder?: string | number;
   type?: string;
 }
 
@@ -20,7 +20,7 @@ const MaterialInput: React.FC<MaterialInputProps> = ({
       type={type}
       value={value}
       onChange={onChange}
-      placeholder={placeholder}
+      placeholder={placeholder?.toString()}
       fullWidth
       variant="outlined"
     />

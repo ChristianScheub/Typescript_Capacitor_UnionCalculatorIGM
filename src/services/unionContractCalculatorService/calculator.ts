@@ -1,10 +1,10 @@
 import { store } from "../../stateManagement/store";
 import Logger from "../logger/logger";
-import { 
-  tZugAProzent, 
-  tZugBProzent, 
-  transformationsGeldProzent, 
-  urlaubsgeldProzent 
+import {
+  tZugAProzent,
+  tZugBProzent,
+  transformationsGeldProzent,
+  urlaubsgeldProzent
 } from "../../config/unionContractConfig";
 import unionContractCalculatorService from ".";
 import { UnionContractData } from "./types/UnionContractData";
@@ -18,7 +18,7 @@ export const calculateSalaryForGroup = (
   year: string,
   salaryGroup: string
 ): number => {
-  
+
   const salary = data[region]?.years?.[year]?.[salaryGroup] || null;
   if (!salary) return 0;
 
@@ -31,8 +31,10 @@ export const calculateSalaryForGroup = (
   return baseSalary;
 };
 
-export const calculateBonus = (bonusPercentage: string, salary: number): number => {
-  const bonusPercentageValue = parseFloat(bonusPercentage);
+export const calculateBonus = (bonusPercentage: string | number, salary: number): number => {
+  const bonusPercentageValue = typeof bonusPercentage === 'string'
+    ? parseFloat(bonusPercentage)
+    : bonusPercentage;
   if (isNaN(bonusPercentageValue)) return 0;
   const bonusAmount = salary * (bonusPercentageValue / 100);
 
@@ -43,14 +45,15 @@ export const calculateBonus = (bonusPercentage: string, salary: number): number 
 export const calculateSalaryWithBonus = (): number => {
   const state = store.getState();
   const bonusPercentage = state.salaryCalculator.bonus;
+  const nonTariffBonus = state.salaryCalculator.nonTariffBonus;
   const baseSalary = state.salaryCalculator.salary;
 
   Logger.info("Bonus Percentage: " + bonusPercentage);
   Logger.info("Base Salary: " + baseSalary);
-  
+
   if (baseSalary) {
     const bonusAmount = calculateBonus(bonusPercentage, baseSalary);
-    const totalSalary = baseSalary + bonusAmount;
+    const totalSalary = baseSalary + bonusAmount+nonTariffBonus;
     return parseFloat(totalSalary.toFixed(2));
   }
   return 0;
@@ -64,7 +67,7 @@ export const calculateSalaryWithAllBonus = (): number => {
 
   if (baseSalary) {
     const bonusAmount = calculateBonus(bonusPercentage, baseSalary);
-    let totalSalary = (baseSalary + bonusAmount) *12;
+    let totalSalary = (baseSalary + bonusAmount) * 12;
     const christmasBonus = caclulateChristmasBonus();
     const transformationsGeld = calculateTransformationsGeld();
     const tZugA = calculateTZugA();

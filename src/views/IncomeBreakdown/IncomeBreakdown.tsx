@@ -34,7 +34,7 @@ const IncomeBreakdown: React.FC<IncomeBreakdownProps> = ({
         </span>
       </div>
       <div style={styles.item}>
-        <span style={styles.textLeft}>Mit Leistungsentgelt:</span>
+        <span style={styles.textLeft}>Mit Leistungsentgelt/Zulagen:</span>
         <span style={styles.textRight}>
           {salaryWithBonus !== null ? `${salaryWithBonus} €` : "N/A"}
         </span>

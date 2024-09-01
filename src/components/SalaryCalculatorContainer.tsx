@@ -14,6 +14,7 @@ import {
   setWorkingHours,
   setChristmasBonusP,
   setProfitSharingP,
+  setNonTariffBonus,
 } from "../stateManagement/salaryCalculatorSlice";
 import unionContractCalculatorService from "../services/unionContractCalculatorService";
 import { SalaryCalculatorView } from "../views/SalaryCalculator/SalaryCalculatorView";
@@ -33,8 +34,10 @@ import {
 } from "../stateManagement/selectors/unionContractSelectors";
 import {
   selectBonus,
+  selectNonTariffBonus,
   selectSalary,
 } from "../stateManagement/selectors/salarySelectors";
+import { parseAndValidateNumber } from "../services/helper/parseNumber";
 
 const SalaryCalculatorContainer: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
@@ -50,6 +53,7 @@ const SalaryCalculatorContainer: React.FC = () => {
   const workingHours = useSelector(selectWorkingHours);
   const christmasBonus = useSelector(selectChristmasBonusP);
   const profitSharing = useSelector(selectProfitSharingP);
+  const nonTariffBonus = useSelector(selectNonTariffBonus);
 
   useEffect(() => {
     const fetchedRegions = unionContractCalculatorService.getRegions();
@@ -76,19 +80,15 @@ const SalaryCalculatorContainer: React.FC = () => {
   }, [selectedYear, selectedRegion, dispatch]);
 
   useEffect(() => {
-    Logger.warn("Triggered ");
-
     if (selectedRegion && selectedYear && selectedSalaryGroup && workingHours) {
       dispatch(setSalary(unionContractCalculatorService.getSalary()));
       dispatch(setSalaryWithBonus(unionContractCalculatorService.calculateSalaryWithBonus()));
-
-      Logger.warn("Triggered get Salary");
     }
-  }, [selectedRegion, selectedYear, selectedSalaryGroup, workingHours,bonus,dispatch]);
+  }, [selectedRegion, selectedYear, selectedSalaryGroup, workingHours, bonus, dispatch]);
 
   const handleRegionChange = (region: string) => {
     dispatch(setSelectedRegion(region));
-    Logger.info("SelectedRegion wurde gesetzt mit Wert: " + region);
+    Logger.info("SelectedRegion has been set to: " + region);
   };
 
   const handleWorkingHoursChange = (
@@ -96,7 +96,7 @@ const SalaryCalculatorContainer: React.FC = () => {
   ) => {
     dispatch(setWorkingHours(Number(event.target.value)));
     Logger.info(
-      "SelectedWorkingHours wurde gesetzt mit Wert: " + event.target.value
+      "SelectedHours has been set to: " + event.target.value
     );
   };
 
@@ -107,26 +107,43 @@ const SalaryCalculatorContainer: React.FC = () => {
 
   const handleSalaryGroupChange = (salaryGroup: string) => {
     dispatch(setSelectedSalaryGroup(salaryGroup));
-    Logger.info("SelectedSalaryGroup wurde gesetzt mit Wert: " + salaryGroup);
+    Logger.info("Selected salary group has been set to: " + salaryGroup);
   };
-
+  
   const handleBonusChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    dispatch(setBonus(event.target.value));
-    Logger.info("Bonus wurde gesetzt mit Wert: " + event.target.value);
+    const value = parseAndValidateNumber(event.target.value);
+  
+    if (value !== null) {
+      dispatch(setBonus(value));
+      Logger.info("Bonus has been set to: " + value);
+    }
   };
-
+  
+  const handleNonTariffBonusChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const value = parseAndValidateNumber(event.target.value);
+  
+    if (value !== null) {
+      dispatch(setNonTariffBonus(value));
+      Logger.info("Non-tariff bonus has been set to: " + value);
+    }
+  };
+  
   const handleChristmasBonus = (event: React.ChangeEvent<HTMLInputElement>) => {
-    dispatch(setChristmasBonusP(event.target.value));
-    Logger.info(
-      "Weihnachtsbonus wurde gesetzt mit Wert: " + event.target.value
-    );
+    const value = parseAndValidateNumber(event.target.value);
+  
+    if (value !== null) {
+      dispatch(setChristmasBonusP(value));
+      Logger.info("Christmas bonus has been set to: " + value);
+    }
   };
-
+  
   const handleProfitSharing = (event: React.ChangeEvent<HTMLInputElement>) => {
-    dispatch(setProfitSharingP(event.target.value));
-    Logger.info(
-      "Gewinnbeteiligung wurde gesetzt mit Wert: " + event.target.value
-    );
+    const value = parseAndValidateNumber(event.target.value);
+  
+    if (value !== null) {
+      dispatch(setProfitSharingP(value));
+      Logger.info("Profit sharing has been set to: " + value);
+    }
   };
 
   return (
@@ -138,6 +155,7 @@ const SalaryCalculatorContainer: React.FC = () => {
       selectedYear={selectedYear}
       selectedSalaryGroup={selectedSalaryGroup}
       bonus={bonus}
+      nonTariffBonusChange={nonTariffBonus}
       workingHours={workingHours}
       salary={salary}
       christmasBonus={christmasBonus}
@@ -146,6 +164,7 @@ const SalaryCalculatorContainer: React.FC = () => {
       onYearChange={handleYearChange}
       onSalaryGroupChange={handleSalaryGroupChange}
       onBonusChange={handleBonusChange}
+      onNonTariffBonusChange={handleNonTariffBonusChange}
       onWorkingHoursChange={handleWorkingHoursChange}
       onChristmasBonusChange={handleChristmasBonus}
       onProfitSharingChange={handleProfitSharing}

@@ -9,15 +9,16 @@ const initialState: SalaryCalculatorState = {
   selectedRegion: "",
   selectedYear: "",
   selectedSalaryGroup: "",
-  bonus: "10",
+  bonus: 10,
+  nonTariffBonus: 0,
   workingHours: 35,
   salary: 0,
   salaryWithBonus: 0,
   taxClass: 1,
   isChildless: true,
-  christmasBonusP: "0",
-  profitSharingP: "0",
-  healthInsuranceSupplement: 0.015
+  christmasBonusP: 0,
+  profitSharingP: 0,
+  healthInsuranceSupplement: 1.5
 }; 
 
 const salaryCalculatorSlice = createSlice({
@@ -25,65 +26,62 @@ const salaryCalculatorSlice = createSlice({
   initialState,
   reducers: {
     setRegions: (state, action: PayloadAction<string[]>) => {
-      Logger.infoRedux("Regions wurde gesetzt mit Wert: " + action.payload);
+      Logger.infoRedux("Regions have been set to: " + action.payload.join(", "));
       state.regions = action.payload;
     },
     setYears: (state, action: PayloadAction<string[]>) => {
-      Logger.infoRedux("Years wurde gesetzt mit Wert: " + action.payload);
+      Logger.infoRedux("Years have been set to: " + action.payload.join(", "));
       state.years = action.payload;
     },
     setSalaryGroups: (state, action: PayloadAction<string[]>) => {
-      Logger.infoRedux(
-        "SalaryGroups wurde gesetzt mit Wert: " + action.payload
-      );
+      Logger.infoRedux("Salary groups have been set to: " + action.payload.join(", "));
       state.salaryGroups = action.payload;
     },
     setSelectedRegion: (state, action: PayloadAction<string>) => {
-      Logger.infoRedux(
-        "SelectedRegion wurde gesetzt mit Wert: " + action.payload
-      );
+      Logger.infoRedux("Selected region has been set to: " + action.payload);
       state.selectedRegion = action.payload;
     },
     setSelectedYear: (state, action: PayloadAction<string>) => {
-      Logger.infoRedux(
-        "SelectedYear wurde gesetzt mit Wert: " + action.payload
-      );
+      Logger.infoRedux("Selected year has been set to: " + action.payload);
       state.selectedYear = action.payload;
     },
     setSelectedSalaryGroup: (state, action: PayloadAction<string>) => {
-      Logger.infoRedux(
-        "SelectedSalaryGroup wurde gesetzt mit Wert: " + action.payload
-      );
+      Logger.infoRedux("Selected salary group has been set to: " + action.payload);
       state.selectedSalaryGroup = action.payload;
     },
-    setBonus: (state, action: PayloadAction<string>) => {
-      Logger.infoRedux("Bonus wurde gesetzt mit Wert: " + action.payload);
+    setBonus: (state, action: PayloadAction<number>) => {
+      Logger.infoRedux("Bonus has been set to: " + action.payload);
       state.bonus = action.payload;
     },
+    setNonTariffBonus: (state, action: PayloadAction<number>) => {
+      Logger.infoRedux("Non-tariff bonus has been set to: " + action.payload);
+      state.nonTariffBonus = action.payload;
+    },
     setSalary: (state, action: PayloadAction<number | null>) => {
-      Logger.infoRedux("Salary wurde gesetzt mit Wert: " + action.payload);
+      Logger.infoRedux("Salary has been set to: " + action.payload);
       state.salary = action.payload;
     },
     setSalaryWithBonus: (state, action: PayloadAction<number | null>) => {
-      Logger.infoRedux("Salary wurde gesetzt mit Wert: " + action.payload);
+      Logger.infoRedux("Salary with bonus has been set to: " + action.payload);
       state.salaryWithBonus = action.payload;
     },
     setWorkingHours: (state, action: PayloadAction<number>) => {
+      Logger.infoRedux("Working hours have been set to: " + action.payload);
       state.workingHours = action.payload;
     },
     setTaxClass: (state, action: PayloadAction<number | null>) => {
-      Logger.infoRedux("TaxClass wurde gesetzt mit Wert: " + action.payload);
+      Logger.infoRedux("Tax class has been set to: " + action.payload);
       state.taxClass = action.payload;
     },
     setChildless: (state, action: PayloadAction<boolean>) => {
       Logger.infoRedux("Childless was set to " + action.payload);
       state.isChildless = action.payload;
     },
-    setChristmasBonusP: (state, action: PayloadAction<string>) => {
+    setChristmasBonusP: (state, action: PayloadAction<number>) => {
       Logger.infoRedux("ChristmasBonus % was set to " + action.payload);
       state.christmasBonusP = action.payload;
     },
-    setProfitSharingP: (state, action: PayloadAction<string>) => {
+    setProfitSharingP: (state, action: PayloadAction<number>) => {
       Logger.infoRedux("ProfitSharing % was set to " + action.payload);
       state.profitSharingP = action.payload;
     },
@@ -102,6 +100,7 @@ export const {
   setSelectedYear,
   setSelectedSalaryGroup,
   setBonus,
+  setNonTariffBonus,
   setSalary,
   setSalaryWithBonus,
   setWorkingHours,

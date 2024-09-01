@@ -1,0 +1,10 @@
+{
+    "settings_Title": "Einstellungen",
+    "settings_Information": "Informationen",
+    "settings_Warning": "Achtung, die Steuerberechnung ist noch nicht ausgereift! Für alle angezeigten und berechneten Daten übernehmen wir keine Gewähr da dieses Projekt noch in der Entwicklung ist!!",
+    "settings_Impressum": "Impressum",
+    "settings_Datenschutz": "Datenschutz",
+    "setting_Menu_OpenSourceModulList": "Verwendete Bibilotheken",
+    "setting_OpenSurceModulListTItle": "Verwendete NPM Bibilotheken",
+    "setting_OpenSourceModulListClose": "Schließen"
+}

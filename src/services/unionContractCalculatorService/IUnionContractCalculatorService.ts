@@ -6,7 +6,7 @@ export interface IUnionContractCalculatorService {
   getSalaryForEG: (salaryGroup: string) => number;
   getBasicWage: () => number;
   calculateSalaryWithBonus: () => number;
-  calculateBonus: (bonusPercentage: string, salary: number) => number;
+  calculateBonus: (bonusPercentage: string|number, salary: number) => number;
   caclulateChristmasBonus: () => number;
   calculateTransformationsGeld: () => number;
   calculateTZugA: () => number;

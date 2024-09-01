@@ -4,7 +4,6 @@ export function isWestGermany(land: Bundesland): boolean {
   switch (land) {
     case Bundesland.BADEN_WUERTTEMBERG:
     case Bundesland.BAVARIA:
-    case Bundesland.BERLIN:
     case Bundesland.BREMEN:
     case Bundesland.HAMBURG:
     case Bundesland.HESSE:
@@ -13,6 +12,7 @@ export function isWestGermany(land: Bundesland): boolean {
     case Bundesland.RHINELAND_PALATINATE:
     case Bundesland.SAARLAND:
     case Bundesland.SCHLESWIG_HOLSTEIN:
+    case Bundesland.BERLIN:
       return true
     default:
       return false

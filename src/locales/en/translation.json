@@ -1,0 +1,10 @@
+{
+    "settings_Title": "Settings",
+    "settings_Warning":  "Attention, the tax calculation is not yet fully developed! We assume no liability for all displayed and calculated data as this project is still under development!!!",
+    "settings_Information": "Information",
+    "settings_Impressum": "Imprint",
+    "settings_Datenschutz": "Privacy Policy",
+    "setting_Menu_OpenSourceModulList": "Used Libraries",
+    "setting_OpenSurceModulListTItle": "Used NPM Libraries",
+    "setting_OpenSourceModulListClose": "Close"
+}
