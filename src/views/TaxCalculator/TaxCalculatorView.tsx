@@ -38,9 +38,8 @@ const TaxCalculatorView: React.FC<TaxCalculatorViewProps> = ({
       <div>
         <label>Krankenkasse Zusatzbeitrag (%)</label>
         <MaterialInput
-          value={healthInsuranceSupplement.toString()}
+          value={healthInsuranceSupplement}
           onChange={(event) => onHealthInsuranceSupplement(event)}
-          placeholder={healthInsuranceSupplement.toString()}
           type="number"
         />
       </div>

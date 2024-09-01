@@ -5,6 +5,7 @@ import { setTaxClass,setChildless, setHealthInsuranceSupplement } from '../state
 import TaxCalculatorView from '../views/TaxCalculator/TaxCalculatorView';
 import Logger from '../services/logger/logger';
 import { selectHealthInsuranceSupplement } from '../stateManagement/selectors/socialSecuritySelectors';
+import { parseAndValidateNumber } from '../services/helper/parseNumber';
 
 const TaxClassContainer: React.FC = () => {
   const dispatch = useDispatch();
@@ -26,9 +27,10 @@ const TaxClassContainer: React.FC = () => {
   const handleHealthInsuranceSupplement = (
     event: React.ChangeEvent<HTMLInputElement>
   ) => {
-    dispatch(setHealthInsuranceSupplement(Number(event.target.value)));
+    const value = parseAndValidateNumber(event.target.value);
+    dispatch(setHealthInsuranceSupplement(value));
     Logger.info(
-      "SelectedWorkingHours wurde gesetzt mit Wert: " + event.target.value
+      "HealthInsuranceSupplement was set to: " + event.target.value
     );
   };
   
@@ -40,7 +42,7 @@ const TaxClassContainer: React.FC = () => {
         onChange={handleTaxClassChange}
         isChildless={isChildless}
         onIsChildlessChange={handleIsChildlessChange}
-        healthInsuranceSupplement={healthInsuranceSupplement ?? 0}
+        healthInsuranceSupplement={healthInsuranceSupplement}
         onHealthInsuranceSupplement={handleHealthInsuranceSupplement}
       />
     </div>

@@ -6,6 +6,7 @@ import { ISocialSecurityCalculator } from "./ISocialSecurityCalculator";
 const SocialSecurityCalculator: ISocialSecurityCalculator = {
   calculatePensionInsurance: (income: number): number => {
     const limit = contributionLimits.pensionInsuranceWestGermany; //ToDo basierend auf Bundesland
+
     const effectiveIncome = Math.min(income, limit);
     return effectiveIncome * socialSecurityRates.pensionInsurance;
   },
