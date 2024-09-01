@@ -66,7 +66,6 @@ export const SalaryCalculatorView: React.FC<SalaryCalculatorViewProps> = ({
           <MaterialInput
             value={workingHours}
             onChange={(event) => onWorkingHoursChange(event)}
-            placeholder={workingHours}
             type="number"
           />
         </div>
@@ -84,7 +83,6 @@ export const SalaryCalculatorView: React.FC<SalaryCalculatorViewProps> = ({
           <MaterialInput
             value={bonus}
             onChange={(event) => onBonusChange(event)}
-            placeholder={bonus}
             type="number"
           />
         </div>
@@ -94,7 +92,6 @@ export const SalaryCalculatorView: React.FC<SalaryCalculatorViewProps> = ({
           <MaterialInput
             value={christmasBonus}
             onChange={(event) => onChristmasBonusChange(event)}
-            placeholder={christmasBonus}
             type="number"
           />
         </div>
@@ -104,7 +101,6 @@ export const SalaryCalculatorView: React.FC<SalaryCalculatorViewProps> = ({
           <MaterialInput
             value={profitSharing}
             onChange={(event) => onProfitSharingChange(event)}
-            placeholder={profitSharing}
             type="number"
           />
         </div>
@@ -115,7 +111,6 @@ export const SalaryCalculatorView: React.FC<SalaryCalculatorViewProps> = ({
           <MaterialInput
             value={nonTariffBonusChange}
             onChange={(event) => onNonTariffBonusChange(event)}
-            placeholder={nonTariffBonusChange}
             type="number"
           />
         </div>

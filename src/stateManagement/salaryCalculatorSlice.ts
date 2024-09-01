@@ -49,11 +49,11 @@ const salaryCalculatorSlice = createSlice({
       Logger.infoRedux("Selected salary group has been set to: " + action.payload);
       state.selectedSalaryGroup = action.payload;
     },
-    setBonus: (state, action: PayloadAction<number>) => {
+    setBonus: (state, action: PayloadAction<number|null>) => {
       Logger.infoRedux("Bonus has been set to: " + action.payload);
       state.bonus = action.payload;
     },
-    setNonTariffBonus: (state, action: PayloadAction<number>) => {
+    setNonTariffBonus: (state, action: PayloadAction<number|null>) => {
       Logger.infoRedux("Non-tariff bonus has been set to: " + action.payload);
       state.nonTariffBonus = action.payload;
     },
@@ -65,7 +65,7 @@ const salaryCalculatorSlice = createSlice({
       Logger.infoRedux("Salary with bonus has been set to: " + action.payload);
       state.salaryWithBonus = action.payload;
     },
-    setWorkingHours: (state, action: PayloadAction<number>) => {
+    setWorkingHours: (state, action: PayloadAction<number|null>) => {
       Logger.infoRedux("Working hours have been set to: " + action.payload);
       state.workingHours = action.payload;
     },
@@ -77,15 +77,15 @@ const salaryCalculatorSlice = createSlice({
       Logger.infoRedux("Childless was set to " + action.payload);
       state.isChildless = action.payload;
     },
-    setChristmasBonusP: (state, action: PayloadAction<number>) => {
+    setChristmasBonusP: (state, action: PayloadAction<number|null>) => {
       Logger.infoRedux("ChristmasBonus % was set to " + action.payload);
       state.christmasBonusP = action.payload;
     },
-    setProfitSharingP: (state, action: PayloadAction<number>) => {
+    setProfitSharingP: (state, action: PayloadAction<number|null>) => {
       Logger.infoRedux("ProfitSharing % was set to " + action.payload);
       state.profitSharingP = action.payload;
     },
-    setHealthInsuranceSupplement: (state, action: PayloadAction<number>) => {
+    setHealthInsuranceSupplement: (state, action: PayloadAction<number|null>) => {
       Logger.infoRedux("HealthInsuranceSupplement % was set to " + action.payload);
       state.healthInsuranceSupplement = action.payload;
     },

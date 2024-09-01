@@ -5,12 +5,12 @@ export interface SalaryCalculatorViewProps {
   selectedRegion: string;
   selectedYear: string;
   selectedSalaryGroup: string;
-  bonus: number;
-  nonTariffBonusChange: number;
-  workingHours: number;
+  bonus: number|null;
+  nonTariffBonusChange: number|null;
+  workingHours: number|null;
   salary: number | null;
-  christmasBonus: number;
-  profitSharing: number;
+  christmasBonus: number|null;
+  profitSharing: number|null;
   onRegionChange: (region: string) => void;
   onYearChange: (year: string) => void;
   onSalaryGroupChange: (salaryGroup: string) => void;

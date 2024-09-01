@@ -5,14 +5,14 @@ export interface SalaryCalculatorState {
     selectedRegion: string;
     selectedYear: string;
     selectedSalaryGroup: string;
-    bonus: number;
-    nonTariffBonus: number;
-    workingHours: number;
+    bonus: number|null;
+    nonTariffBonus: number|null;
+    workingHours: number|null;
     salary: number | null;
     salaryWithBonus: number | null;
     taxClass: number | null;
     isChildless: boolean;
-    christmasBonusP: number;
-    profitSharingP: number;
-    healthInsuranceSupplement: number;
+    christmasBonusP: number|null;
+    profitSharingP: number|null;
+    healthInsuranceSupplement: number|null;
   }

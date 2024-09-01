@@ -31,7 +31,7 @@ export const getEntgeltgruppenForRegionAndYear = (): string[] => {
 export const getSalary = (): number => {
   const state = store.getState();
   const salaryGroup = state.salaryCalculator.selectedSalaryGroup;
-  const workingHours = state.salaryCalculator.workingHours;
+  const workingHours = state.salaryCalculator.workingHours??0;
 
   const salary = unionContractCalculatorService.getSalaryForEG(salaryGroup)
   const adjustedSalary = (salary / 35) * workingHours;

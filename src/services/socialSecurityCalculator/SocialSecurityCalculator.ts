@@ -24,10 +24,14 @@ const SocialSecurityCalculator: ISocialSecurityCalculator = {
 
   calculateHealthInsuranceSupplement: (income: number): number => {
     const state = store.getState();
-    const healthInsuranceSupplement = state.salaryCalculator.healthInsuranceSupplement / 200;
+    let healthInsuranceSupplement = state.salaryCalculator.healthInsuranceSupplement ?? 0;
+    healthInsuranceSupplement = healthInsuranceSupplement / 200;
     Logger.info("Es wird abgezogen an Zusatzbeitrag:"+healthInsuranceSupplement);
     const limit = contributionLimits.healthInsurance;
     const effectiveIncome = Math.min(income, limit);
+    Logger.info("Einkommen:"+effectiveIncome);
+    Logger.info("gesamt:"+effectiveIncome * healthInsuranceSupplement);
+
     return effectiveIncome * healthInsuranceSupplement;
   },
 

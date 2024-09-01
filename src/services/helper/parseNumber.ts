@@ -5,7 +5,7 @@ export function parseAndValidateNumber(value: string): number | null {
     const numberValue = parseFloat(value);
 
     if (value.trim() === '') {
-        return 0;
+        return null;
       }
   
     if (!isNaN(numberValue)) {

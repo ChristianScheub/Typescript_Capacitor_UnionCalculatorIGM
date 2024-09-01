@@ -40,7 +40,7 @@ const TaxClassContainer: React.FC = () => {
         onChange={handleTaxClassChange}
         isChildless={isChildless}
         onIsChildlessChange={handleIsChildlessChange}
-        healthInsuranceSupplement={healthInsuranceSupplement}
+        healthInsuranceSupplement={healthInsuranceSupplement ?? 0}
         onHealthInsuranceSupplement={handleHealthInsuranceSupplement}
       />
     </div>

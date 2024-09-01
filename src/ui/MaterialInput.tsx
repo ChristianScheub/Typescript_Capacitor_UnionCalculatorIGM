@@ -2,7 +2,7 @@ import React from 'react';
 import TextField from '@mui/material/TextField';
 
 interface MaterialInputProps {
-  value: string | number;
+  value: string | number | null;
   onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
   placeholder?: string | number;
   type?: string;

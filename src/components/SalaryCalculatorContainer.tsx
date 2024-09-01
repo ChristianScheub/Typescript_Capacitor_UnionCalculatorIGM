@@ -94,56 +94,45 @@ const SalaryCalculatorContainer: React.FC = () => {
   const handleWorkingHoursChange = (
     event: React.ChangeEvent<HTMLInputElement>
   ) => {
-    dispatch(setWorkingHours(Number(event.target.value)));
+    const value = parseAndValidateNumber(event.target.value);
+    dispatch(setWorkingHours(value));
     Logger.info(
-      "SelectedHours has been set to: " + event.target.value
+      "SelectedHours has been set to: " + value
     );
   };
 
   const handleYearChange = (year: string) => {
     dispatch(setSelectedYear(year));
-    Logger.info("SelectedYear wurde gesetzt mit Wert: " + year);
+    Logger.info("SelectedYear has been set to: " + year);
   };
 
   const handleSalaryGroupChange = (salaryGroup: string) => {
     dispatch(setSelectedSalaryGroup(salaryGroup));
     Logger.info("Selected salary group has been set to: " + salaryGroup);
   };
-  
+
   const handleBonusChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const value = parseAndValidateNumber(event.target.value);
-  
-    if (value !== null) {
-      dispatch(setBonus(value));
-      Logger.info("Bonus has been set to: " + value);
-    }
+    dispatch(setBonus(value));
+    Logger.info("Bonus has been set to: " + value);
   };
-  
+
   const handleNonTariffBonusChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const value = parseAndValidateNumber(event.target.value);
-  
-    if (value !== null) {
-      dispatch(setNonTariffBonus(value));
-      Logger.info("Non-tariff bonus has been set to: " + value);
-    }
+    dispatch(setNonTariffBonus(value));
+    Logger.info("Non-tariff bonus has been set to: " + value);
   };
-  
+
   const handleChristmasBonus = (event: React.ChangeEvent<HTMLInputElement>) => {
     const value = parseAndValidateNumber(event.target.value);
-  
-    if (value !== null) {
-      dispatch(setChristmasBonusP(value));
-      Logger.info("Christmas bonus has been set to: " + value);
-    }
+    dispatch(setChristmasBonusP(value));
+    Logger.info("Christmas bonus has been set to: " + value);
   };
-  
+
   const handleProfitSharing = (event: React.ChangeEvent<HTMLInputElement>) => {
     const value = parseAndValidateNumber(event.target.value);
-  
-    if (value !== null) {
-      dispatch(setProfitSharingP(value));
-      Logger.info("Profit sharing has been set to: " + value);
-    }
+    dispatch(setProfitSharingP(value));
+    Logger.info("Profit sharing has been set to: " + value);
   };
 
   return (
