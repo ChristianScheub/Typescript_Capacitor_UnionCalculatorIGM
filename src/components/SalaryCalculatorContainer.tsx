@@ -38,6 +38,8 @@ import {
   selectSalary,
 } from "../stateManagement/selectors/salarySelectors";
 import { parseAndValidateNumber } from "../services/helper/parseNumber";
+import { mapStringToBundesland } from "../services/isWestGermany/isWestGermany";
+import { Bundesland } from "../services/isWestGermany/Bundesland";
 
 const SalaryCalculatorContainer: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
@@ -59,7 +61,7 @@ const SalaryCalculatorContainer: React.FC = () => {
     const fetchedRegions = unionContractCalculatorService.getRegions();
     dispatch(setRegions(fetchedRegions));
     if (!selectedRegion && fetchedRegions.length > 0) {
-      dispatch(setSelectedRegion(fetchedRegions[0]));
+      dispatch(setSelectedRegion(mapStringToBundesland(fetchedRegions[0]) ?? Bundesland.EMPTY));
     }
   }, [dispatch, selectedRegion]);
 
@@ -87,8 +89,14 @@ const SalaryCalculatorContainer: React.FC = () => {
   }, [selectedRegion, selectedYear, selectedSalaryGroup, workingHours, bonus, dispatch]);
 
   const handleRegionChange = (region: string) => {
-    dispatch(setSelectedRegion(region));
-    Logger.info("SelectedRegion has been set to: " + region);
+    const selectedBundesland = mapStringToBundesland(region);
+    if(selectedBundesland){
+      dispatch(setSelectedRegion(selectedBundesland));
+    }
+    else{
+      dispatch(setSelectedRegion(Bundesland.EMPTY));
+    }
+    Logger.info("SelectedRegion has been set to: " + selectedBundesland+region);
   };
 
   const handleWorkingHoursChange = (

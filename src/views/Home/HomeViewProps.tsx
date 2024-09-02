@@ -26,4 +26,6 @@ export interface HomeViewProps {
   healthInsuranceYear: number;
   unemploymentInsurancYear: number;
   pensionInsuranceYear: number;
+  hoursWageNetYear: number;
+  hoursWageGrossYear: number;
 }

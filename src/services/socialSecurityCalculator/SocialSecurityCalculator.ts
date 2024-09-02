@@ -2,17 +2,42 @@ import { store } from "../../stateManagement/store";
 import Logger from "../logger/logger";
 import { socialSecurityRates, contributionLimits } from "../../config/socialSecurityConfig";
 import { ISocialSecurityCalculator } from "./ISocialSecurityCalculator";
+import { isWestGermany } from "../isWestGermany/isWestGermany";
+import { calculateHourlyWage } from "../helper/hourlyWageCalculator";
 
 const SocialSecurityCalculator: ISocialSecurityCalculator = {
   calculatePensionInsurance: (income: number): number => {
-    const limit = contributionLimits.pensionInsuranceWestGermany; //ToDo basierend auf Bundesland
+
+    const state = store.getState();
+    const selectedRegion = state.salaryCalculator.selectedRegion;
+    let limit = 0;
+    if(isWestGermany(selectedRegion)){
+      limit = contributionLimits.pensionInsuranceWestGermany;
+      Logger.info("WEST Deutschland");
+    }
+    else{
+      limit = contributionLimits.pensionInsuranceWestGermany;
+      Logger.info("OST Deutschland");
+    }
 
     const effectiveIncome = Math.min(income, limit);
     return effectiveIncome * socialSecurityRates.pensionInsurance;
   },
 
   calculateUnemploymentInsurance: (income: number): number => {
-    const limit = contributionLimits.unemploymentInsuranceWestGermany; //ToDo basierend auf Bundesland
+
+    const state = store.getState();
+    const selectedRegion = state.salaryCalculator.selectedRegion;
+    let limit = 0;
+    if(isWestGermany(selectedRegion)){
+      limit = contributionLimits.unemploymentInsuranceWestGermany;
+      Logger.info("WEST Deutschland");
+    }
+    else{
+      limit = contributionLimits.unemploymentInsurancOstGermany;
+      Logger.info("OST Deutschland");
+    }
+
     const effectiveIncome = Math.min(income, limit);
     return effectiveIncome * socialSecurityRates.unemploymentInsurance;
   },
@@ -27,11 +52,11 @@ const SocialSecurityCalculator: ISocialSecurityCalculator = {
     const state = store.getState();
     let healthInsuranceSupplement = state.salaryCalculator.healthInsuranceSupplement ?? 0;
     healthInsuranceSupplement = healthInsuranceSupplement / 200;
-    Logger.info("Es wird abgezogen an Zusatzbeitrag:"+healthInsuranceSupplement);
+    Logger.info("The additional contribution will be deducted:"+healthInsuranceSupplement);
     const limit = contributionLimits.healthInsurance;
     const effectiveIncome = Math.min(income, limit);
-    Logger.info("Einkommen:"+effectiveIncome);
-    Logger.info("gesamt:"+effectiveIncome * healthInsuranceSupplement);
+    Logger.info("Salary Effectiv:"+effectiveIncome);
+    Logger.info("Total:"+effectiveIncome * healthInsuranceSupplement);
 
     return effectiveIncome * healthInsuranceSupplement;
   },
@@ -82,6 +107,14 @@ const SocialSecurityCalculator: ISocialSecurityCalculator = {
     }
     return 0;
   },
+
+  calculateNetHourlyWageAfterSocialSecurity: (salaryAfterTax: number, salaryBeforeTax: number): number => {
+    const salaryForYear = SocialSecurityCalculator.calculateNetIncomeAfterSocialSecurity(salaryAfterTax,salaryBeforeTax,true);
+    const hourlyWageGross = calculateHourlyWage(salaryForYear);
+    return hourlyWageGross;
+  }
+
+
 };
 
 export default SocialSecurityCalculator;

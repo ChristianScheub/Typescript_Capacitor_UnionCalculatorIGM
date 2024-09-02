@@ -9,6 +9,7 @@ import {
 import unionContractCalculatorService from ".";
 import { UnionContractData } from "./types/UnionContractData";
 import tarifdaten from "./tarifdaten.json";
+import { calculateHourlyWage } from "../helper/hourlyWageCalculator";
 
 const data: UnionContractData = tarifdaten as UnionContractData;
 
@@ -118,3 +119,9 @@ export const calculateUrlaubsgeld = (): number => {
   const salaryWithBonus = state.salaryCalculator.salaryWithBonus || 0;
   return calculateBonus(urlaubsgeldProzent.toString(), salaryWithBonus);
 };
+
+export const calculateGrossHourlyWage = (): number => {
+  const salaryForYear = calculateSalaryWithAllBonus();
+  const hourlyWageGross = calculateHourlyWage(salaryForYear);
+  return hourlyWageGross;
+}

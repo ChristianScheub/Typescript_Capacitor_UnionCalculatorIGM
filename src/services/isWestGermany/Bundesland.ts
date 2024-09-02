@@ -15,4 +15,5 @@ export enum Bundesland {
   SAXONY_ANHALT = 'Sachsen-Anhalt',
   SCHLESWIG_HOLSTEIN = 'Schleswig-Holstein',
   THURINGIA = 'Thüringen',
+  EMPTY = ''
 }

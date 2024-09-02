@@ -1,6 +1,7 @@
 import React from "react";
 import { HomeViewProps } from "./HomeViewProps";
 import IncomeBreakdown from "../IncomeBreakdown/IncomeBreakdown";
+import Card from "../../ui/Card";
 
 const HomeView: React.FC<HomeViewProps> = ({
   salary,
@@ -29,12 +30,24 @@ const HomeView: React.FC<HomeViewProps> = ({
   healthInsuranceSupplementYear,
   healthInsuranceYear,
   unemploymentInsurancYear,
-  pensionInsuranceYear
+  pensionInsuranceYear,
+  hoursWageNetYear,
+  hoursWageGrossYear,
 }) => {
   return (
     <div>
       <br />
       <br />
+      <div style={{ display: 'flex', justifyContent: 'space-between', gap: '3vw' }}>
+        <Card style={{ flex: 1 }}>
+          <b>Stundenlohn Brutto</b> <br /> {hoursWageGrossYear.toFixed(2)}<br />
+        </Card>
+        <Card style={{ flex: 1 }}>
+          <b>Stundenlohn Netto</b> <br /> {hoursWageNetYear.toFixed(2)}
+        </Card>
+      </div>
+
+
       <IncomeBreakdown
         title="Monatliches Gehalt (Ohne Sonderzahlungen)"
         salary={salary}
@@ -51,7 +64,7 @@ const HomeView: React.FC<HomeViewProps> = ({
       />
       <br />
       <IncomeBreakdown
-        title="Jahres Gehalt"
+        title="Jahresgehalt"
         salary={parseFloat((salary * 12).toFixed(2))}
         salaryWithBonus={parseFloat((salaryWithBonus * 12).toFixed(2))}
         salaryAfterTax={salaryAfterAllTaxYear}

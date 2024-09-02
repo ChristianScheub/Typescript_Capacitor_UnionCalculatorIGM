@@ -9,7 +9,8 @@ import {
   calculateUrlaubsgeld,
   calculateSalaryForGroup,
   calculateProfitSharing,
-  calculateSalaryWithAllBonus
+  calculateSalaryWithAllBonus,
+  calculateGrossHourlyWage 
 } from "./calculator";
 import {
   getEntgeltgruppenForRegionAndYear,
@@ -36,7 +37,8 @@ const unionContractCalculatorService: IUnionContractCalculatorService = {
   calculateUrlaubsgeld,
   calculateSalaryForGroup,
   calculateProfitSharing,
-  calculateSalaryWithAllBonus
+  calculateSalaryWithAllBonus,
+  calculateGrossHourlyWage
 };
 
 export default unionContractCalculatorService;

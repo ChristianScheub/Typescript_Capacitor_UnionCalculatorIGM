@@ -18,3 +18,7 @@ export function isWestGermany(land: Bundesland): boolean {
       return false
   }
 }
+
+export function mapStringToBundesland(input: string): Bundesland | undefined {
+  return Object.values(Bundesland).find(land => land === input);
+}

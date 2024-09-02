@@ -1,12 +1,13 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import Logger from "../services/logger/logger";
 import { SalaryCalculatorState } from "./SalaryCalculatorStateInterface";
+import { Bundesland } from "../services/isWestGermany/Bundesland";
 
 const initialState: SalaryCalculatorState = {
   regions: [],
   years: [],
   salaryGroups: [],
-  selectedRegion: "",
+  selectedRegion: Bundesland.EMPTY,
   selectedYear: "",
   selectedSalaryGroup: "",
   bonus: 10,
@@ -18,7 +19,9 @@ const initialState: SalaryCalculatorState = {
   isChildless: true,
   christmasBonusP: 0,
   profitSharingP: 0,
-  healthInsuranceSupplement: 1.5
+  healthInsuranceSupplement: 1.5,
+  routeToWork:0,
+  writeOff:0
 }; 
 
 const salaryCalculatorSlice = createSlice({
@@ -37,7 +40,7 @@ const salaryCalculatorSlice = createSlice({
       Logger.infoRedux("Salary groups have been set to: " + action.payload.join(", "));
       state.salaryGroups = action.payload;
     },
-    setSelectedRegion: (state, action: PayloadAction<string>) => {
+    setSelectedRegion: (state, action: PayloadAction<Bundesland>) => {
       Logger.infoRedux("Selected region has been set to: " + action.payload);
       state.selectedRegion = action.payload;
     },
@@ -89,6 +92,14 @@ const salaryCalculatorSlice = createSlice({
       Logger.infoRedux("HealthInsuranceSupplement % was set to " + action.payload);
       state.healthInsuranceSupplement = action.payload;
     },
+    setRouteToWork: (state, action: PayloadAction<number|null>) => {
+      Logger.infoRedux("RouteToWork was set to " + action.payload);
+      state.routeToWork = action.payload;
+    },
+    setWriteOff: (state, action: PayloadAction<number|null>) => {
+      Logger.infoRedux("WriteOff was set to " + action.payload);
+      state.writeOff = action.payload;
+    },
   },
 });
 
@@ -108,7 +119,9 @@ export const {
   setChildless,
   setChristmasBonusP,
   setProfitSharingP,
-  setHealthInsuranceSupplement
+  setHealthInsuranceSupplement,
+  setRouteToWork,
+  setWriteOff
 } = salaryCalculatorSlice.actions;
 
 export default salaryCalculatorSlice.reducer;

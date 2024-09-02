@@ -27,6 +27,9 @@ const HomeContainer: React.FC = () => {
   const [taxYear, setTaxYear] = useState(0);
   const [solidarityTaxYear, setSolidarityTaxYear] = useState(0);
   const [salaryAfterAllTaxYear, setSalaryAfterAllTaxYear] = useState(0);
+  const [hoursWageGrossYear, setHoursWageGrossYear] = useState(0); //Brutto
+  const [hoursWageNetYear, setHoursWageNetYear] = useState(0); //Netto
+
 
   const [calculatedSalaryAfterSocialSecurityYear, setCalculatedSalaryAfterSocialSecurityYear] = useState(0);
   const [careInsuranceYear, setCareInsuranceYear] = useState(0);
@@ -34,6 +37,7 @@ const HomeContainer: React.FC = () => {
   const [healthInsuranceYear, setHealthInsuranceYear] = useState(0);
   const [unemploymentInsuranceYear, setUnemploymentInsuranceYear] = useState(0);
   const [pensionInsuranceYear, setPensionInsuranceYear] = useState(0);
+
 
   const calculateAllValues = useCallback(() => {
     // Berechnung der Bonuszahlungen
@@ -63,6 +67,11 @@ const HomeContainer: React.FC = () => {
       salaryWithAllBonusYear,
       true
     ));
+    setHoursWageNetYear(SocialSecurityCalculator.calculateNetHourlyWageAfterSocialSecurity(
+      salaryAfterAllTaxYear,
+      salaryWithAllBonusYear
+    ));
+    setHoursWageGrossYear(UnionContractCalculatorService.calculateGrossHourlyWage());
     setCareInsuranceYear(SocialSecurityCalculator.calculateCareInsurance(
       salaryWithAllBonusYear / 12,
       isChildless ?? false
@@ -118,6 +127,8 @@ const HomeContainer: React.FC = () => {
       healthInsuranceYear={healthInsuranceYear}
       unemploymentInsurancYear={unemploymentInsuranceYear}
       pensionInsuranceYear={pensionInsuranceYear}
+      hoursWageNetYear={hoursWageNetYear}
+      hoursWageGrossYear={hoursWageGrossYear}
     />
   );
 };

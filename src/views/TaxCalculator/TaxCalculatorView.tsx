@@ -11,7 +11,11 @@ const TaxCalculatorView: React.FC<TaxCalculatorViewProps> = ({
   isChildless,
   onIsChildlessChange,
   healthInsuranceSupplement,
-  onHealthInsuranceSupplement
+  onHealthInsuranceSupplement,
+  routeToWork,
+  onRouteToWorkChange,
+  writeOff,
+  onWriteOffChange,
 }) => {
   return (
     <Card>
@@ -40,6 +44,24 @@ const TaxCalculatorView: React.FC<TaxCalculatorViewProps> = ({
         <MaterialInput
           value={healthInsuranceSupplement}
           onChange={(event) => onHealthInsuranceSupplement(event)}
+          type="number"
+        />
+      </div>
+
+      <div>
+        <label>Arbeitsweg (Mit dem Auto, Einmalweg)</label>
+        <MaterialInput
+          value={routeToWork}
+          onChange={(event) => onRouteToWorkChange(event)}
+          type="number"
+        />
+      </div>
+
+      <div>
+        <label>Steuerliche Abschreibung</label>
+        <MaterialInput
+          value={  writeOff}
+          onChange={(event) => onWriteOffChange(event)}
           type="number"
         />
       </div>

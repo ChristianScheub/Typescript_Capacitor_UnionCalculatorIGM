@@ -1,8 +1,10 @@
+import { Bundesland } from "../services/isWestGermany/Bundesland";
+
 export interface SalaryCalculatorState {
     regions: string[];
     years: string[];
     salaryGroups: string[];
-    selectedRegion: string;
+    selectedRegion: Bundesland;
     selectedYear: string;
     selectedSalaryGroup: string;
     bonus: number|null;
@@ -15,4 +17,6 @@ export interface SalaryCalculatorState {
     christmasBonusP: number|null;
     profitSharingP: number|null;
     healthInsuranceSupplement: number|null;
+    routeToWork: number | null;
+    writeOff: number | null;
   }

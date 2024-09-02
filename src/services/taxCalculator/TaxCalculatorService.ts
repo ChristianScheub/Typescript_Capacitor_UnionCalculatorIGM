@@ -14,6 +14,15 @@ const taxCalculatorService: ITaxCalculatorService = {
     }
 
     const taxClass = state.salaryCalculator.taxClass;
+    const writeOff = state.salaryCalculator.writeOff ?? 0;
+    const routeToWork = state.salaryCalculator.routeToWork ?? 0;
+    
+    let geldProKm = 0.38;
+
+    if(routeToWork<20){
+      geldProKm = 0.3;
+    }
+
 
     if (income === null || taxClass === null) {
       return 0;
@@ -23,7 +32,7 @@ const taxCalculatorService: ITaxCalculatorService = {
 
      const taxFreeAllowance = (taxClassFactors[taxClass]);
      // Subtract tax-free allowance from adjusted income
-     const adjustedIncome = income - taxFreeAllowance;
+     const adjustedIncome = income - taxFreeAllowance - writeOff - (routeToWork * geldProKm * 2);
     Logger.info("Einkommen nach Abzug des Grundfreibetrags: " + adjustedIncome);
 
     if (income <= incomeLimits.lowerLimit1) {
@@ -48,6 +57,9 @@ const taxCalculatorService: ITaxCalculatorService = {
     if (tax) {
       if(!forYear){
         tax = tax/12;
+      }
+      if(tax<0){
+        tax = 0;
       }
     }
 

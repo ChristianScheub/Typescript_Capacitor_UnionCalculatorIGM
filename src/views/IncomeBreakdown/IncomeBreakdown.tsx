@@ -26,7 +26,7 @@ const IncomeBreakdown: React.FC<IncomeBreakdownProps> = ({
 }) => {
   return (
     <Card>
-      <h2>{title}</h2>
+      <h3>{title}</h3>
       <div style={styles.item}>
         <span style={styles.textLeft}>Brutto:</span>
         <span style={styles.textRight}>

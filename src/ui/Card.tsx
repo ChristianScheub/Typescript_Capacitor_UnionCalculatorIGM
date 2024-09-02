@@ -2,11 +2,12 @@ import React, { CSSProperties, ReactNode } from "react";
 
 interface CardProps {
   children: ReactNode;
+  style?: CSSProperties;
 }
 
-const Card: React.FC<CardProps> = ({ children }) => {
+const Card: React.FC<CardProps> = ({ children, style }) => {
   return (
-    <div style={styles.container}>
+    <div style={{ ...styles.container, ...style }}>
       {children}
     </div>
   );

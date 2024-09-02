@@ -15,4 +15,5 @@ export interface IUnionContractCalculatorService {
   calculateSalaryForGroup: (region: string, year: string, salaryGroup: string) => number;
   calculateProfitSharing: () => number;
   calculateSalaryWithAllBonus: () => number;
+  calculateGrossHourlyWage : () => number;
 }

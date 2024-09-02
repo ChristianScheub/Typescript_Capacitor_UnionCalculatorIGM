@@ -6,4 +6,5 @@ export interface ISocialSecurityCalculator {
     calculateCareInsurance: (income: number, isChildless: boolean) => number;
     calculateTotalSocialSecurity: (salaryBeforeTax: number) => number;
     calculateNetIncomeAfterSocialSecurity: (salaryAfterTax: number,salaryBeforeTax: number,forYear: boolean) => number;
+    calculateNetHourlyWageAfterSocialSecurity: (salaryAfterTax: number,salaryBeforeTax: number) => number;
   }  
