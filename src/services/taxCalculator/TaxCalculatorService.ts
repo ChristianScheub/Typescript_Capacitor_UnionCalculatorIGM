@@ -2,6 +2,7 @@ import { ITaxCalculatorService } from "./ITaxCalculatorService";
 import { store } from "../../stateManagement/store";
 import Logger from "../logger/logger";
 import { incomeLimits, soliThresholdMarried, soliThresholdSingle, taxClassFactors, taxRates } from "../../config/taxConfig";
+import { getWorkDaysPerYear } from "../helper/hourlyWageCalculator";
 
 
 const taxCalculatorService: ITaxCalculatorService = {
@@ -14,13 +15,19 @@ const taxCalculatorService: ITaxCalculatorService = {
     }
 
     const taxClass = state.salaryCalculator.taxClass;
-    const writeOff = state.salaryCalculator.writeOff ?? 0;
+    let writeOff = state.salaryCalculator.writeOff ?? 0;
     const routeToWork = state.salaryCalculator.routeToWork ?? 0;
     
     let geldProKm = 0.38;
 
     if(routeToWork<20){
       geldProKm = 0.3;
+    }
+
+    let writeOffWayToWork = routeToWork * geldProKm * 2 * getWorkDaysPerYear();
+    if(!forYear){
+      writeOff = writeOff / 12;
+      writeOffWayToWork = writeOffWayToWork / 12;
     }
 
 
@@ -32,7 +39,7 @@ const taxCalculatorService: ITaxCalculatorService = {
 
      const taxFreeAllowance = (taxClassFactors[taxClass]);
      // Subtract tax-free allowance from adjusted income
-     const adjustedIncome = income - taxFreeAllowance - writeOff - (routeToWork * geldProKm * 2);
+     const adjustedIncome = income - taxFreeAllowance - writeOff - writeOffWayToWork;
     Logger.info("Einkommen nach Abzug des Grundfreibetrags: " + adjustedIncome);
 
     if (income <= incomeLimits.lowerLimit1) {

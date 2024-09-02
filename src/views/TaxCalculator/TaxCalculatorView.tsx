@@ -49,7 +49,7 @@ const TaxCalculatorView: React.FC<TaxCalculatorViewProps> = ({
       </div>
 
       <div>
-        <label>Arbeitsweg (Mit dem Auto, Einmalweg)</label>
+        <label>Arbeitsweg mit dem Auto in km (Einmalweg)</label>
         <MaterialInput
           value={routeToWork}
           onChange={(event) => onRouteToWorkChange(event)}
@@ -58,7 +58,7 @@ const TaxCalculatorView: React.FC<TaxCalculatorViewProps> = ({
       </div>
 
       <div>
-        <label>Steuerliche Abschreibung</label>
+        <label>Steuerliche Abschreibung (Jahresbasis)</label>
         <MaterialInput
           value={  writeOff}
           onChange={(event) => onWriteOffChange(event)}
