@@ -1,4 +1,4 @@
 import { RootState } from '../store';
 
-export const setIsChildless = (state: RootState) => state.salaryCalculator.isChildless;
-export const selectHealthInsuranceSupplement = (state: RootState) => state.salaryCalculator.healthInsuranceSupplement;
+export const setIsChildless = (state: RootState) => state.tax.isChildless;
+export const selectHealthInsuranceSupplement = (state: RootState) => state.tax.healthInsuranceSupplement;

@@ -14,9 +14,9 @@ const taxCalculatorService: ITaxCalculatorService = {
       income = income*12;
     }
 
-    const taxClass = state.salaryCalculator.taxClass;
-    let writeOff = state.salaryCalculator.writeOff ?? 0;
-    const routeToWork = state.salaryCalculator.routeToWork ?? 0;
+    const taxClass = state.tax.taxClass;
+    let writeOff = state.tax.writeOff ?? 0;
+    const routeToWork = state.tax.routeToWork ?? 0;
     
     let geldProKm = 0.38;
 
@@ -40,7 +40,7 @@ const taxCalculatorService: ITaxCalculatorService = {
      const taxFreeAllowance = (taxClassFactors[taxClass]);
      // Subtract tax-free allowance from adjusted income
      const adjustedIncome = income - taxFreeAllowance - writeOff - writeOffWayToWork;
-    Logger.info("Einkommen nach Abzug des Grundfreibetrags: " + adjustedIncome);
+    Logger.info("Income after deduction of the writeOffs etc: " + adjustedIncome);
 
     if (income <= incomeLimits.lowerLimit1) {
       // a) Up to 11,604 EUR: Tax is 0
@@ -77,7 +77,7 @@ const taxCalculatorService: ITaxCalculatorService = {
 
   calculateSoli: (income: number, forYear: boolean): number => {
     const state = store.getState();
-    const taxClass = state.salaryCalculator.taxClass;
+    const taxClass = state.tax.taxClass;
     if(!forYear){
       income = income*12;
     }

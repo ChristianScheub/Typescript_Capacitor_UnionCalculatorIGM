@@ -45,9 +45,9 @@ export const calculateBonus = (bonusPercentage: string | number, salary: number)
 
 export const calculateSalaryWithBonus = (): number => {
   const state = store.getState();
-  const bonusPercentage = state.salaryCalculator.bonus;
-  const nonTariffBonus = state.salaryCalculator.nonTariffBonus??0;
-  const baseSalary = state.salaryCalculator.salary;
+  const bonusPercentage = state.bonus.bonus;
+  const nonTariffBonus = state.bonus.nonTariffBonus??0;
+  const baseSalary = state.salary.salary;
 
   Logger.info("Bonus Percentage: " + bonusPercentage);
   Logger.info("Base Salary: " + baseSalary);
@@ -63,8 +63,8 @@ export const calculateSalaryWithBonus = (): number => {
 export const calculateSalaryWithAllBonus = (): number => {
   //Warning: This function return the Salary with bonus for the whole year
   const state = store.getState();
-  const bonusPercentage = state.salaryCalculator.bonus;
-  const baseSalary = state.salaryCalculator.salary;
+  const bonusPercentage = state.bonus.bonus;
+  const baseSalary = state.salary.salary;
 
   if (baseSalary) {
     const bonusAmount = calculateBonus(bonusPercentage ?? 0 , baseSalary);
@@ -84,28 +84,28 @@ export const calculateSalaryWithAllBonus = (): number => {
 
 export const caclulateChristmasBonus = (): number => {
   const state = store.getState();
-  const salaryWithBonus = state.salaryCalculator.salaryWithBonus || 0;
-  const christmasBonusPercentage = state.salaryCalculator.christmasBonusP || 0;
+  const salaryWithBonus = state.salary.salaryWithBonus || 0;
+  const christmasBonusPercentage = state.bonus.christmasBonusP || 0;
 
   return calculateBonus(christmasBonusPercentage.toString(), salaryWithBonus);
 };
 
 export const calculateTransformationsGeld = (): number => {
   const state = store.getState();
-  const salaryWithBonus = state.salaryCalculator.salaryWithBonus || 0;
+  const salaryWithBonus = state.salary.salaryWithBonus || 0;
   return calculateBonus(transformationsGeldProzent.toString(), salaryWithBonus);
 };
 
 export const calculateTZugA = (): number => {
   const state = store.getState();
-  const salaryWithBonus = state.salaryCalculator.salaryWithBonus || 0;
+  const salaryWithBonus = state.salary.salaryWithBonus || 0;
   return calculateBonus(tZugAProzent.toString(), salaryWithBonus);
 };
 
 export const calculateProfitSharing = (): number => {
   const state = store.getState();
-  const salaryWithBonus = state.salaryCalculator.salaryWithBonus || 0;
-  const profitSharingP = state.salaryCalculator.profitSharingP || 0;
+  const salaryWithBonus = state.salary.salaryWithBonus || 0;
+  const profitSharingP = state.bonus.profitSharingP || 0;
   return calculateBonus(profitSharingP.toString(), salaryWithBonus);
 };
 
@@ -116,7 +116,7 @@ export const calculateTZugB = (): number => {
 
 export const calculateUrlaubsgeld = (): number => {
   const state = store.getState();
-  const salaryWithBonus = state.salaryCalculator.salaryWithBonus || 0;
+  const salaryWithBonus = state.salary.salaryWithBonus || 0;
   return calculateBonus(urlaubsgeldProzent.toString(), salaryWithBonus);
 };
 

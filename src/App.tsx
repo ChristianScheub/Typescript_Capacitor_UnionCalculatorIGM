@@ -5,10 +5,12 @@ import SalaryCalculatorContainer from "./components/SalaryCalculatorContainer";
 import Navbar from "./views/Navbar/Navbar";
 import HomeContainer from "./components/HomeContainer";
 import TaxClassContainer from "./components/TaxCalculatorContainer";
-import ContainerSettings from "./components/container_settings";
+import ContainerSettings from "./components/SettingsContainer";
 import Impressum from "./legal/impressum";
 import Datenschutz from "./legal/datenschutz";
 import "./i18n";
+import 'typeface-roboto';
+
 
 const App: React.FC = () => {
 
@@ -25,9 +27,9 @@ const App: React.FC = () => {
             <Route path="/salary" element={<SalaryCalculatorContainer />} />
             <Route path="/government" element={<TaxClassContainer />} />
             <Route path="/info" element={<ContainerSettings />} />
-            <Route path="/impressum" element={<Impressum />} /> {/* Neue Route für Impressum */}
-            <Route path="/datenschutz" element={<Datenschutz />} /> {/* Neue Route für Datenschutz */}
-            <Route path="*" element={<HomeContainer />} /> {/* Default Route für unbekannte Pfade */}
+            <Route path="/impressum" element={<Impressum />} />
+            <Route path="/datenschutz" element={<Datenschutz />} />
+            <Route path="*" element={<HomeContainer />} />
           </Routes>
         </header>
       </div>

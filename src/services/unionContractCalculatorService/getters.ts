@@ -12,7 +12,7 @@ export const getRegions = (): string[] => {
 
 export const getYearsForRegion = (): string[] => {
   const state = store.getState();
-  const selectedRegion = state.salaryCalculator.selectedRegion;
+  const selectedRegion = state.unionContract.selectedRegion;
 
   if (!selectedRegion || !data[selectedRegion]) return [];
   return Object.keys(data[selectedRegion].years);
@@ -20,8 +20,8 @@ export const getYearsForRegion = (): string[] => {
 
 export const getEntgeltgruppenForRegionAndYear = (): string[] => {
   const state = store.getState();
-  const selectedRegion = state.salaryCalculator.selectedRegion;
-  const selectedYear = state.salaryCalculator.selectedYear;
+  const selectedRegion = state.unionContract.selectedRegion;
+  const selectedYear = state.unionContract.selectedYear;
 
   const yearData = data[selectedRegion]?.years?.[selectedYear];
   if (!yearData) return [];
@@ -30,8 +30,8 @@ export const getEntgeltgruppenForRegionAndYear = (): string[] => {
 
 export const getSalary = (): number => {
   const state = store.getState();
-  const salaryGroup = state.salaryCalculator.selectedSalaryGroup;
-  const workingHours = state.salaryCalculator.workingHours??0;
+  const salaryGroup = state.unionContract.selectedSalaryGroup;
+  const workingHours = state.unionContract.workingHours??0;
 
   const salary = unionContractCalculatorService.getSalaryForEG(salaryGroup)
   const adjustedSalary = (salary / 35) * workingHours;
@@ -40,8 +40,8 @@ export const getSalary = (): number => {
 
 export const getSalaryForEG = (salaryGroup: string): number => {
   const state = store.getState();
-  const selectedRegion = state.salaryCalculator.selectedRegion;
-  const selectedYear = state.salaryCalculator.selectedYear;
+  const selectedRegion = state.unionContract.selectedRegion;
+  const selectedYear = state.unionContract.selectedYear;
 
   if (!selectedRegion || !selectedYear || !salaryGroup) return 0;
 
@@ -50,7 +50,7 @@ export const getSalaryForEG = (salaryGroup: string): number => {
 
 export const getBasicWage = (): number => {
   const state = store.getState();
-  const selectedRegion = state.salaryCalculator.selectedRegion;
+  const selectedRegion = state.unionContract.selectedRegion;
   if(!selectedRegion) return 0;
   if((!data[selectedRegion].basicWage)) return 0;
   const salary = unionContractCalculatorService.getSalaryForEG(data[selectedRegion].basicWage)

@@ -8,7 +8,9 @@ import UnionContractCalculatorService from "../services/unionContractCalculatorS
 import Logger from "../services/logger/logger";
 
 const HomeContainer: React.FC = () => {
-  const { salary, salaryWithBonus, isChildless } = useSelector((state: RootState) => state.salaryCalculator);
+  const { salary, salaryWithBonus } = useSelector((state: RootState) => state.salary);
+  const { isChildless } = useSelector((state: RootState) => state.tax);
+
 
   Logger.info("salaryWithBonus: " + salaryWithBonus);
 

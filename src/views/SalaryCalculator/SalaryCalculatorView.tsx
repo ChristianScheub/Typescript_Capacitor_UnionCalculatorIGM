@@ -30,7 +30,7 @@ export const SalaryCalculatorView: React.FC<SalaryCalculatorViewProps> = ({
     <div>
       <br />
       <Card>
-        <h1>Tarif auswählen</h1>
+        <h3>Tarif auswählen</h3>
 
         <div>
           <Select
@@ -62,9 +62,9 @@ export const SalaryCalculatorView: React.FC<SalaryCalculatorViewProps> = ({
         </div>
 
         <div>
-          <label>Arbeitsstunden</label>
           <MaterialInput
             value={workingHours}
+            label="Arbeitsstunden"
             onChange={(event) => onWorkingHoursChange(event)}
             type="number"
           />
@@ -75,49 +75,55 @@ export const SalaryCalculatorView: React.FC<SalaryCalculatorViewProps> = ({
         {salary ? `${salary}€` : 'Nicht verfügbar'}
 
       </Card>
+      <br />
 
       <Card>
-
+        <h3>Zulagen</h3>
         <div>
-          <label>Leistungsentgelt (%)</label>
           <MaterialInput
             value={bonus}
             onChange={(event) => onBonusChange(event)}
             type="number"
+            label="Leistungsentgelt"
+            helperText="Bitte in Prozent eingeben"
+
           />
         </div>
 
         <div>
-          <label>Weihnachtsgeld (%)</label>
           <MaterialInput
             value={christmasBonus}
             onChange={(event) => onChristmasBonusChange(event)}
             type="number"
+            label="Weihnachtsgeld"
+            helperText='Der Standardwert ist meist bei 50%'
           />
         </div>
 
         <div>
-          <label>Gewinnbeteiligung (%)</label>
           <MaterialInput
             value={profitSharing}
             onChange={(event) => onProfitSharingChange(event)}
             type="number"
+            label="Gewinnbeteiligung (%)"
+            helperText='Prozentual basierend auf das Monatsgehalt'
           />
         </div>
 
 
         <div>
-          <label>Außertarifliche Zulagen</label>
           <MaterialInput
             value={nonTariffBonusChange}
             onChange={(event) => onNonTariffBonusChange(event)}
             type="number"
+            label="Außertarifliche Zulagen"
+            helperText='Diese sind optional für Firmen und werden direkt in Euro angegeben'
           />
         </div>
 
       </Card>
 
-      <br /><br />
+      <br /><br /><br />
     </div>
   );
 };

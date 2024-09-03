@@ -3,10 +3,9 @@ import { holidaysPerState } from "../isWestGermany/holidayDays";
 
 export const calculateHourlyWage = (salaryForYear: number): number => {
   const state = store.getState();
-  const hoursPerWeek = state.salaryCalculator.workingHours || 0;
+  const hoursPerWeek = state.unionContract.workingHours || 0;
   const workDaysPerYear = getWorkDaysPerYear();
 
-  // Berechne die effektiven Arbeitsstunden pro Jahr
   const effectiveWorkingHoursPerYear = hoursPerWeek * workDaysPerYear / 5;
 
   // Berechnung des Brutto-Stundenlohns
@@ -18,7 +17,7 @@ export const calculateHourlyWage = (salaryForYear: number): number => {
 export const getWorkDaysPerYear = (): number => {
   const state = store.getState();
 
-  const bundesland = state.salaryCalculator.selectedRegion;
+  const bundesland = state.unionContract.selectedRegion;
   // Gesamtzahl der Wochen pro Jahr
   const weeksPerYear = 52.14;
 

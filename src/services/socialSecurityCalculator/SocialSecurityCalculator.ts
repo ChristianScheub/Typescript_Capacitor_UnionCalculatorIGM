@@ -9,7 +9,7 @@ const SocialSecurityCalculator: ISocialSecurityCalculator = {
   calculatePensionInsurance: (income: number): number => {
 
     const state = store.getState();
-    const selectedRegion = state.salaryCalculator.selectedRegion;
+    const selectedRegion = state.unionContract.selectedRegion;
     let limit = 0;
     if(isWestGermany(selectedRegion)){
       limit = contributionLimits.pensionInsuranceWestGermany;
@@ -27,7 +27,7 @@ const SocialSecurityCalculator: ISocialSecurityCalculator = {
   calculateUnemploymentInsurance: (income: number): number => {
 
     const state = store.getState();
-    const selectedRegion = state.salaryCalculator.selectedRegion;
+    const selectedRegion = state.unionContract.selectedRegion;
     let limit = 0;
     if(isWestGermany(selectedRegion)){
       limit = contributionLimits.unemploymentInsuranceWestGermany;
@@ -50,7 +50,7 @@ const SocialSecurityCalculator: ISocialSecurityCalculator = {
 
   calculateHealthInsuranceSupplement: (income: number): number => {
     const state = store.getState();
-    let healthInsuranceSupplement = state.salaryCalculator.healthInsuranceSupplement ?? 0;
+    let healthInsuranceSupplement = state.tax.healthInsuranceSupplement ?? 0;
     healthInsuranceSupplement = healthInsuranceSupplement / 200;
     Logger.info("The additional contribution will be deducted:"+healthInsuranceSupplement);
     const limit = contributionLimits.healthInsurance;
@@ -70,7 +70,7 @@ const SocialSecurityCalculator: ISocialSecurityCalculator = {
 
   calculateTotalSocialSecurity: (salaryBeforeTax: number): number => {
     const state = store.getState();
-    const isChildless = state.salaryCalculator.isChildless;
+    const isChildless = state.tax.isChildless;
 
     const pension = SocialSecurityCalculator.calculatePensionInsurance(salaryBeforeTax);
     const unemployment = SocialSecurityCalculator.calculateUnemploymentInsurance(salaryBeforeTax);

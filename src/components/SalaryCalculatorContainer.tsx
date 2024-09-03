@@ -1,45 +1,28 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch } from "../stateManagement/store";
-import {
-  setRegions,
-  setYears,
-  setSalaryGroups,
-  setSelectedRegion,
-  setSelectedYear,
-  setSelectedSalaryGroup,
-  setBonus,
-  setSalary,
-  setSalaryWithBonus,
-  setWorkingHours,
-  setChristmasBonusP,
-  setProfitSharingP,
-  setNonTariffBonus,
-} from "../stateManagement/salaryCalculatorSlice";
 import unionContractCalculatorService from "../services/unionContractCalculatorService";
 import { SalaryCalculatorView } from "../views/SalaryCalculator/SalaryCalculatorView";
 import Logger from "../services/logger/logger";
-import {
-  selectChristmasBonusP,
-  selectProfitSharingP,
-  selectRegions,
-  selectSalaryGroups,
-} from "../stateManagement/selectors/unionContractSelectors";
 import {
   selectSelectedRegion,
   selectSelectedYear,
   selectSelectedSalaryGroup,
   selectWorkingHours,
   selectYears,
+  selectRegions,
+  selectSalaryGroups,
 } from "../stateManagement/selectors/unionContractSelectors";
 import {
-  selectBonus,
-  selectNonTariffBonus,
   selectSalary,
 } from "../stateManagement/selectors/salarySelectors";
 import { parseAndValidateNumber } from "../services/helper/parseNumber";
 import { mapStringToBundesland } from "../services/isWestGermany/isWestGermany";
 import { Bundesland } from "../services/isWestGermany/Bundesland";
+import { setRegions, setSalaryGroups, setSelectedRegion, setSelectedSalaryGroup, setSelectedYear, setWorkingHours, setYears } from "../stateManagement/slices/UnionContractSlice";
+import { setSalary, setSalaryWithBonus } from "../stateManagement/slices/SalarySlice";
+import { setBonus, setChristmasBonusP, setNonTariffBonus, setProfitSharingP } from "../stateManagement/slices/BonusSlice";
+import { selectBonus, selectChristmasBonusP, selectNonTariffBonus, selectProfitSharingP } from "../stateManagement/selectors/bonusSelectors";
 
 const SalaryCalculatorContainer: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
@@ -90,13 +73,13 @@ const SalaryCalculatorContainer: React.FC = () => {
 
   const handleRegionChange = (region: string) => {
     const selectedBundesland = mapStringToBundesland(region);
-    if(selectedBundesland){
+    if (selectedBundesland) {
       dispatch(setSelectedRegion(selectedBundesland));
     }
-    else{
+    else {
       dispatch(setSelectedRegion(Bundesland.EMPTY));
     }
-    Logger.info("SelectedRegion has been set to: " + selectedBundesland+region);
+    Logger.info("SelectedRegion has been set to: " + selectedBundesland + region);
   };
 
   const handleWorkingHoursChange = (

@@ -16,56 +16,80 @@ const TaxCalculatorView: React.FC<TaxCalculatorViewProps> = ({
   onRouteToWorkChange,
   writeOff,
   onWriteOffChange,
+  isInChurch,
+  onIsInChurchChange
 }) => {
   return (
-    <Card>
-      <h1>Steuerdetails</h1>
-      <Select
-        options={taxClassOptions}
-        value={selectedTaxClass || ""}
-        onChange={onChange}
-        placeholder="Steuerklasse auswählen"
-      />
-
-      <br />
-      <br />
-      <Select
-        options={[
-          { label: "Ja", value: "ja" },
-          { label: "Nein", value: "nein" },
-        ]}
-        value={isChildless ? "ja" : "nein"}
-        onChange={onIsChildlessChange}
-        placeholder="Kinderlos"
-      />
-
-      <div>
-        <label>Krankenkasse Zusatzbeitrag (%)</label>
-        <MaterialInput
-          value={healthInsuranceSupplement}
-          onChange={(event) => onHealthInsuranceSupplement(event)}
-          type="number"
+    <div>
+      <Card>
+        <h3>Steuerdetails</h3>
+        <Select
+          options={taxClassOptions}
+          value={selectedTaxClass || ""}
+          onChange={onChange}
+          placeholder="Steuerklasse auswählen"
         />
-      </div>
 
-      <div>
-        <label>Arbeitsweg mit dem Auto in km (Einmalweg)</label>
-        <MaterialInput
-          value={routeToWork}
-          onChange={(event) => onRouteToWorkChange(event)}
-          type="number"
+        <br />
+        <br />
+        <Select
+          options={[
+            { label: "Ja", value: "ja" },
+            { label: "Nein", value: "nein" },
+          ]}
+          value={isChildless ? "ja" : "nein"}
+          onChange={onIsChildlessChange}
+          placeholder="Kinderlos"
         />
-      </div>
 
-      <div>
-        <label>Steuerliche Abschreibung (Jahresbasis)</label>
-        <MaterialInput
-          value={  writeOff}
-          onChange={(event) => onWriteOffChange(event)}
-          type="number"
+        <br />
+        <br />
+        <Select
+          options={[
+            { label: "Ja", value: "ja" },
+            { label: "Nein", value: "nein" },
+          ]}
+          value={isInChurch ? "ja" : "nein"}
+          onChange={onIsInChurchChange}
+          placeholder="Kirchenmitglied (Nicht implementiert!)"
         />
-      </div>
-    </Card>
+
+        <div>
+          <MaterialInput
+            value={healthInsuranceSupplement}
+            onChange={(event) => onHealthInsuranceSupplement(event)}
+            type="number"
+            label="Krankenkasse Zusatzbeitrag"
+            helperText="Der Gesamtezusatzbeitrag in Prozent (%) nennen. Dieser variiert je nach Krankenkasse."
+          />
+        </div>
+
+      </Card>
+
+      <Card>
+        <h3>Abschreibungen</h3>
+        <div>
+          <MaterialInput
+            value={routeToWork}
+            onChange={(event) => onRouteToWorkChange(event)}
+            type="number"
+            label="Arbeitsweg"
+            helperText="Arbeitsweg mit dem Auto in km einfach angeben um die Pendlerpauschale zu berücksichtigen. Es wird davon ausgegangen das sie jeden Tag im Büro waren bis auf den jeweiligen Feiertagen des Bundeslandes."
+          />
+        </div>
+
+        <div>
+          <MaterialInput
+            value={writeOff}
+            onChange={(event) => onWriteOffChange(event)}
+            type="number"
+            label="Abschreibung"
+            helperText="Zusätzliche Steuerliche Abschreibung für das Jahr wie beispielsweise notwendige Fortbildungsbücher."
+          />
+        </div>
+      </Card>
+      <br /><br /><br />
+    </div>
   );
 };
 

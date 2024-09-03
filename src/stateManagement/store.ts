@@ -1,12 +1,17 @@
 import { configureStore } from '@reduxjs/toolkit';
-import salaryCalculatorReducer from './salaryCalculatorSlice';
+import taxReducer from './slices/TaxSlice';
+import salaryReducer from './slices/SalarySlice';
+import bonusReducer from './slices/BonusSlice';
+import unionContractReducer from './slices/UnionContractSlice';
 
 export const store = configureStore({
   reducer: {
-    salaryCalculator: salaryCalculatorReducer,
+    tax: taxReducer,
+    salary: salaryReducer,
+    bonus: bonusReducer,
+    unionContract: unionContractReducer,
   },
 });
 
-// Typen für TypeScript
 export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;

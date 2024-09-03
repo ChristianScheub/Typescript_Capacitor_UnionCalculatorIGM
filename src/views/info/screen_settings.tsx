@@ -27,9 +27,6 @@ const ViewSettings: React.FC<ViewSettingsProps> = ({
 
         <div className="after-login-container">
           <div className="mb-3 margin2vw">
-
-            <h2>{t("settings_Warning")}</h2>
-
             <h1>{t("settings_Information")}</h1>
             <hr />
             <p
@@ -57,6 +54,8 @@ const ViewSettings: React.FC<ViewSettingsProps> = ({
               <p>GitHub Repository</p>
             </a>
             <hr />
+            <b>{t("settings_Warning")}</b>
+
           </div>
         </div>
       </div>
