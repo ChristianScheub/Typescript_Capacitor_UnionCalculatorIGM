@@ -9,6 +9,7 @@ const HomeView: React.FC<HomeViewProps> = ({
   salaryAfterTax,
   tax,
   solidarityTax,
+  churchTax,
   pensionInsurance,
   unemploymentInsurance,
   healthInsuranceSupplement,
@@ -23,6 +24,7 @@ const HomeView: React.FC<HomeViewProps> = ({
   christmasBonus,
   salaryWithAllBonus,
   taxYear,
+  churchTaxYear,
   solidarityTaxYear,
   salaryAfterAllTaxYear,
   calcultedSalaryAfterSocialSecurityYear,
@@ -55,6 +57,7 @@ const HomeView: React.FC<HomeViewProps> = ({
         salaryAfterTax={salaryAfterTax}
         tax={tax}
         solidarityTax={solidarityTax}
+        churchTax={churchTax}
         pensionInsurance={pensionInsurance}
         unemploymentInsurance={unemploymentInsurance}
         healthInsuranceSupplement={healthInsuranceSupplement}
@@ -70,6 +73,7 @@ const HomeView: React.FC<HomeViewProps> = ({
         salaryAfterTax={salaryAfterAllTaxYear}
         tax={taxYear}
         solidarityTax={solidarityTaxYear}
+        churchTax={churchTaxYear}
         pensionInsurance={pensionInsuranceYear}
         unemploymentInsurance={unemploymentInsurancYear}
         healthInsuranceSupplement={healthInsuranceSupplementYear}

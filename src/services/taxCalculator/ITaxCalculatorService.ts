@@ -1,5 +1,6 @@
 export interface ITaxCalculatorService {
-    calculateTax(salary: number,forYear: boolean): number;
-    calculateSoli(salary: number,forYear: boolean): number;
-    calculateSalaryAfterAllTax(salary: number, forYear: boolean): number;
-  }
+  calculateTax(income: number, forYear: boolean): number;
+  calculateSoli(income: number, forYear: boolean): number;
+  calculateSalaryAfterAllTax(salary: number, forYear: boolean): number;
+  calculateChurchTax(income: number, forYear: boolean): number;
+}

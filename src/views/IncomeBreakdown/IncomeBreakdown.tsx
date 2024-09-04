@@ -9,6 +9,7 @@ const IncomeBreakdown: React.FC<IncomeBreakdownProps> = ({
   salaryWithBonus,
   salaryAfterTax,
   tax,
+  churchTax,
   solidarityTax,
   pensionInsurance,
   unemploymentInsurance,
@@ -24,6 +25,15 @@ const IncomeBreakdown: React.FC<IncomeBreakdownProps> = ({
   profitSharing,
   salaryWithAllBonus,
 }) => {
+
+  const hasBonuses =
+    christmasBonus !== undefined && christmasBonus !== 0 ||
+    vacationBonus !== undefined && vacationBonus !== 0 ||
+    tZugA !== undefined && tZugA !== 0 ||
+    tZugB !== undefined && tZugB !== 0 ||
+    transformationsGeld !== undefined && transformationsGeld !== 0 ||
+    profitSharing !== undefined && profitSharing !== 0;
+
   return (
     <Card>
       <h3>{title}</h3>
@@ -39,11 +49,15 @@ const IncomeBreakdown: React.FC<IncomeBreakdownProps> = ({
           {salaryWithBonus !== null ? `${salaryWithBonus} €` : "N/A"}
         </span>
       </div>
-
-      {christmasBonus !== undefined && (
-        <div>
-          <hr />
+      <hr />
+      {hasBonuses && (
+        <>
           <h4 style={styles.textLeft}>Sonderzahlungen</h4>
+        </>
+      )}
+
+      {christmasBonus !== undefined && christmasBonus !== 0 && (
+        <div>
           <div style={styles.item}>
             <span style={styles.textLeft}>Weihnachtsgeld:</span>
             <span style={styles.textRight}>{christmasBonus.toFixed(2)} €</span>
@@ -51,28 +65,28 @@ const IncomeBreakdown: React.FC<IncomeBreakdownProps> = ({
         </div>
       )}
 
-      {vacationBonus !== undefined && (
+      {vacationBonus !== undefined && vacationBonus !== 0 && (
         <div style={styles.item}>
           <span style={styles.textLeft}>Urlaubsgeld:</span>
           <span style={styles.textRight}>{vacationBonus.toFixed(2)} €</span>
         </div>
       )}
 
-      {tZugA !== undefined && (
+      {tZugA !== undefined && tZugA !== 0 && (
         <div style={styles.item}>
           <span style={styles.textLeft}>T-Zug A:</span>
           <span style={styles.textRight}>{tZugA.toFixed(2)} €</span>
         </div>
       )}
 
-      {tZugB !== undefined && (
+      {tZugB !== undefined && tZugB !== 0 && (
         <div style={styles.item}>
           <span style={styles.textLeft}>T-Zug B:</span>
           <span style={styles.textRight}>{tZugB.toFixed(2)} €</span>
         </div>
       )}
 
-      {transformationsGeld !== undefined && (
+      {transformationsGeld !== undefined && transformationsGeld !== 0 && (
         <div style={styles.item}>
           <span style={styles.textLeft}>Transformationsgeld:</span>
           <span style={styles.textRight}>
@@ -81,7 +95,7 @@ const IncomeBreakdown: React.FC<IncomeBreakdownProps> = ({
         </div>
       )}
 
-      {profitSharing !== undefined && (
+      {profitSharing !== undefined && profitSharing !== 0 && (
         <div style={styles.item}>
           <span style={styles.textLeft}>Gewinnbeteiligung:</span>
           <span style={styles.textRight}>{profitSharing.toFixed(2)} €</span>
@@ -92,10 +106,12 @@ const IncomeBreakdown: React.FC<IncomeBreakdownProps> = ({
         <div style={styles.item}>
           <b style={styles.textLeft}>Gesamtgehalt:</b>
           <b style={styles.textRight}>{salaryWithAllBonus.toFixed(2)} €</b>
+
         </div>
       )}
-
-      <hr />
+      {hasBonuses && (
+        <hr />
+      )}
 
       <h4 style={styles.textLeft}>Steuern</h4>
       <div style={styles.item}>
@@ -110,6 +126,14 @@ const IncomeBreakdown: React.FC<IncomeBreakdownProps> = ({
           {solidarityTax !== null ? `${solidarityTax} €` : "N/A"}
         </span>
       </div>
+
+      {churchTax !== null && churchTax !== undefined && churchTax !== 0 && (
+        <div style={styles.item}>
+          <span style={styles.textLeft}>Kirchensteuer:</span>
+          <span style={styles.textRight}>{churchTax.toFixed(2)} €</span>
+        </div>
+      )}
+
       <div style={styles.item}>
         <b style={styles.textLeft}>Nach Steuern:</b>
         <b style={styles.textRight}>

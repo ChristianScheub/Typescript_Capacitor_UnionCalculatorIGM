@@ -1,6 +1,6 @@
 import React from "react";
 import Select from "../../ui/Select";
-import { taxClassOptions } from "../../config/taxConfig";
+import { taxClassOptions } from "../../services/taxCalculator/taxConfig";
 import { TaxCalculatorViewProps } from "./TaxCalculatorViewProps";
 import Card from "../../ui/Card";
 import MaterialInput from "../../ui/MaterialInput";
@@ -51,7 +51,8 @@ const TaxCalculatorView: React.FC<TaxCalculatorViewProps> = ({
           ]}
           value={isInChurch ? "ja" : "nein"}
           onChange={onIsInChurchChange}
-          placeholder="Kirchenmitglied (Nicht implementiert!)"
+          placeholder="Kirchenmitglied"
+          helperText="In der anschließenden Berechnung ist auch die Annahme enthalten, dass Sie die Kirchensteuer im Rahmen Ihrer Steuererklärung absetzen!"
         />
 
         <div>
@@ -67,7 +68,7 @@ const TaxCalculatorView: React.FC<TaxCalculatorViewProps> = ({
       </Card>
 
       <Card>
-        <h3>Abschreibungen</h3>
+        <h3>Werbungskosten</h3>
         <div>
           <MaterialInput
             value={routeToWork}
@@ -83,8 +84,8 @@ const TaxCalculatorView: React.FC<TaxCalculatorViewProps> = ({
             value={writeOff}
             onChange={(event) => onWriteOffChange(event)}
             type="number"
-            label="Abschreibung"
-            helperText="Zusätzliche Steuerliche Abschreibung für das Jahr wie beispielsweise notwendige Fortbildungsbücher."
+            label="Weitere Werbungskosten"
+            helperText="Zusätzliche Werbungskosten für das Jahr wie beispielsweise notwendige Fortbildungsbücher."
           />
         </div>
       </Card>

@@ -5,7 +5,7 @@ import {
   tZugBProzent,
   transformationsGeldProzent,
   urlaubsgeldProzent
-} from "../../config/unionContractConfig";
+} from "./unionContractConfig";
 import unionContractCalculatorService from ".";
 import { UnionContractData } from "./types/UnionContractData";
 import tarifdaten from "./tarifdaten.json";

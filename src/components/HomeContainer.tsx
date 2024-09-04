@@ -2,7 +2,7 @@ import React, { useEffect, useState, useCallback } from "react";
 import { useSelector } from "react-redux";
 import HomeView from "../views/Home/HomeView";
 import { RootState } from "../stateManagement/store";
-import TaxCalculatorService from "../services/taxCalculator/TaxCalculatorService";
+import TaxCalculatorService from "../services/taxCalculator";
 import SocialSecurityCalculator from "../services/socialSecurityCalculator/SocialSecurityCalculator";
 import UnionContractCalculatorService from "../services/unionContractCalculatorService";
 import Logger from "../services/logger/logger";
@@ -25,9 +25,11 @@ const HomeContainer: React.FC = () => {
 
   const [taxMonthly, setTaxMonthly] = useState(0);
   const [solidarityTaxMonthly, setSolidarityTaxMonthly] = useState(0);
+  const [churchTaxMonthly, setChurchTaxMonthly] = useState(0);
   const [salaryAfterAllTaxMonthly, setSalaryAfterAllTaxMonthly] = useState(0);
   const [taxYear, setTaxYear] = useState(0);
   const [solidarityTaxYear, setSolidarityTaxYear] = useState(0);
+  const [churchTaxYear, setChurchTaxYear] = useState(0);
   const [salaryAfterAllTaxYear, setSalaryAfterAllTaxYear] = useState(0);
   const [hoursWageGrossYear, setHoursWageGrossYear] = useState(0); //Brutto
   const [hoursWageNetYear, setHoursWageNetYear] = useState(0); //Netto
@@ -53,12 +55,14 @@ const HomeContainer: React.FC = () => {
 
     if (salaryWithBonus !== null) {
       setTaxMonthly(TaxCalculatorService.calculateTax(salaryWithBonus, false));
+      setChurchTaxMonthly(TaxCalculatorService.calculateChurchTax(salaryWithBonus,false));
       setSolidarityTaxMonthly(TaxCalculatorService.calculateSoli(salaryWithBonus, false));
       setSalaryAfterAllTaxMonthly(TaxCalculatorService.calculateSalaryAfterAllTax(salaryWithBonus, false));
 
       // Berechnung der jährlichen Werte
       const calculatedSalaryWithAllBonusYear = UnionContractCalculatorService.calculateSalaryWithAllBonus();
       setTaxYear(TaxCalculatorService.calculateTax(calculatedSalaryWithAllBonusYear, true));
+      setChurchTaxYear(TaxCalculatorService.calculateChurchTax(calculatedSalaryWithAllBonusYear,true));
       setSolidarityTaxYear(TaxCalculatorService.calculateSoli(calculatedSalaryWithAllBonusYear, true));
       setSalaryAfterAllTaxYear(TaxCalculatorService.calculateSalaryAfterAllTax(calculatedSalaryWithAllBonusYear, true));
     }
@@ -103,6 +107,7 @@ const HomeContainer: React.FC = () => {
       salaryAfterTax={salaryAfterAllTaxMonthly}
       tax={taxMonthly}
       solidarityTax={solidarityTaxMonthly}
+      churchTax={churchTaxMonthly}
       pensionInsurance={salaryWithBonus !== null ? SocialSecurityCalculator.calculatePensionInsurance(salaryWithBonus) : 0}
       unemploymentInsurance={salaryWithBonus !== null ? SocialSecurityCalculator.calculateUnemploymentInsurance(salaryWithBonus) : 0}
       healthInsuranceSupplement={salaryWithBonus !== null ? SocialSecurityCalculator.calculateHealthInsuranceSupplement(salaryWithBonus) : 0}
@@ -122,6 +127,7 @@ const HomeContainer: React.FC = () => {
       salaryWithAllBonus={salaryWithAllBonusYear}
       taxYear={taxYear}
       solidarityTaxYear={solidarityTaxYear}
+      churchTaxYear={churchTaxYear}
       salaryAfterAllTaxYear={salaryAfterAllTaxYear}
       calcultedSalaryAfterSocialSecurityYear={calculatedSalaryAfterSocialSecurityYear}
       careInsuranceYear={careInsuranceYear}

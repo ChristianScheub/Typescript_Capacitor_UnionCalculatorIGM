@@ -4,6 +4,7 @@ export interface IncomeBreakdownProps {
   salaryWithBonus: number | null;
   salaryAfterTax: number | null;
   tax: number | null;
+  churchTax?: number | null;
   solidarityTax: number | null;
   pensionInsurance: number;
   unemploymentInsurance: number;

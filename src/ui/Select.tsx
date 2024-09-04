@@ -1,14 +1,16 @@
 import React from 'react';
-import { FormControl, InputLabel, MenuItem, Select as MuiSelect, SelectChangeEvent } from '@mui/material';
+import { FormControl, FormHelperText, InputLabel, MenuItem, Select as MuiSelect, SelectChangeEvent } from '@mui/material';
 
 interface SelectProps {
   options: { value: string; label: string }[];
   value: string;
   onChange: (value: string) => void;
   placeholder?: string;
+  helperText?: string;
 }
+//ToDo: Helper Text einbauen
 
-const Select: React.FC<SelectProps> = ({ options, value, onChange, placeholder }) => {
+const Select: React.FC<SelectProps> = ({ options, value, onChange, placeholder,helperText }) => {
   const handleChange = (event: SelectChangeEvent) => {
     onChange(event.target.value as string);
   };
@@ -25,8 +27,11 @@ const Select: React.FC<SelectProps> = ({ options, value, onChange, placeholder }
           <MenuItem key={option.value} value={option.value}>
             {option.label}
           </MenuItem>
-        ))}
+        ))} 
+
       </MuiSelect>
+      {helperText && <FormHelperText>{helperText}</FormHelperText>}
+
     </FormControl>
   );
 };
