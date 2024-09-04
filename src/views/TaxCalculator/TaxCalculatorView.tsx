@@ -52,7 +52,7 @@ const TaxCalculatorView: React.FC<TaxCalculatorViewProps> = ({
           value={isInChurch ? "ja" : "nein"}
           onChange={onIsInChurchChange}
           placeholder="Kirchenmitglied"
-          helperText="In der anschließenden Berechnung ist auch die Annahme enthalten, dass Sie die Kirchensteuer im Rahmen Ihrer Steuererklärung absetzen!"
+          helperText="In der anschließenden Berechnung ist auch die Annahme enthalten, dass Sie die Kirchensteuer im Rahmen Ihrer Steuererklärung absetzen und ggf die Kappungsgrenze nutzen falls möglich!"
         />
 
         <div>

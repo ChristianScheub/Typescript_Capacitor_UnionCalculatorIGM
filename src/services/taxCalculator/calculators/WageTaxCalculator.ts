@@ -39,10 +39,10 @@ export const calculateTaxAfterChurch = (income: number): number => {
   const state = store.getState();
 
   const taxClass = state.tax.taxClass;
-  let writeOff = state.tax.writeOff ?? 0;
+  const writeOff = state.tax.writeOff ?? 0;
   const routeToWork = state.tax.routeToWork ?? 0;
 
-  let writeOffWayToWork = routeToWork * (routeToWork < 20 ? geldProKm.shortDistance : geldProKm.longDistance) * 2 * getWorkDaysPerYear();
+  const writeOffWayToWork = routeToWork * (routeToWork < 20 ? geldProKm.shortDistance : geldProKm.longDistance) * 2 * getWorkDaysPerYear();
 
 
   if (income === null || taxClass === null) {
@@ -58,7 +58,6 @@ export const calculateTaxAfterChurch = (income: number): number => {
 
   if (income <= incomeLimits.lowerLimit1) {
     // a) Up to 11,604 EUR: Tax is 0
-    tax = 0;
   } else if (income <= incomeLimits.upperLimit1) {
     // b) From 11,605 EUR to 17,005 EUR
     const y = (adjustedIncome - incomeLimits.lowerLimit1) / 10000;

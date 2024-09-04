@@ -10,9 +10,9 @@ export const socialSecurityRates = {
 // Contribution assessment ceilings for health insurance (2024)
   export const contributionLimits = {
     healthInsurance: 5175, // Monatsgrenze in Euro
-    pensionInsuranceWestGermany: 7550, //ToDo das er osten nutzen kann
+    pensionInsuranceWestGermany: 7550,
     pensionInsuranceOstGermany: 7450,
-    unemploymentInsuranceWestGermany:  7550, //ToDo das er osten nutzen kann
+    unemploymentInsuranceWestGermany:  7550,
     unemploymentInsurancOstGermany: 7450,
     careInsurance: 5175
   };
