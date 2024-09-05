@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { FaHome, FaBriefcase, FaUniversity, FaInfoCircle, FaTablets, FaHatCowboy, FaTable } from 'react-icons/fa';
+import { FaHome, FaInfoCircle, FaTable } from 'react-icons/fa';
 
 interface NavbarProps {
   setActiveComponent: (component: string) => void;

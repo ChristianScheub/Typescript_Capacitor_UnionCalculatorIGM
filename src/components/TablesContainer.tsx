@@ -88,7 +88,7 @@ const TablesContainer: React.FC = () => {
       salaryWithAllBonusYear / 12
     ) * 12);
 
-  }, [salaryWithBonus, isChildless, salaryAfterAllTaxYear, salaryWithAllBonusYear,salaryAfterAllTaxMonthly]);
+  }, [salaryWithBonus, isChildless, salaryAfterAllTaxYear, salaryWithAllBonusYear]);
 
   useEffect(() => {
     calculateAllValues();
