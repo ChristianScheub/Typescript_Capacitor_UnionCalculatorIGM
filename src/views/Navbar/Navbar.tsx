@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { FaHome, FaBriefcase, FaUniversity, FaInfoCircle } from 'react-icons/fa';
+import { FaHome, FaBriefcase, FaUniversity, FaInfoCircle, FaTablets, FaHatCowboy, FaTable } from 'react-icons/fa';
 
 interface NavbarProps {
   setActiveComponent: (component: string) => void;
@@ -14,8 +14,9 @@ const Navbar: React.FC<NavbarProps> = ({ setActiveComponent, activeComponent }) 
     // Set active component based on the current route
     const pathToComponentMap: Record<string, string> = {
       '/': 'home',
-      '/salary': 'salary',
-      '/government': 'government',
+      '/tables': 'tables',
+      '/government': 'info',
+      '/salary': 'info',
       '/info': 'info',
       '/impressum': 'info',
       '/datenschutz': 'info',
@@ -30,11 +31,8 @@ const Navbar: React.FC<NavbarProps> = ({ setActiveComponent, activeComponent }) 
       <Link to="/" style={styles.icon} onClick={() => setActiveComponent("home")}>
         <FaHome size={30} color={getColor("home")} />
       </Link>
-      <Link to="/salary" style={styles.icon} onClick={() => setActiveComponent("salary")}>
-        <FaBriefcase size={30} color={getColor("salary")} />
-      </Link>
-      <Link to="/government" style={styles.icon} onClick={() => setActiveComponent("government")}>
-        <FaUniversity size={30} color={getColor("government")} />
+      <Link to="/tables" style={styles.icon} onClick={() => setActiveComponent("tables")}>
+        <FaTable size={30} color={getColor("tables")} />
       </Link>
       <Link to="/info" style={styles.icon} onClick={() => setActiveComponent("info")}>
         <FaInfoCircle size={30} color={getColor("info")} />

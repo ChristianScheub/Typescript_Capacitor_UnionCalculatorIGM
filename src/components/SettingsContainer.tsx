@@ -9,6 +9,13 @@ const ContainerSettings: React.FC = () => {
   const handleDatenschutzClick = (navigate: NavigateFunction) => {
       navigate("/datenschutz");
   };
+  const handleTaxClick = (navigate: NavigateFunction) => {
+    navigate("/government");
+};
+const handleUnionClick = (navigate: NavigateFunction) => {
+    navigate("/salary");
+};
+  
 
 
  
@@ -16,6 +23,8 @@ const ContainerSettings: React.FC = () => {
     <SettingsView
       onDatenschutzClick={handleDatenschutzClick}
       onImpressumClick={handleImpressumClick}
+      onUnionSettingClick={handleUnionClick}
+      onTaxSettingClick={handleTaxClick}
     />
   );
 };

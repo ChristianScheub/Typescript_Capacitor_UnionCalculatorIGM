@@ -1,34 +1,20 @@
 import React from "react";
 import { HomeViewProps } from "./HomeViewProps";
-import IncomeBreakdown from "../IncomeBreakdown/IncomeBreakdown";
 import Card from "../../ui/Card";
 import { YearlyBarChart } from "../../ui/YearlyBarChart";
 import { TaxAndInsurancePieChart } from "../../ui/TaxAndInsurancePieChart";
 
 const HomeView: React.FC<HomeViewProps> = ({
-  salary,
   salaryWithBonus,
-  salaryAfterTax,
-  tax,
-  solidarityTax,
-  churchTax,
-  pensionInsurance,
-  unemploymentInsurance,
-  healthInsuranceSupplement,
-  healthInsurance,
-  careInsurance,
-  calcultedSalaryAfterSocialSecurity,
   transformationsGeld,
   tZugA,
   tZugB,
   urlaubsgeld,
   profitSharing,
   christmasBonus,
-  salaryWithAllBonus,
   taxYear,
   churchTaxYear,
   solidarityTaxYear,
-  salaryAfterAllTaxYear,
   calcultedSalaryAfterSocialSecurityYear,
   careInsuranceYear,
   healthInsuranceSupplementYear,
@@ -43,8 +29,8 @@ const HomeView: React.FC<HomeViewProps> = ({
   return (
     <div>
       <br />
-      <h2>Ihre Einkommensübersicht:</h2>
-      <br />
+      <center>      <h2>Einkommens- <br />übersicht</h2></center>
+
       <Card>
         <b>Stundenlohn mit Sonderzahlungen umgelegt</b>
 
@@ -106,45 +92,9 @@ const HomeView: React.FC<HomeViewProps> = ({
       />
 
       <br />
-      <IncomeBreakdown
-        title="Monatliches Gehalt (Ohne Sonderzahlungen)"
-        salary={salary}
-        salaryWithBonus={salaryWithBonus}
-        salaryAfterTax={salaryAfterTax}
-        tax={tax}
-        solidarityTax={solidarityTax}
-        churchTax={churchTax}
-        pensionInsurance={pensionInsurance}
-        unemploymentInsurance={unemploymentInsurance}
-        healthInsuranceSupplement={healthInsuranceSupplement}
-        healthInsurance={healthInsurance}
-        careInsurance={careInsurance}
-        calcultedSalaryAfterSocialSecurity={calcultedSalaryAfterSocialSecurity}
-      />
       <br />
-      <IncomeBreakdown
-        title="Jahresgehalt"
-        salary={parseFloat((salary * 12).toFixed(2))}
-        salaryWithBonus={parseFloat((salaryWithBonus * 12).toFixed(2))}
-        salaryAfterTax={salaryAfterAllTaxYear}
-        tax={taxYear}
-        solidarityTax={solidarityTaxYear}
-        churchTax={churchTaxYear}
-        pensionInsurance={pensionInsuranceYear}
-        unemploymentInsurance={unemploymentInsurancYear}
-        healthInsuranceSupplement={healthInsuranceSupplementYear}
-        healthInsurance={healthInsuranceYear}
-        careInsurance={careInsuranceYear}
-        calcultedSalaryAfterSocialSecurity={calcultedSalaryAfterSocialSecurityYear}
-        transformationsGeld={transformationsGeld}
-        tZugA={tZugA}
-        tZugB={tZugB}
-        vacationBonus={urlaubsgeld}
-        profitSharing={profitSharing}
-        christmasBonus={christmasBonus}
-        salaryWithAllBonus={salaryWithAllBonus}
-
-      />
+      <i>Das ist nur eine grobe Schätzrechnung ihres Einkommens und der Steuern/Sozialabgaben! Wir übernehmen keine Haftung für die Korrektheit der Ergebnisse.</i>
+      <br />
       <br />
       <br />
       <br />

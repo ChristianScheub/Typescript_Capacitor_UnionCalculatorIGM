@@ -6,11 +6,15 @@ import UsedLibsListContainer from "../../legal/usedLibs/container_usedLibList";
 interface ViewSettingsProps {
   onDatenschutzClick: (navigate: NavigateFunction) => void;
   onImpressumClick: (navigate: NavigateFunction) => void;
+  onTaxSettingClick: (navigate: NavigateFunction) => void;
+  onUnionSettingClick: (navigate: NavigateFunction) => void;
 }
 
 const ViewSettings: React.FC<ViewSettingsProps> = ({
   onDatenschutzClick,
   onImpressumClick,
+  onTaxSettingClick,
+  onUnionSettingClick
 }) => {
   const navigate = useNavigate();
   const { t } = useTranslation();
@@ -26,9 +30,58 @@ const ViewSettings: React.FC<ViewSettingsProps> = ({
       >
 
         <div className="after-login-container">
+          <h1>Einstellungen</h1>
+          <hr />
+            <p
+              data-testid="settings-tax"
+              onClick={() => onTaxSettingClick(navigate)}
+            >
+              Steuereinstellungen
+            </p>
+            <hr />
+            <p
+              data-testid="settings-union"
+              onClick={() => onUnionSettingClick(navigate)}
+            >
+               Tarif-/Gehalt Einstellungen
+            </p>
+            <hr />
+            <p
+              data-testid="settings-union"
+              onClick={() => onUnionSettingClick(navigate)}
+            >
+               Freibeträge/Grenzbeträge bearbeiten
+            </p>
+            <hr />
+            <br />
+
           <div className="mb-3 margin2vw">
             <h1>{t("settings_Information")}</h1>
+            <i>Achtung: Das ist nur eine grobe Schätzrechnung ihres Einkommens und der Steuern/Sozialabgaben! Wir übernehmen keine Haftung für die Korrektheit der Ergebnisse.</i>
+
             <hr />
+            <p
+              data-testid="settings-edatenschutz"
+              onClick={() => onDatenschutzClick(navigate)}
+            >
+             Sonderzahlungen Informationen
+            </p>
+            <hr />
+            <p
+              data-testid="settings-edatenschutz"
+              onClick={() => onDatenschutzClick(navigate)}
+            >
+              Steuer Berechnung Information
+            </p>
+            <hr />
+            <p
+              data-testid="settings-edatenschutz"
+              onClick={() => onDatenschutzClick(navigate)}
+            >
+              Berechnung der Sozialbeiträge Information
+            </p>
+            <hr />
+
             <p
               data-testid="settings-edatenschutz"
               onClick={() => onDatenschutzClick(navigate)}
@@ -54,8 +107,7 @@ const ViewSettings: React.FC<ViewSettingsProps> = ({
               <p>GitHub Repository</p>
             </a>
             <hr />
-            <b>{t("settings_Warning")}</b>
-
+            <br/> <br/> <br/> <br/> <br/>
           </div>
         </div>
       </div>

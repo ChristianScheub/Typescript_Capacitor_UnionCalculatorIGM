@@ -10,6 +10,7 @@ import Impressum from "./legal/impressum";
 import Datenschutz from "./legal/datenschutz";
 import "./i18n";
 import 'typeface-roboto';
+import TablesContainer from "./components/TablesContainer";
 
 
 const App: React.FC = () => {
@@ -26,6 +27,8 @@ const App: React.FC = () => {
             <Route path="/" element={<HomeContainer />} />
             <Route path="/salary" element={<SalaryCalculatorContainer />} />
             <Route path="/government" element={<TaxClassContainer />} />
+            <Route path="/tables" element={<TablesContainer />} />
+
             <Route path="/info" element={<ContainerSettings />} />
             <Route path="/impressum" element={<Impressum />} />
             <Route path="/datenschutz" element={<Datenschutz />} />

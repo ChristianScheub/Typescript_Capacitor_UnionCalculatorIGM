@@ -1,15 +1,14 @@
 import React, { useEffect, useState, useCallback } from "react";
 import { useSelector } from "react-redux";
-import HomeView from "../views/Home/HomeView";
 import { RootState } from "../stateManagement/store";
 import TaxCalculatorService from "../services/taxCalculatorService";
 import SocialSecurityCalculator from "../services/socialSecurityCalculator/SocialSecurityCalculator";
 import UnionContractCalculatorService from "../services/unionContractCalculatorService";
 import Logger from "../services/logger/logger";
-import { calculateHourlyWage } from "../services/helper/hourlyWageCalculator";
+import TablesView from "../views/Table/TablesView";
 
-const HomeContainer: React.FC = () => {
-  const { salaryWithBonus } = useSelector((state: RootState) => state.salary);
+const TablesContainer: React.FC = () => {
+  const { salary, salaryWithBonus } = useSelector((state: RootState) => state.salary);
   const { isChildless } = useSelector((state: RootState) => state.tax);
 
 
@@ -24,15 +23,14 @@ const HomeContainer: React.FC = () => {
   const [profitSharing, setProfitSharing] = useState(0);
   const [salaryWithAllBonusYear, setSalaryWithAllBonusYear] = useState(0);
 
+  const [taxMonthly, setTaxMonthly] = useState(0);
+  const [solidarityTaxMonthly, setSolidarityTaxMonthly] = useState(0);
+  const [churchTaxMonthly, setChurchTaxMonthly] = useState(0);
   const [salaryAfterAllTaxMonthly, setSalaryAfterAllTaxMonthly] = useState(0);
   const [taxYear, setTaxYear] = useState(0);
   const [solidarityTaxYear, setSolidarityTaxYear] = useState(0);
   const [churchTaxYear, setChurchTaxYear] = useState(0);
   const [salaryAfterAllTaxYear, setSalaryAfterAllTaxYear] = useState(0);
-  const [hoursWageGrossYear, setHoursWageGrossYear] = useState(0); //Brutto
-  const [hoursWageNetYear, setHoursWageNetYear] = useState(0); //Netto
-  const [hoursWageGrossYearWithBonus, setHoursWageGrossYearWithBonus] = useState(0); //Brutto
-  const [hoursWageNetYearWithBonus, setHoursWageNetYearWithBonus] = useState(0); //Netto
 
 
   const [calculatedSalaryAfterSocialSecurityYear, setCalculatedSalaryAfterSocialSecurityYear] = useState(0);
@@ -54,6 +52,9 @@ const HomeContainer: React.FC = () => {
     setSalaryWithAllBonusYear(UnionContractCalculatorService.calculateSalaryWithAllBonus());
 
     if (salaryWithBonus !== null) {
+      setTaxMonthly(TaxCalculatorService.calculateTax(salaryWithBonus, false));
+      setChurchTaxMonthly(TaxCalculatorService.calculateChurchTax(salaryWithBonus,false));
+      setSolidarityTaxMonthly(TaxCalculatorService.calculateSoli(salaryWithBonus, false));
       setSalaryAfterAllTaxMonthly(TaxCalculatorService.calculateSalaryAfterAllTax(salaryWithBonus, false));
 
       // Berechnung der jährlichen Werte
@@ -70,20 +71,6 @@ const HomeContainer: React.FC = () => {
       salaryWithAllBonusYear,
       true
     ));
-    setHoursWageNetYearWithBonus(SocialSecurityCalculator.calculateNetHourlyWageAfterSocialSecurity(
-      salaryAfterAllTaxYear,
-      salaryWithAllBonusYear
-    ));
-    setHoursWageGrossYearWithBonus(UnionContractCalculatorService.calculateGrossHourlyWage());
-
-    if(salaryWithBonus){
-      setHoursWageNetYear(SocialSecurityCalculator.calculateNetHourlyWageAfterSocialSecurity(
-        salaryAfterAllTaxMonthly * 12,
-        salaryWithBonus *12
-      ));
-      
-      setHoursWageGrossYear(calculateHourlyWage(salaryWithBonus *12));
-    }
 
     setCareInsuranceYear(SocialSecurityCalculator.calculateCareInsurance(
       salaryWithAllBonusYear / 12,
@@ -108,29 +95,42 @@ const HomeContainer: React.FC = () => {
   }, [salaryWithBonus, isChildless, calculateAllValues]);
 
   return (
-    <HomeView
+    <TablesView
+      salary={salary ?? 0}
       salaryWithBonus={salaryWithBonus ?? 0}
+      salaryAfterTax={salaryAfterAllTaxMonthly}
+      tax={taxMonthly}
+      solidarityTax={solidarityTaxMonthly}
+      churchTax={churchTaxMonthly}
+      pensionInsurance={salaryWithBonus !== null ? SocialSecurityCalculator.calculatePensionInsurance(salaryWithBonus) : 0}
+      unemploymentInsurance={salaryWithBonus !== null ? SocialSecurityCalculator.calculateUnemploymentInsurance(salaryWithBonus) : 0}
+      healthInsuranceSupplement={salaryWithBonus !== null ? SocialSecurityCalculator.calculateHealthInsuranceSupplement(salaryWithBonus) : 0}
+      healthInsurance={salaryWithBonus !== null ? SocialSecurityCalculator.calculateHealthInsurance(salaryWithBonus) : 0}
+      careInsurance={salaryWithBonus !== null ? SocialSecurityCalculator.calculateCareInsurance(salaryWithBonus, isChildless ?? false) : 0}
+      calcultedSalaryAfterSocialSecurity={SocialSecurityCalculator.calculateNetIncomeAfterSocialSecurity(
+        salaryAfterAllTaxMonthly,
+        salaryWithBonus ?? 0,
+        false
+      )}
       transformationsGeld={transformationsGeld}
       tZugA={tZugA}
       tZugB={tZugB}
       urlaubsgeld={urlaubsgeld}
       profitSharing={profitSharing}
       christmasBonus={christmasBonus}
+      salaryWithAllBonus={salaryWithAllBonusYear}
       taxYear={taxYear}
       solidarityTaxYear={solidarityTaxYear}
       churchTaxYear={churchTaxYear}
+      salaryAfterAllTaxYear={salaryAfterAllTaxYear}
       calcultedSalaryAfterSocialSecurityYear={calculatedSalaryAfterSocialSecurityYear}
       careInsuranceYear={careInsuranceYear}
       healthInsuranceSupplementYear={healthInsuranceSupplementYear}
       healthInsuranceYear={healthInsuranceYear}
       unemploymentInsurancYear={unemploymentInsuranceYear}
       pensionInsuranceYear={pensionInsuranceYear}
-      hoursWageNetYearWithBonus={hoursWageNetYearWithBonus}
-      hoursWageGrossYearWithBonus={hoursWageGrossYearWithBonus}
-      hoursWageNetYear={hoursWageNetYear}
-      hoursWageGrossYear={hoursWageGrossYear}
     />
   );
 };
 
-export default HomeContainer;
+export default TablesContainer;
