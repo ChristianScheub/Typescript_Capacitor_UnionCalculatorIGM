@@ -2,10 +2,11 @@ import React, { useEffect, useState, useCallback } from "react";
 import { useSelector } from "react-redux";
 import HomeView from "../views/Home/HomeView";
 import { RootState } from "../stateManagement/store";
-import TaxCalculatorService from "../services/taxCalculator";
+import TaxCalculatorService from "../services/taxCalculatorService";
 import SocialSecurityCalculator from "../services/socialSecurityCalculator/SocialSecurityCalculator";
 import UnionContractCalculatorService from "../services/unionContractCalculatorService";
 import Logger from "../services/logger/logger";
+import { calculateHourlyWage } from "../services/helper/hourlyWageCalculator";
 
 const HomeContainer: React.FC = () => {
   const { salary, salaryWithBonus } = useSelector((state: RootState) => state.salary);
@@ -33,6 +34,8 @@ const HomeContainer: React.FC = () => {
   const [salaryAfterAllTaxYear, setSalaryAfterAllTaxYear] = useState(0);
   const [hoursWageGrossYear, setHoursWageGrossYear] = useState(0); //Brutto
   const [hoursWageNetYear, setHoursWageNetYear] = useState(0); //Netto
+  const [hoursWageGrossYearWithBonus, setHoursWageGrossYearWithBonus] = useState(0); //Brutto
+  const [hoursWageNetYearWithBonus, setHoursWageNetYearWithBonus] = useState(0); //Netto
 
 
   const [calculatedSalaryAfterSocialSecurityYear, setCalculatedSalaryAfterSocialSecurityYear] = useState(0);
@@ -73,11 +76,21 @@ const HomeContainer: React.FC = () => {
       salaryWithAllBonusYear,
       true
     ));
-    setHoursWageNetYear(SocialSecurityCalculator.calculateNetHourlyWageAfterSocialSecurity(
+    setHoursWageNetYearWithBonus(SocialSecurityCalculator.calculateNetHourlyWageAfterSocialSecurity(
       salaryAfterAllTaxYear,
       salaryWithAllBonusYear
     ));
-    setHoursWageGrossYear(UnionContractCalculatorService.calculateGrossHourlyWage());
+    setHoursWageGrossYearWithBonus(UnionContractCalculatorService.calculateGrossHourlyWage());
+
+    if(salaryWithBonus){
+      setHoursWageNetYear(SocialSecurityCalculator.calculateNetHourlyWageAfterSocialSecurity(
+        salaryAfterAllTaxMonthly * 12,
+        salaryWithBonus *12
+      ));
+      
+      setHoursWageGrossYear(calculateHourlyWage(salaryWithBonus *12));
+    }
+
     setCareInsuranceYear(SocialSecurityCalculator.calculateCareInsurance(
       salaryWithAllBonusYear / 12,
       isChildless ?? false
@@ -135,6 +148,8 @@ const HomeContainer: React.FC = () => {
       healthInsuranceYear={healthInsuranceYear}
       unemploymentInsurancYear={unemploymentInsuranceYear}
       pensionInsuranceYear={pensionInsuranceYear}
+      hoursWageNetYearWithBonus={hoursWageNetYearWithBonus}
+      hoursWageGrossYearWithBonus={hoursWageGrossYearWithBonus}
       hoursWageNetYear={hoursWageNetYear}
       hoursWageGrossYear={hoursWageGrossYear}
     />

@@ -131,6 +131,8 @@ According to the command npm list You can see the deeper NPM modules used and wh
 
 ├── react@18.3.1
 
+├── recharts@2.12.7
+
 ├── typeface-roboto@1.1.13
 
 ├── typescript@4.9.5

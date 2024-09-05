@@ -1,6 +1,6 @@
 import React from "react";
 import Select from "../../ui/Select";
-import { taxClassOptions } from "../../services/taxCalculator/taxConfig";
+import { taxClassOptions } from "../../services/taxCalculatorService/taxConfig";
 import { TaxCalculatorViewProps } from "./TaxCalculatorViewProps";
 import Card from "../../ui/Card";
 import MaterialInput from "../../ui/MaterialInput";
@@ -28,6 +28,7 @@ const TaxCalculatorView: React.FC<TaxCalculatorViewProps> = ({
           value={selectedTaxClass || ""}
           onChange={onChange}
           placeholder="Steuerklasse auswählen"
+          helperText="Die verschiedenen Steuerklassen haben unterschiedliche Steuerfreibeträge und somit wirken diese sich teilweise stark aus auf ihre Steuern."
         />
 
         <br />
@@ -40,6 +41,7 @@ const TaxCalculatorView: React.FC<TaxCalculatorViewProps> = ({
           value={isChildless ? "ja" : "nein"}
           onChange={onIsChildlessChange}
           placeholder="Kinderlos"
+          helperText="Dies wirkt sich auf ihre Pflegeversicherungsbeitrag aus. Für die Pflegeversicherung wird bei dieser groben Rechnung nur mit einem Kind gerechnet. Achtung: Es wird angenommen das sie das Kindergeld beziehen und nicht den Kinderfreibetrag nutzen!"
         />
 
         <br />

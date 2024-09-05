@@ -2018,6 +2018,60 @@
     "path": "C:\\Users\\chris\\Documents\\Typescript_Capacitor_UnionCalculatorIGM-main\\node_modules\\@types\\connect",
     "licenseFile": "C:\\Users\\chris\\Documents\\Typescript_Capacitor_UnionCalculatorIGM-main\\node_modules\\@types\\connect\\LICENSE"
   },
+  "@types/d3-array@3.2.1": {
+    "licenses": "MIT",
+    "repository": "https://github.com/DefinitelyTyped/DefinitelyTyped",
+    "path": "C:\\Users\\chris\\Documents\\Typescript_Capacitor_UnionCalculatorIGM-main\\node_modules\\@types\\d3-array",
+    "licenseFile": "C:\\Users\\chris\\Documents\\Typescript_Capacitor_UnionCalculatorIGM-main\\node_modules\\@types\\d3-array\\LICENSE"
+  },
+  "@types/d3-color@3.1.3": {
+    "licenses": "MIT",
+    "repository": "https://github.com/DefinitelyTyped/DefinitelyTyped",
+    "path": "C:\\Users\\chris\\Documents\\Typescript_Capacitor_UnionCalculatorIGM-main\\node_modules\\@types\\d3-color",
+    "licenseFile": "C:\\Users\\chris\\Documents\\Typescript_Capacitor_UnionCalculatorIGM-main\\node_modules\\@types\\d3-color\\LICENSE"
+  },
+  "@types/d3-ease@3.0.2": {
+    "licenses": "MIT",
+    "repository": "https://github.com/DefinitelyTyped/DefinitelyTyped",
+    "path": "C:\\Users\\chris\\Documents\\Typescript_Capacitor_UnionCalculatorIGM-main\\node_modules\\@types\\d3-ease",
+    "licenseFile": "C:\\Users\\chris\\Documents\\Typescript_Capacitor_UnionCalculatorIGM-main\\node_modules\\@types\\d3-ease\\LICENSE"
+  },
+  "@types/d3-interpolate@3.0.4": {
+    "licenses": "MIT",
+    "repository": "https://github.com/DefinitelyTyped/DefinitelyTyped",
+    "path": "C:\\Users\\chris\\Documents\\Typescript_Capacitor_UnionCalculatorIGM-main\\node_modules\\@types\\d3-interpolate",
+    "licenseFile": "C:\\Users\\chris\\Documents\\Typescript_Capacitor_UnionCalculatorIGM-main\\node_modules\\@types\\d3-interpolate\\LICENSE"
+  },
+  "@types/d3-path@3.1.0": {
+    "licenses": "MIT",
+    "repository": "https://github.com/DefinitelyTyped/DefinitelyTyped",
+    "path": "C:\\Users\\chris\\Documents\\Typescript_Capacitor_UnionCalculatorIGM-main\\node_modules\\@types\\d3-path",
+    "licenseFile": "C:\\Users\\chris\\Documents\\Typescript_Capacitor_UnionCalculatorIGM-main\\node_modules\\@types\\d3-path\\LICENSE"
+  },
+  "@types/d3-scale@4.0.8": {
+    "licenses": "MIT",
+    "repository": "https://github.com/DefinitelyTyped/DefinitelyTyped",
+    "path": "C:\\Users\\chris\\Documents\\Typescript_Capacitor_UnionCalculatorIGM-main\\node_modules\\@types\\d3-scale",
+    "licenseFile": "C:\\Users\\chris\\Documents\\Typescript_Capacitor_UnionCalculatorIGM-main\\node_modules\\@types\\d3-scale\\LICENSE"
+  },
+  "@types/d3-shape@3.1.6": {
+    "licenses": "MIT",
+    "repository": "https://github.com/DefinitelyTyped/DefinitelyTyped",
+    "path": "C:\\Users\\chris\\Documents\\Typescript_Capacitor_UnionCalculatorIGM-main\\node_modules\\@types\\d3-shape",
+    "licenseFile": "C:\\Users\\chris\\Documents\\Typescript_Capacitor_UnionCalculatorIGM-main\\node_modules\\@types\\d3-shape\\LICENSE"
+  },
+  "@types/d3-time@3.0.3": {
+    "licenses": "MIT",
+    "repository": "https://github.com/DefinitelyTyped/DefinitelyTyped",
+    "path": "C:\\Users\\chris\\Documents\\Typescript_Capacitor_UnionCalculatorIGM-main\\node_modules\\@types\\d3-time",
+    "licenseFile": "C:\\Users\\chris\\Documents\\Typescript_Capacitor_UnionCalculatorIGM-main\\node_modules\\@types\\d3-time\\LICENSE"
+  },
+  "@types/d3-timer@3.0.2": {
+    "licenses": "MIT",
+    "repository": "https://github.com/DefinitelyTyped/DefinitelyTyped",
+    "path": "C:\\Users\\chris\\Documents\\Typescript_Capacitor_UnionCalculatorIGM-main\\node_modules\\@types\\d3-timer",
+    "licenseFile": "C:\\Users\\chris\\Documents\\Typescript_Capacitor_UnionCalculatorIGM-main\\node_modules\\@types\\d3-timer\\LICENSE"
+  },
   "@types/eslint-scope@3.7.7": {
     "licenses": "MIT",
     "repository": "https://github.com/DefinitelyTyped/DefinitelyTyped",
@@ -3844,6 +3898,94 @@
     "path": "C:\\Users\\chris\\Documents\\Typescript_Capacitor_UnionCalculatorIGM-main\\node_modules\\csstype",
     "licenseFile": "C:\\Users\\chris\\Documents\\Typescript_Capacitor_UnionCalculatorIGM-main\\node_modules\\csstype\\LICENSE"
   },
+  "d3-array@3.2.4": {
+    "licenses": "ISC",
+    "repository": "https://github.com/d3/d3-array",
+    "publisher": "Mike Bostock",
+    "url": "http://bost.ocks.org/mike",
+    "path": "C:\\Users\\chris\\Documents\\Typescript_Capacitor_UnionCalculatorIGM-main\\node_modules\\d3-array",
+    "licenseFile": "C:\\Users\\chris\\Documents\\Typescript_Capacitor_UnionCalculatorIGM-main\\node_modules\\d3-array\\LICENSE"
+  },
+  "d3-color@3.1.0": {
+    "licenses": "ISC",
+    "repository": "https://github.com/d3/d3-color",
+    "publisher": "Mike Bostock",
+    "url": "http://bost.ocks.org/mike",
+    "path": "C:\\Users\\chris\\Documents\\Typescript_Capacitor_UnionCalculatorIGM-main\\node_modules\\d3-color",
+    "licenseFile": "C:\\Users\\chris\\Documents\\Typescript_Capacitor_UnionCalculatorIGM-main\\node_modules\\d3-color\\LICENSE"
+  },
+  "d3-ease@3.0.1": {
+    "licenses": "BSD-3-Clause",
+    "repository": "https://github.com/d3/d3-ease",
+    "publisher": "Mike Bostock",
+    "url": "http://bost.ocks.org/mike",
+    "path": "C:\\Users\\chris\\Documents\\Typescript_Capacitor_UnionCalculatorIGM-main\\node_modules\\d3-ease",
+    "licenseFile": "C:\\Users\\chris\\Documents\\Typescript_Capacitor_UnionCalculatorIGM-main\\node_modules\\d3-ease\\LICENSE"
+  },
+  "d3-format@3.1.0": {
+    "licenses": "ISC",
+    "repository": "https://github.com/d3/d3-format",
+    "publisher": "Mike Bostock",
+    "url": "http://bost.ocks.org/mike",
+    "path": "C:\\Users\\chris\\Documents\\Typescript_Capacitor_UnionCalculatorIGM-main\\node_modules\\d3-format",
+    "licenseFile": "C:\\Users\\chris\\Documents\\Typescript_Capacitor_UnionCalculatorIGM-main\\node_modules\\d3-format\\LICENSE"
+  },
+  "d3-interpolate@3.0.1": {
+    "licenses": "ISC",
+    "repository": "https://github.com/d3/d3-interpolate",
+    "publisher": "Mike Bostock",
+    "url": "http://bost.ocks.org/mike",
+    "path": "C:\\Users\\chris\\Documents\\Typescript_Capacitor_UnionCalculatorIGM-main\\node_modules\\d3-interpolate",
+    "licenseFile": "C:\\Users\\chris\\Documents\\Typescript_Capacitor_UnionCalculatorIGM-main\\node_modules\\d3-interpolate\\LICENSE"
+  },
+  "d3-path@3.1.0": {
+    "licenses": "ISC",
+    "repository": "https://github.com/d3/d3-path",
+    "publisher": "Mike Bostock",
+    "url": "http://bost.ocks.org/mike",
+    "path": "C:\\Users\\chris\\Documents\\Typescript_Capacitor_UnionCalculatorIGM-main\\node_modules\\d3-path",
+    "licenseFile": "C:\\Users\\chris\\Documents\\Typescript_Capacitor_UnionCalculatorIGM-main\\node_modules\\d3-path\\LICENSE"
+  },
+  "d3-scale@4.0.2": {
+    "licenses": "ISC",
+    "repository": "https://github.com/d3/d3-scale",
+    "publisher": "Mike Bostock",
+    "url": "https://bost.ocks.org/mike",
+    "path": "C:\\Users\\chris\\Documents\\Typescript_Capacitor_UnionCalculatorIGM-main\\node_modules\\d3-scale",
+    "licenseFile": "C:\\Users\\chris\\Documents\\Typescript_Capacitor_UnionCalculatorIGM-main\\node_modules\\d3-scale\\LICENSE"
+  },
+  "d3-shape@3.2.0": {
+    "licenses": "ISC",
+    "repository": "https://github.com/d3/d3-shape",
+    "publisher": "Mike Bostock",
+    "url": "http://bost.ocks.org/mike",
+    "path": "C:\\Users\\chris\\Documents\\Typescript_Capacitor_UnionCalculatorIGM-main\\node_modules\\d3-shape",
+    "licenseFile": "C:\\Users\\chris\\Documents\\Typescript_Capacitor_UnionCalculatorIGM-main\\node_modules\\d3-shape\\LICENSE"
+  },
+  "d3-time-format@4.1.0": {
+    "licenses": "ISC",
+    "repository": "https://github.com/d3/d3-time-format",
+    "publisher": "Mike Bostock",
+    "url": "http://bost.ocks.org/mike",
+    "path": "C:\\Users\\chris\\Documents\\Typescript_Capacitor_UnionCalculatorIGM-main\\node_modules\\d3-time-format",
+    "licenseFile": "C:\\Users\\chris\\Documents\\Typescript_Capacitor_UnionCalculatorIGM-main\\node_modules\\d3-time-format\\LICENSE"
+  },
+  "d3-time@3.1.0": {
+    "licenses": "ISC",
+    "repository": "https://github.com/d3/d3-time",
+    "publisher": "Mike Bostock",
+    "url": "http://bost.ocks.org/mike",
+    "path": "C:\\Users\\chris\\Documents\\Typescript_Capacitor_UnionCalculatorIGM-main\\node_modules\\d3-time",
+    "licenseFile": "C:\\Users\\chris\\Documents\\Typescript_Capacitor_UnionCalculatorIGM-main\\node_modules\\d3-time\\LICENSE"
+  },
+  "d3-timer@3.0.1": {
+    "licenses": "ISC",
+    "repository": "https://github.com/d3/d3-timer",
+    "publisher": "Mike Bostock",
+    "url": "http://bost.ocks.org/mike",
+    "path": "C:\\Users\\chris\\Documents\\Typescript_Capacitor_UnionCalculatorIGM-main\\node_modules\\d3-timer",
+    "licenseFile": "C:\\Users\\chris\\Documents\\Typescript_Capacitor_UnionCalculatorIGM-main\\node_modules\\d3-timer\\LICENSE"
+  },
   "damerau-levenshtein@1.0.8": {
     "licenses": "BSD-2-Clause",
     "repository": "https://github.com/tad-lispy/node-damerau-levenshtein",
@@ -3907,6 +4049,14 @@
     "url": "https://github.com/qix-",
     "path": "C:\\Users\\chris\\Documents\\Typescript_Capacitor_UnionCalculatorIGM-main\\node_modules\\debug",
     "licenseFile": "C:\\Users\\chris\\Documents\\Typescript_Capacitor_UnionCalculatorIGM-main\\node_modules\\debug\\LICENSE"
+  },
+  "decimal.js-light@2.5.1": {
+    "licenses": "MIT",
+    "repository": "https://github.com/MikeMcl/decimal.js-light",
+    "publisher": "Michael Mclaughlin",
+    "email": "M8ch88l@gmail.com",
+    "path": "C:\\Users\\chris\\Documents\\Typescript_Capacitor_UnionCalculatorIGM-main\\node_modules\\decimal.js-light",
+    "licenseFile": "C:\\Users\\chris\\Documents\\Typescript_Capacitor_UnionCalculatorIGM-main\\node_modules\\decimal.js-light\\LICENCE.md"
   },
   "decimal.js@10.4.3": {
     "licenses": "MIT",
@@ -4724,6 +4874,13 @@
     "publisher": "Evgeny Poberezkin",
     "path": "C:\\Users\\chris\\Documents\\Typescript_Capacitor_UnionCalculatorIGM-main\\node_modules\\fast-deep-equal",
     "licenseFile": "C:\\Users\\chris\\Documents\\Typescript_Capacitor_UnionCalculatorIGM-main\\node_modules\\fast-deep-equal\\LICENSE"
+  },
+  "fast-equals@5.0.1": {
+    "licenses": "MIT",
+    "repository": "https://github.com/planttheidea/fast-equals",
+    "publisher": "tony_quetano@planttheidea.com",
+    "path": "C:\\Users\\chris\\Documents\\Typescript_Capacitor_UnionCalculatorIGM-main\\node_modules\\fast-equals",
+    "licenseFile": "C:\\Users\\chris\\Documents\\Typescript_Capacitor_UnionCalculatorIGM-main\\node_modules\\fast-equals\\LICENSE"
   },
   "fast-glob@3.3.2": {
     "licenses": "MIT",
@@ -5626,6 +5783,14 @@
     "email": "ljharb@gmail.com",
     "path": "C:\\Users\\chris\\Documents\\Typescript_Capacitor_UnionCalculatorIGM-main\\node_modules\\internal-slot",
     "licenseFile": "C:\\Users\\chris\\Documents\\Typescript_Capacitor_UnionCalculatorIGM-main\\node_modules\\internal-slot\\LICENSE"
+  },
+  "internmap@2.0.3": {
+    "licenses": "ISC",
+    "repository": "https://github.com/mbostock/internmap",
+    "publisher": "Mike Bostock",
+    "url": "https://bost.ocks.org/mike",
+    "path": "C:\\Users\\chris\\Documents\\Typescript_Capacitor_UnionCalculatorIGM-main\\node_modules\\internmap",
+    "licenseFile": "C:\\Users\\chris\\Documents\\Typescript_Capacitor_UnionCalculatorIGM-main\\node_modules\\internmap\\LICENSE"
   },
   "invariant@2.2.4": {
     "licenses": "MIT",
@@ -8427,6 +8592,13 @@
     "path": "C:\\Users\\chris\\Documents\\Typescript_Capacitor_UnionCalculatorIGM-main\\node_modules\\react-scripts",
     "licenseFile": "C:\\Users\\chris\\Documents\\Typescript_Capacitor_UnionCalculatorIGM-main\\node_modules\\react-scripts\\LICENSE"
   },
+  "react-smooth@4.0.1": {
+    "licenses": "MIT",
+    "repository": "https://github.com/recharts/react-smooth",
+    "publisher": "JasonHzq",
+    "path": "C:\\Users\\chris\\Documents\\Typescript_Capacitor_UnionCalculatorIGM-main\\node_modules\\react-smooth",
+    "licenseFile": "C:\\Users\\chris\\Documents\\Typescript_Capacitor_UnionCalculatorIGM-main\\node_modules\\react-smooth\\LICENSE"
+  },
   "react-transition-group@4.4.5": {
     "licenses": "BSD-3-Clause",
     "repository": "https://github.com/reactjs/react-transition-group",
@@ -8467,6 +8639,20 @@
     "url": "thlorenz.com",
     "path": "C:\\Users\\chris\\Documents\\Typescript_Capacitor_UnionCalculatorIGM-main\\node_modules\\readdirp",
     "licenseFile": "C:\\Users\\chris\\Documents\\Typescript_Capacitor_UnionCalculatorIGM-main\\node_modules\\readdirp\\LICENSE"
+  },
+  "recharts-scale@0.4.5": {
+    "licenses": "MIT",
+    "repository": "https://github.com/recharts/recharts-scale",
+    "publisher": "recharts group",
+    "path": "C:\\Users\\chris\\Documents\\Typescript_Capacitor_UnionCalculatorIGM-main\\node_modules\\recharts-scale",
+    "licenseFile": "C:\\Users\\chris\\Documents\\Typescript_Capacitor_UnionCalculatorIGM-main\\node_modules\\recharts-scale\\LICENSE"
+  },
+  "recharts@2.12.7": {
+    "licenses": "MIT",
+    "repository": "https://github.com/recharts/recharts",
+    "publisher": "recharts group",
+    "path": "C:\\Users\\chris\\Documents\\Typescript_Capacitor_UnionCalculatorIGM-main\\node_modules\\recharts",
+    "licenseFile": "C:\\Users\\chris\\Documents\\Typescript_Capacitor_UnionCalculatorIGM-main\\node_modules\\recharts\\LICENSE"
   },
   "recursive-readdir@2.2.3": {
     "licenses": "MIT",
@@ -9643,6 +9829,14 @@
     "path": "C:\\Users\\chris\\Documents\\Typescript_Capacitor_UnionCalculatorIGM-main\\node_modules\\thunky",
     "licenseFile": "C:\\Users\\chris\\Documents\\Typescript_Capacitor_UnionCalculatorIGM-main\\node_modules\\thunky\\LICENSE"
   },
+  "tiny-invariant@1.3.3": {
+    "licenses": "MIT",
+    "repository": "https://github.com/alexreardon/tiny-invariant",
+    "publisher": "Alex Reardon",
+    "email": "alexreardon@gmail.com",
+    "path": "C:\\Users\\chris\\Documents\\Typescript_Capacitor_UnionCalculatorIGM-main\\node_modules\\tiny-invariant",
+    "licenseFile": "C:\\Users\\chris\\Documents\\Typescript_Capacitor_UnionCalculatorIGM-main\\node_modules\\tiny-invariant\\LICENSE"
+  },
   "tmpl@1.0.5": {
     "licenses": "BSD-3-Clause",
     "repository": "https://github.com/daaku/nodejs-tmpl",
@@ -10072,6 +10266,13 @@
     "email": "doug@somethingdoug.com",
     "path": "C:\\Users\\chris\\Documents\\Typescript_Capacitor_UnionCalculatorIGM-main\\node_modules\\vary",
     "licenseFile": "C:\\Users\\chris\\Documents\\Typescript_Capacitor_UnionCalculatorIGM-main\\node_modules\\vary\\LICENSE"
+  },
+  "victory-vendor@36.9.2": {
+    "licenses": "MIT AND ISC",
+    "repository": "https://github.com/FormidableLabs/victory",
+    "publisher": "Formidable",
+    "path": "C:\\Users\\chris\\Documents\\Typescript_Capacitor_UnionCalculatorIGM-main\\node_modules\\victory-vendor",
+    "licenseFile": "C:\\Users\\chris\\Documents\\Typescript_Capacitor_UnionCalculatorIGM-main\\node_modules\\victory-vendor\\README.md"
   },
   "void-elements@3.1.0": {
     "licenses": "MIT",
