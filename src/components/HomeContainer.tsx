@@ -107,7 +107,7 @@ const HomeContainer: React.FC = () => {
       salaryWithAllBonusYear / 12
     ) * 12);
 
-  }, [salaryWithBonus, isChildless, salaryAfterAllTaxYear, salaryWithAllBonusYear]);
+  }, [salaryWithBonus, isChildless, salaryAfterAllTaxYear, salaryWithAllBonusYear,salaryAfterAllTaxMonthly]);
 
   useEffect(() => {
     calculateAllValues();
