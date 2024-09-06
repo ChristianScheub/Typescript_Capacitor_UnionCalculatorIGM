@@ -1,6 +1,6 @@
 import React, { CSSProperties } from 'react';
 import { IncomeBreakdownProps } from "./IncomeBreakdownProps";
-import Card from "../../ui/Card";
+import Card from "../../ui/Card/Card";
 
 const IncomeBreakdown: React.FC<IncomeBreakdownProps> = ({
   title,

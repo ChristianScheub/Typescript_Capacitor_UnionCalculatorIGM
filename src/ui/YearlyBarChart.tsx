@@ -8,7 +8,7 @@ import {
     Tooltip,
     ResponsiveContainer,
 } from "recharts";
-import Card from "./Card";
+import Card from "./Card/Card";
 
 // Typen für die Props definieren
 interface YearlyBarChartProps {

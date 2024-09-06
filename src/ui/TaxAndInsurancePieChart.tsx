@@ -1,6 +1,6 @@
 import React from "react";
 import { PieChart, Pie, Cell, Tooltip, Legend, ResponsiveContainer } from "recharts";
-import Card from "./Card";
+import Card from "./Card/Card";
 import { TaxAndInsurancePieChartProps } from "./TaxAndInsurancePieChartProps";
 
 const COLORS = ["#00000","#0088FE", "#00C49F", "#FFBB28", "#FF8042", "#AF19FF", "#FF6666", "#FF33FF","#AB47BC"];

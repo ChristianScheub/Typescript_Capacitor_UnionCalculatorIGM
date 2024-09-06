@@ -1,12 +1,12 @@
 import React, { useEffect, useState, useCallback } from "react";
 import { useSelector } from "react-redux";
-import HomeView from "../views/Home/HomeView";
-import { RootState } from "../stateManagement/store";
-import TaxCalculatorService from "../services/taxCalculatorService";
-import SocialSecurityCalculator from "../services/socialSecurityCalculator/SocialSecurityCalculator";
-import UnionContractCalculatorService from "../services/unionContractCalculatorService";
-import Logger from "../services/logger/logger";
-import { calculateHourlyWage } from "../services/helper/hourlyWageCalculator";
+import HomeView from "../../views/Home/HomeView";
+import { RootState } from "../../stateManagement/store";
+import TaxCalculatorService from "../../services/taxCalculatorService";
+import SocialSecurityCalculator from "../../services/socialSecurityCalculator/SocialSecurityCalculator";
+import UnionContractCalculatorService from "../../services/unionContractCalculatorService";
+import Logger from "../../services/logger/logger";
+import { calculateHourlyWage } from "../../services/helper/hourlyWageCalculator";
 
 const HomeContainer: React.FC = () => {
   const { salaryWithBonus } = useSelector((state: RootState) => state.salary);

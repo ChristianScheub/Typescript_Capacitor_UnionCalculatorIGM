@@ -1,16 +1,16 @@
 import React, { useState } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import "./App.css";
-import SalaryCalculatorContainer from "./components/SalaryCalculatorContainer";
+import SalaryCalculatorContainer from "./components/Settings/SalaryCalculatorContainer";
 import Navbar from "./views/Navbar/Navbar";
-import HomeContainer from "./components/HomeContainer";
-import TaxClassContainer from "./components/TaxCalculatorContainer";
-import ContainerSettings from "./components/SettingsContainer";
+import HomeContainer from "./components/Calculations/HomeContainer";
+import TaxClassContainer from "./components/Settings/TaxCalculatorContainer";
+import ContainerSettings from "./components/Settings/SettingsContainer";
 import Impressum from "./legal/impressum";
 import Datenschutz from "./legal/datenschutz";
 import "./i18n";
 import 'typeface-roboto';
-import TablesContainer from "./components/TablesContainer";
+import TablesContainer from "./components/Calculations/TablesContainer";
 
 
 const App: React.FC = () => {

@@ -2,7 +2,7 @@ import React from 'react';
 import Select from '../../ui/Select';
 import MaterialInput from '../../ui/MaterialInput';
 import { SalaryCalculatorViewProps } from './SalaryCalculatorViewProps';
-import Card from '../../ui/Card';
+import Card from '../../ui/Card/Card';
 
 export const SalaryCalculatorView: React.FC<SalaryCalculatorViewProps> = ({
   regions,

@@ -1,9 +1,9 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { AppDispatch } from "../stateManagement/store";
-import unionContractCalculatorService from "../services/unionContractCalculatorService";
-import { SalaryCalculatorView } from "../views/SalaryCalculator/SalaryCalculatorView";
-import Logger from "../services/logger/logger";
+import { AppDispatch } from "../../stateManagement/store";
+import unionContractCalculatorService from "../../services/unionContractCalculatorService";
+import { SalaryCalculatorView } from "../../views/SalaryCalculator/SalaryCalculatorView";
+import Logger from "../../services/logger/logger";
 import {
   selectSelectedRegion,
   selectSelectedYear,
@@ -12,17 +12,17 @@ import {
   selectYears,
   selectRegions,
   selectSalaryGroups,
-} from "../stateManagement/selectors/unionContractSelectors";
+} from "../../stateManagement/selectors/unionContractSelectors";
 import {
   selectSalary,
-} from "../stateManagement/selectors/salarySelectors";
-import { parseAndValidateNumber } from "../services/helper/parseNumber";
-import { mapStringToBundesland } from "../services/isWestGermany/isWestGermany";
-import { Bundesland } from "../services/isWestGermany/Bundesland";
-import { setRegions, setSalaryGroups, setSelectedRegion, setSelectedSalaryGroup, setSelectedYear, setWorkingHours, setYears } from "../stateManagement/slices/UnionContractSlice";
-import { setSalary, setSalaryWithBonus } from "../stateManagement/slices/SalarySlice";
-import { setBonus, setChristmasBonusP, setNonTariffBonus, setProfitSharingP } from "../stateManagement/slices/BonusSlice";
-import { selectBonus, selectChristmasBonusP, selectNonTariffBonus, selectProfitSharingP } from "../stateManagement/selectors/bonusSelectors";
+} from "../../stateManagement/selectors/salarySelectors";
+import { parseAndValidateNumber } from "../../services/helper/parseNumber";
+import { mapStringToBundesland } from "../../services/isWestGermany/isWestGermany";
+import { Bundesland } from "../../services/isWestGermany/Bundesland";
+import { setRegions, setSalaryGroups, setSelectedRegion, setSelectedSalaryGroup, setSelectedYear, setWorkingHours, setYears } from "../../stateManagement/slices/UnionContractSlice";
+import { setSalary, setSalaryWithBonus } from "../../stateManagement/slices/SalarySlice";
+import { setBonus, setChristmasBonusP, setNonTariffBonus, setProfitSharingP } from "../../stateManagement/slices/BonusSlice";
+import { selectBonus, selectChristmasBonusP, selectNonTariffBonus, selectProfitSharingP } from "../../stateManagement/selectors/bonusSelectors";
 
 const SalaryCalculatorContainer: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();

@@ -1,9 +1,5 @@
-import React, { CSSProperties, ReactNode } from "react";
-
-interface CardProps {
-  children: ReactNode;
-  style?: CSSProperties;
-}
+import React, { CSSProperties } from "react";
+import { CardProps } from "./CardProps";
 
 const Card: React.FC<CardProps> = ({ children, style }) => {
   return (

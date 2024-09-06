@@ -8,13 +8,19 @@ interface ViewSettingsProps {
   onImpressumClick: (navigate: NavigateFunction) => void;
   onTaxSettingClick: (navigate: NavigateFunction) => void;
   onUnionSettingClick: (navigate: NavigateFunction) => void;
+  onTaxInformationClick: (navigate: NavigateFunction) => void;
+  onBonusInformationClick: (navigate: NavigateFunction) => void;
+  onSocialSecurityInformationClick: (navigate: NavigateFunction) => void;
 }
 
 const ViewSettings: React.FC<ViewSettingsProps> = ({
   onDatenschutzClick,
   onImpressumClick,
   onTaxSettingClick,
-  onUnionSettingClick
+  onUnionSettingClick,
+  onTaxInformationClick,
+  onBonusInformationClick,
+  onSocialSecurityInformationClick
 }) => {
   const navigate = useNavigate();
   const { t } = useTranslation();
@@ -33,17 +39,17 @@ const ViewSettings: React.FC<ViewSettingsProps> = ({
           <h1>Einstellungen</h1>
           <hr />
             <p
-              data-testid="settings-tax"
-              onClick={() => onTaxSettingClick(navigate)}
-            >
-              Steuereinstellungen
-            </p>
-            <hr />
-            <p
               data-testid="settings-union"
               onClick={() => onUnionSettingClick(navigate)}
             >
                Tarif-/Gehalt Einstellungen
+            </p>
+          <hr />
+            <p
+              data-testid="settings-tax"
+              onClick={() => onTaxSettingClick(navigate)}
+            >
+              Steuereinstellungen
             </p>
             <hr />
             <p
@@ -62,21 +68,21 @@ const ViewSettings: React.FC<ViewSettingsProps> = ({
             <hr />
             <p
               data-testid="settings-edatenschutz"
-              onClick={() => onDatenschutzClick(navigate)}
+              onClick={() => onBonusInformationClick(navigate)}
             >
              Sonderzahlungen Informationen
             </p>
             <hr />
             <p
               data-testid="settings-edatenschutz"
-              onClick={() => onDatenschutzClick(navigate)}
+              onClick={() => onTaxInformationClick(navigate)}
             >
               Steuer Berechnung Information
             </p>
             <hr />
             <p
               data-testid="settings-edatenschutz"
-              onClick={() => onDatenschutzClick(navigate)}
+              onClick={() => onSocialSecurityInformationClick(navigate)}
             >
               Berechnung der Sozialbeiträge Information
             </p>

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { FaHome, FaInfoCircle, FaTable } from 'react-icons/fa';
+import { FaHome, FaCog , FaTable } from 'react-icons/fa';
 
 interface NavbarProps {
   setActiveComponent: (component: string) => void;
@@ -35,7 +35,7 @@ const Navbar: React.FC<NavbarProps> = ({ setActiveComponent, activeComponent }) 
         <FaTable size={30} color={getColor("tables")} />
       </Link>
       <Link to="/info" style={styles.icon} onClick={() => setActiveComponent("info")}>
-        <FaInfoCircle size={30} color={getColor("info")} />
+        <FaCog  size={30} color={getColor("info")} />
       </Link>
     </div>
   );

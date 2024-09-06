@@ -1,12 +1,12 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { RootState } from '../stateManagement/store';
-import TaxCalculatorView from '../views/TaxCalculator/TaxCalculatorView';
-import Logger from '../services/logger/logger';
-import { selectHealthInsuranceSupplement } from '../stateManagement/selectors/socialSecuritySelectors';
-import { parseAndValidateNumber } from '../services/helper/parseNumber';
-import { selectIsInChurch, selectRouteToWork, selectWriteOff } from '../stateManagement/selectors/taxSelectors';
-import { setChildless, setHealthInsuranceSupplement, setIsInChurch, setRouteToWork, setTaxClass, setWriteOff } from '../stateManagement/slices/TaxSlice';
+import { RootState } from '../../stateManagement/store';
+import TaxCalculatorView from '../../views/TaxCalculator/TaxCalculatorView';
+import Logger from '../../services/logger/logger';
+import { selectHealthInsuranceSupplement } from '../../stateManagement/selectors/socialSecuritySelectors';
+import { parseAndValidateNumber } from '../../services/helper/parseNumber';
+import { selectIsInChurch, selectRouteToWork, selectWriteOff } from '../../stateManagement/selectors/taxSelectors';
+import { setChildless, setHealthInsuranceSupplement, setIsInChurch, setRouteToWork, setTaxClass, setWriteOff } from '../../stateManagement/slices/TaxSlice';
 
 const TaxClassContainer: React.FC = () => {
   const dispatch = useDispatch();

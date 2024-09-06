@@ -1,6 +1,6 @@
 import React from "react";
 import { HomeViewProps } from "./HomeViewProps";
-import Card from "../../ui/Card";
+import Card from "../../ui/Card/Card";
 import { YearlyBarChart } from "../../ui/YearlyBarChart";
 import { TaxAndInsurancePieChart } from "../../ui/TaxAndInsurancePieChart";
 

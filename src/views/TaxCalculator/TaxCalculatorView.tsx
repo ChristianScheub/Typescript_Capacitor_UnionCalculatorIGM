@@ -2,7 +2,7 @@ import React from "react";
 import Select from "../../ui/Select";
 import { taxClassOptions } from "../../services/taxCalculatorService/taxConfig";
 import { TaxCalculatorViewProps } from "./TaxCalculatorViewProps";
-import Card from "../../ui/Card";
+import Card from "../../ui/Card/Card";
 import MaterialInput from "../../ui/MaterialInput";
 
 const TaxCalculatorView: React.FC<TaxCalculatorViewProps> = ({
