@@ -7,6 +7,8 @@ import SocialSecurityCalculator from "../../services/socialSecurityCalculator/So
 import UnionContractCalculatorService from "../../services/unionContractCalculatorService";
 import Logger from "../../services/logger/logger";
 import { calculateHourlyWage } from "../../services/helper/hourlyWageCalculator";
+import { AdMob, BannerAdOptions, AdmobConsentStatus, BannerAdSize, BannerAdPosition, } from '@capacitor-community/admob';
+import { Capacitor } from "@capacitor/core";
 
 const HomeContainer: React.FC = () => {
   const { salaryWithBonus } = useSelector((state: RootState) => state.salary);
@@ -59,7 +61,7 @@ const HomeContainer: React.FC = () => {
       // Berechnung der jährlichen Werte
       const calculatedSalaryWithAllBonusYear = UnionContractCalculatorService.calculateSalaryWithAllBonus();
       setTaxYear(TaxCalculatorService.calculateTax(calculatedSalaryWithAllBonusYear, true));
-      setChurchTaxYear(TaxCalculatorService.calculateChurchTax(calculatedSalaryWithAllBonusYear,true));
+      setChurchTaxYear(TaxCalculatorService.calculateChurchTax(calculatedSalaryWithAllBonusYear, true));
       setSolidarityTaxYear(TaxCalculatorService.calculateSoli(calculatedSalaryWithAllBonusYear, true));
       setSalaryAfterAllTaxYear(TaxCalculatorService.calculateSalaryAfterAllTax(calculatedSalaryWithAllBonusYear, true));
     }
@@ -76,13 +78,13 @@ const HomeContainer: React.FC = () => {
     ));
     setHoursWageGrossYearWithBonus(UnionContractCalculatorService.calculateGrossHourlyWage());
 
-    if(salaryWithBonus){
+    if (salaryWithBonus) {
       setHoursWageNetYear(SocialSecurityCalculator.calculateNetHourlyWageAfterSocialSecurity(
         salaryAfterAllTaxMonthly * 12,
-        salaryWithBonus *12
+        salaryWithBonus * 12
       ));
-      
-      setHoursWageGrossYear(calculateHourlyWage(salaryWithBonus *12));
+
+      setHoursWageGrossYear(calculateHourlyWage(salaryWithBonus * 12));
     }
 
     setCareInsuranceYear(SocialSecurityCalculator.calculateCareInsurance(
@@ -101,11 +103,77 @@ const HomeContainer: React.FC = () => {
       salaryWithAllBonusYear / 12
     ) * 12);
 
-  }, [salaryWithBonus, isChildless, salaryAfterAllTaxYear, salaryWithAllBonusYear,salaryAfterAllTaxMonthly]);
+  }, [salaryWithBonus, isChildless, salaryAfterAllTaxYear, salaryWithAllBonusYear, salaryAfterAllTaxMonthly]);
 
   useEffect(() => {
     calculateAllValues();
   }, [salaryWithBonus, isChildless, calculateAllValues]);
+
+
+  //AdMob
+  const initializeAds = async () => {
+    if (Capacitor.isNativePlatform()) {
+      await AdMob.initialize();
+
+      const [trackingInfo, consentInfo] = await Promise.all([
+        AdMob.trackingAuthorizationStatus(),
+        AdMob.requestConsentInfo(),
+      ]);
+
+      if (trackingInfo.status === 'notDetermined') {
+        await AdMob.requestTrackingAuthorization();
+      }
+
+      const authorizationStatus = await AdMob.trackingAuthorizationStatus();
+
+      if (
+        authorizationStatus.status === 'authorized' &&
+        consentInfo.isConsentFormAvailable &&
+        consentInfo.status === AdmobConsentStatus.REQUIRED
+      ) {
+        await AdMob.showConsentForm();
+      }
+
+
+      const options: BannerAdOptions = {
+        adId: 'ca-app-pub-6250689577715326/5496005964',
+        adSize: BannerAdSize.BANNER,
+        position: BannerAdPosition.TOP_CENTER,
+        margin: 0,
+        // isTesting: true
+        // npa: true
+      };
+      await AdMob.showBanner(options);
+
+    } else {
+      // Web: Google AdSense
+      const adSenseScript = document.createElement("script");
+      adSenseScript.src =
+        "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js";
+      adSenseScript.async = true;
+      adSenseScript.setAttribute("data-ad-client", "ca-pub-6250689577715326"); // Deine AdSense ID
+      document.head.appendChild(adSenseScript);
+
+      const adContainer = document.createElement("ins");
+      adContainer.className = "adsbygoogle";
+      adContainer.style.display = "block";
+      adContainer.setAttribute("data-ad-client", "ca-pub-6250689577715326");
+      adContainer.setAttribute("data-ad-slot", "5496005964"); // AdSense Slot ID
+      adContainer.setAttribute("data-ad-format", "auto");
+      document.body.appendChild(adContainer);
+
+      // Initialisiere AdSense
+      (window as any).adsbygoogle = (window as any).adsbygoogle || [];
+      (window as any).adsbygoogle.push({});
+    }
+  };
+
+
+  useEffect(() => {
+    initializeAds().catch((err) => {
+      console.error("AdMob initialization error:", err);
+    });
+  }, []);
 
   return (
     <HomeView

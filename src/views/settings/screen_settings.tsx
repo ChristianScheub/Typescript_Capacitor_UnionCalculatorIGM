@@ -52,14 +52,6 @@ const ViewSettings: React.FC<ViewSettingsProps> = ({
               Steuereinstellungen
             </p>
             <hr />
-            <p
-              data-testid="settings-union"
-              onClick={() => onUnionSettingClick(navigate)}
-            >
-               Freibeträge/Grenzbeträge bearbeiten
-            </p>
-            <hr />
-            <br />
 
           <div className="mb-3 margin2vw">
             <h1>{t("settings_Information")}</h1>
