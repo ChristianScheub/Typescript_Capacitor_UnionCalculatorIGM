@@ -8,6 +8,10 @@ const ContainerSettings: React.FC = () => {
   const [isSocialSecurityPopupOpen, setSocialSecurityPopupOpen] = useState(false);
   const [isBonusPopupOpen, setBonusPopupOpen] = useState(false);
   const [isTaxPopupOpen, setTaxPopupOpen] = useState(false);
+  const [useLocalStorageRedux, setUseLocalStorageRedux] = useState(() => {
+    const saved = localStorage.getItem('allowedLocalStorageUse');
+    return saved ? JSON.parse(saved) : false;
+  });
 
   const handleImpressumClick = (navigate: NavigateFunction) => {
     navigate("/impressum");
@@ -43,6 +47,22 @@ const ContainerSettings: React.FC = () => {
     setTaxPopupOpen(false);
   };
 
+  const handleLocalStorageChange = (value: boolean) => {
+    const confirmation = window.confirm(
+      "Möchten Sie diese Einstellung wirklich ändern? Dies erfordert ein Neuladen der Webseite, und die derzeit gesetzten Werte werden verworfen."
+    );
+  
+    if (confirmation) {
+      setUseLocalStorageRedux(value);
+      if (value) {
+        localStorage.setItem('allowedLocalStorageUse', JSON.stringify(true));
+      } else {
+        localStorage.clear();
+      }
+      window.location.reload();
+    }
+  };
+  
 
 
   return (
@@ -55,6 +75,8 @@ const ContainerSettings: React.FC = () => {
         onBonusInformationClick={handleBonusInformationClick}
         onTaxInformationClick={handleTaxInformationClick}
         onSocialSecurityInformationClick={handleSocialSecurityInformationClick}
+        useLocalStorageRedux={useLocalStorageRedux}
+        setUseLocalStorageRedux={handleLocalStorageChange}
       />
 
       {/* Sozialversicherungs-Popup */}

@@ -145,26 +145,6 @@ const HomeContainer: React.FC = () => {
       };
       await AdMob.showBanner(options);
 
-    } else {
-      // Web: Google AdSense
-      const adSenseScript = document.createElement("script");
-      adSenseScript.src =
-        "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js";
-      adSenseScript.async = true;
-      adSenseScript.setAttribute("data-ad-client", "ca-pub-6250689577715326"); // Deine AdSense ID
-      document.head.appendChild(adSenseScript);
-
-      const adContainer = document.createElement("ins");
-      adContainer.className = "adsbygoogle";
-      adContainer.style.display = "block";
-      adContainer.setAttribute("data-ad-client", "ca-pub-6250689577715326");
-      adContainer.setAttribute("data-ad-slot", "5496005964"); // AdSense Slot ID
-      adContainer.setAttribute("data-ad-format", "auto");
-      document.body.appendChild(adContainer);
-
-      // Initialisiere AdSense
-      (window as any).adsbygoogle = (window as any).adsbygoogle || [];
-      (window as any).adsbygoogle.push({});
     }
   };
 

@@ -8,7 +8,6 @@ interface SelectProps {
   placeholder?: string;
   helperText?: string;
 }
-//ToDo: Helper Text einbauen
 
 const Select: React.FC<SelectProps> = ({ options, value, onChange, placeholder,helperText }) => {
   const handleChange = (event: SelectChangeEvent) => {

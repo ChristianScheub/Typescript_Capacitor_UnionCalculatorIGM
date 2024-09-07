@@ -1036,6 +1036,14 @@
     "path": "C:\\Users\\chris\\Documents\\Typescript_Capacitor_UnionCalculatorIGM-main\\node_modules\\@bcoe\\v8-coverage",
     "licenseFile": "C:\\Users\\chris\\Documents\\Typescript_Capacitor_UnionCalculatorIGM-main\\node_modules\\@bcoe\\v8-coverage\\LICENSE.md"
   },
+  "@capacitor-community/admob@6.0.0": {
+    "licenses": "MIT",
+    "repository": "https://github.com/capacitor-community/admob",
+    "publisher": "Masahiko Sakakibara",
+    "email": "sakakibara@rdlabo.jp",
+    "path": "C:\\Users\\chris\\Documents\\Typescript_Capacitor_UnionCalculatorIGM-main\\node_modules\\@capacitor-community\\admob",
+    "licenseFile": "C:\\Users\\chris\\Documents\\Typescript_Capacitor_UnionCalculatorIGM-main\\node_modules\\@capacitor-community\\admob\\LICENSE"
+  },
   "@capacitor/android@6.1.2": {
     "licenses": "MIT",
     "repository": "https://github.com/ionic-team/capacitor",
@@ -8671,6 +8679,12 @@
     "url": "sindresorhus.com",
     "path": "C:\\Users\\chris\\Documents\\Typescript_Capacitor_UnionCalculatorIGM-main\\node_modules\\redent",
     "licenseFile": "C:\\Users\\chris\\Documents\\Typescript_Capacitor_UnionCalculatorIGM-main\\node_modules\\redent\\license"
+  },
+  "redux-persist@6.0.0": {
+    "licenses": "MIT",
+    "repository": "https://github.com/rt2zz/redux-persist",
+    "path": "C:\\Users\\chris\\Documents\\Typescript_Capacitor_UnionCalculatorIGM-main\\node_modules\\redux-persist",
+    "licenseFile": "C:\\Users\\chris\\Documents\\Typescript_Capacitor_UnionCalculatorIGM-main\\node_modules\\redux-persist\\LICENSE"
   },
   "redux-thunk@3.1.0": {
     "licenses": "MIT",

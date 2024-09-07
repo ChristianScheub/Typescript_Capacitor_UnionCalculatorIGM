@@ -2,6 +2,7 @@ import { useNavigate,NavigateFunction } from "react-router-dom";
 import React from "react";
 import { useTranslation } from "react-i18next";
 import UsedLibsListContainer from "../../legal/usedLibs/container_usedLibList";
+import SwitchSlider from "../../ui/SwitchSlider/SwitchSlider";
 
 interface ViewSettingsProps {
   onDatenschutzClick: (navigate: NavigateFunction) => void;
@@ -11,6 +12,8 @@ interface ViewSettingsProps {
   onTaxInformationClick: (navigate: NavigateFunction) => void;
   onBonusInformationClick: (navigate: NavigateFunction) => void;
   onSocialSecurityInformationClick: (navigate: NavigateFunction) => void;
+  useLocalStorageRedux: boolean;
+  setUseLocalStorageRedux: (value: boolean) => void;
 }
 
 const ViewSettings: React.FC<ViewSettingsProps> = ({
@@ -20,7 +23,9 @@ const ViewSettings: React.FC<ViewSettingsProps> = ({
   onUnionSettingClick,
   onTaxInformationClick,
   onBonusInformationClick,
-  onSocialSecurityInformationClick
+  onSocialSecurityInformationClick,
+  useLocalStorageRedux,
+  setUseLocalStorageRedux
 }) => {
   const navigate = useNavigate();
   const { t } = useTranslation();
@@ -51,6 +56,12 @@ const ViewSettings: React.FC<ViewSettingsProps> = ({
             >
               Steuereinstellungen
             </p>
+            <hr />
+            <SwitchSlider
+              checked={useLocalStorageRedux}
+              onChange={(event) => setUseLocalStorageRedux(event.target.checked)}
+              label="Lokal die Eingaben speichern"
+            />
             <hr />
 
           <div className="mb-3 margin2vw">
