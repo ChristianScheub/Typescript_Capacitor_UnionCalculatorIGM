@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import WelcomeScreen1Container from "./SubContainer/container-welcome1";
-import WelcomeScreen2Container from "./SubContainer/container-welcome2";
 import WelcomeScreen3Container from "./SubContainer/container-welcome3";
 import WelcomeScreen4Container from "./SubContainer/container-welcome4";
 import WelcomeScreen5Container from "./SubContainer/container-welcome5";
@@ -8,6 +7,7 @@ import "./welcomeContainer.css";
 import { useSwipeable } from "react-swipeable";
 import FloatingBtn, { ButtonAlignment } from "../../ui/floatingBtn/floatingBtn";
 import { FaArrowRight } from "react-icons/fa";
+import { useTranslation } from "react-i18next";
 
 
 interface WelcomeContainerProps {
@@ -16,8 +16,11 @@ interface WelcomeContainerProps {
 
 const WelcomeContainer: React.FC<WelcomeContainerProps> = ({ closeOverlay }) => {
   const [currentScreen, setCurrentScreen] = useState(0);
-  const [availableScreens, setAvailableScreens] = useState(4);
+  const availableScreens = 4;
   const [storeReduxLocal, setStoreReduxLocal] = useState(false);
+  const [allowedTechnicalStore, setAllowedTechnicalStore] = useState(false);
+  const { t } = useTranslation();
+
 
 
   const nextScreen = () => setCurrentScreen((current) => (current + 1) % availableScreens);
@@ -42,6 +45,10 @@ const WelcomeContainer: React.FC<WelcomeContainerProps> = ({ closeOverlay }) => 
   const handleSubmit = () => {
     console.log(currentScreen);
     if(currentScreen===3){
+      if(!allowedTechnicalStore){
+        alert(t("welcomeScreen5_NeedTechnicalStorage"));
+        return;
+      }
       if (storeReduxLocal) {
         localStorage.setItem("storeReduxLocal", storeReduxLocal.toString());
       }
@@ -54,13 +61,13 @@ const WelcomeContainer: React.FC<WelcomeContainerProps> = ({ closeOverlay }) => 
   return (
     <div {...handlers} className="welcome-container" data-testid="welcome-container">
        <div className={`screen ${getScreenClassName(3)}`}>
-        <WelcomeScreen5Container closeOverlay={closeOverlay} storeReduxLocal={storeReduxLocal} setStoreReduxLocal={setStoreReduxLocal} />
+       <WelcomeScreen5Container closeOverlay={closeOverlay} storeReduxLocal={storeReduxLocal} setStoreReduxLocal={setStoreReduxLocal} allowedTechnicalStore={allowedTechnicalStore} setAllowedTechnicalStore={setAllowedTechnicalStore} />
       </div>
 
       <div className={`screen ${getScreenClassName(2)}`}>
-        <WelcomeScreen4Container closeOverlay={closeOverlay} setAvailableScreens={setAvailableScreens} availableScreens={availableScreens} setCurrentScreen={setCurrentScreen}/>
+        <WelcomeScreen4Container availableScreens={availableScreens}/>
       </div>
-      <div className={`screen ${getScreenClassName(1)}`}>
+      <div className={`screen ${getScreenClassName(1) }`}>
         <WelcomeScreen3Container availableScreens={availableScreens} />
       </div>
       <div className={`screen ${currentScreen === 0 ? "slide-in" : "slide-out"}`} data-testid="welcome-container1">

@@ -12,7 +12,10 @@
     "welcomeScreen_Continue": "Weiter",
     "welcomeScreen3_Headline": "Tarifdaten eingeben",
     "welcomeScreen4_Headline": "Steuerdetails eingeben",
-    "welcomeScreen5_Headline2": "Sollen diese Werte lokal gespeichert werden?",
+    "welcomeScreen5_Headline2": "Sollen diese Tarif-/Steuerdaten lokal gespeichert werden?",
     "welcomeScreen5_Option1": "Ja",
-    "welcomeScreen5_Option2": "Nein"
+    "welcomeScreen5_Option2": "Nein",
+    "welcomeScreen5_Headline3": "Technisch notwendige Lokale Datenspeicherung",
+    "welcomeScreen5_Info2": "Gemeint ist das wir lokal speichern das sie diesen Wilkommenscreen schon gesehen haben sowie ihre erkannte Sprache.",
+    "welcomeScreen5_NeedTechnicalStorage": "Bitte akzeptetieren sie die technisch notwendige Lokale Datenspeicherung, sonst funktioniert diese Anwendung nicht."
 }

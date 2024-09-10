@@ -26,10 +26,9 @@ const ViewWelcomeScreen3: React.FC<ViewWelcomeScreen3Props> = ({
         }}
       >
 
-        <h1 id="infoTitle2" className="infoTextWelcome2 makeItCenter">
+        <h1 className="welcome-screen-text infoTextWelcome2 makeItCenter" id="infoTitle2">
           {t("welcomeScreen3_Headline")}
         </h1>
-
 
         <SalaryCalculatorContainer />
 
@@ -37,7 +36,7 @@ const ViewWelcomeScreen3: React.FC<ViewWelcomeScreen3Props> = ({
       </div>
       <ProgressDots steps={availableScreens} currentStep={2} />
     </div>
-    
+
   );
 };
 

@@ -8607,6 +8607,12 @@
     "path": "C:\\Users\\chris\\Documents\\Typescript_Capacitor_UnionCalculatorIGM-main\\node_modules\\react-smooth",
     "licenseFile": "C:\\Users\\chris\\Documents\\Typescript_Capacitor_UnionCalculatorIGM-main\\node_modules\\react-smooth\\LICENSE"
   },
+  "react-swipeable@7.0.1": {
+    "licenses": "MIT",
+    "repository": "https://github.com/FormidableLabs/react-swipeable",
+    "path": "C:\\Users\\chris\\Documents\\Typescript_Capacitor_UnionCalculatorIGM-main\\node_modules\\react-swipeable",
+    "licenseFile": "C:\\Users\\chris\\Documents\\Typescript_Capacitor_UnionCalculatorIGM-main\\node_modules\\react-swipeable\\LICENSE"
+  },
   "react-transition-group@4.4.5": {
     "licenses": "BSD-3-Clause",
     "repository": "https://github.com/reactjs/react-transition-group",

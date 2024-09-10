@@ -130,6 +130,8 @@ According to the command npm list You can see the deeper NPM modules used and wh
 
 ├── react-scripts@5.0.1
 
+├── react-swipeable@7.0.1
+
 ├── react@18.3.1
 
 ├── recharts@2.12.7

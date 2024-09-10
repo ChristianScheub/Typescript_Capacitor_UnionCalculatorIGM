@@ -13,7 +13,7 @@ const ViewWelcomeScreen1 = ({
   return (
     <div className="welcome-screen colorWhite">
 
-        <p id="infoText1">{t("welcomeScreen1_Headline")}</p>
+        <p className="welcome-screen-text" id="infoText1">{t("welcomeScreen1_Headline")}</p>
       <img src={illustration} alt="Illustration" className="illustration" />
       <ProgressDots steps={availableScreens} currentStep={0} />
     </div>

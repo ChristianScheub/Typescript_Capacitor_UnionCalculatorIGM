@@ -29,7 +29,7 @@ const ViewWelcomeScreen4: React.FC<ViewWelcomeScreen4Props> = ({
           zIndex: 5,
         }}
       >
-        <h1 id="infoTitle4">{t("welcomeScreen4_Headline")}</h1>
+        <h1 className="welcome-screen-text" id="infoTitle4">{t("welcomeScreen4_Headline")}</h1>
         <br />
         <div style={{ marginLeft: "10vw", marginTop: "2vh", display: "none" }}>
           <GenericRadioOption

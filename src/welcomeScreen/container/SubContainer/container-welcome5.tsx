@@ -4,11 +4,16 @@ import { useTranslation } from "react-i18next";
 const WelcomeScreen5Container = ({
   closeOverlay,
   storeReduxLocal,
-  setStoreReduxLocal
+  setStoreReduxLocal,
+  allowedTechnicalStore,
+  setAllowedTechnicalStore
 }: {
   closeOverlay: () => void;
   storeReduxLocal: boolean;
   setStoreReduxLocal: React.Dispatch<React.SetStateAction<boolean>>;
+  allowedTechnicalStore: boolean;
+  setAllowedTechnicalStore: React.Dispatch<React.SetStateAction<boolean>>;
+
 }) => {
   const { t } = useTranslation();
 
@@ -17,6 +22,8 @@ const WelcomeScreen5Container = ({
     <WelcomeScreen5View
       storeReduxLocal={storeReduxLocal}
       setStoreReduxLocal={setStoreReduxLocal}
+      allowedTechnicalStore={allowedTechnicalStore}
+      setAllowedTechnicalStore={setAllowedTechnicalStore}
       t={t}
     />
   );

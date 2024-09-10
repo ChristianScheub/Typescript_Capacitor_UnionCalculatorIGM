@@ -7,12 +7,16 @@ import { TFunction } from "i18next";
 interface ViewWelcomeScreen5Props {
   storeReduxLocal: boolean;
   setStoreReduxLocal: React.Dispatch<React.SetStateAction<boolean>>;
+  allowedTechnicalStore: boolean;
+  setAllowedTechnicalStore:  React.Dispatch<React.SetStateAction<boolean>>;
   t: TFunction;
 }
 
 const ViewWelcomeScreen5: React.FC<ViewWelcomeScreen5Props> = ({
   storeReduxLocal,
   setStoreReduxLocal,
+  allowedTechnicalStore,
+  setAllowedTechnicalStore,
   t,
 }) => {
 
@@ -24,6 +28,7 @@ const ViewWelcomeScreen5: React.FC<ViewWelcomeScreen5Props> = ({
           width: "100vw",
           position: "absolute",
           zIndex: 5,
+          color: "white"
         }}
       >
         <h1 id="infoTitle4"> {t("welcomeScreen5_Headline2")}</h1>
@@ -40,6 +45,23 @@ const ViewWelcomeScreen5: React.FC<ViewWelcomeScreen5Props> = ({
             value={false}
             selectedValue={storeReduxLocal}
             onChange={setStoreReduxLocal}
+          />
+        </div>
+
+        <h1 id="infoTitle4"> {t("welcomeScreen5_Headline3")}</h1>
+        <p className="infoText makeItCenter" >{t("welcomeScreen5_Info2")}</p>
+        <div style={{ marginLeft: "10vw", marginTop: "2vh" }}>
+          <GenericRadioOption
+            label={t("welcomeScreen5_Option1")}
+            value={true}
+            selectedValue={allowedTechnicalStore}
+            onChange={setAllowedTechnicalStore}
+          />
+          <GenericRadioOption
+            label={t("welcomeScreen5_Option2")}
+            value={false}
+            selectedValue={allowedTechnicalStore}
+            onChange={setAllowedTechnicalStore}
           />
         </div>
       </div>
