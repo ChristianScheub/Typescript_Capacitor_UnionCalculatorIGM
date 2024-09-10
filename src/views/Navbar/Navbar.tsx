@@ -8,10 +8,9 @@ interface NavbarProps {
 }
 
 const Navbar: React.FC<NavbarProps> = ({ setActiveComponent, activeComponent }) => {
-  const location = useLocation(); // Hook to get the current location
+  const location = useLocation();
 
   React.useEffect(() => {
-    // Set active component based on the current route
     const pathToComponentMap: Record<string, string> = {
       '/': 'home',
       '/tables': 'tables',
@@ -41,6 +40,8 @@ const Navbar: React.FC<NavbarProps> = ({ setActiveComponent, activeComponent }) 
   );
 };
 
+const POSITION_FIXED: 'fixed' = 'fixed';
+
 const styles = {
   navbar: {
     display: 'flex',
@@ -50,7 +51,7 @@ const styles = {
     width: '100%',
     backgroundColor: '#66B0B0',
     borderTop: '1px solid #ddd',
-    position: 'fixed' as 'fixed',
+    position: POSITION_FIXED,
     bottom: 0,
     left: 0,
     zIndex: 1000,

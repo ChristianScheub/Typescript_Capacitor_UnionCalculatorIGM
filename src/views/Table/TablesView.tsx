@@ -1,6 +1,7 @@
 import React from "react";
 import { TablesViewProps } from "./TablesViewProps";
 import IncomeBreakdown from "../IncomeBreakdown/IncomeBreakdown";
+import { useTranslation } from "react-i18next";
 
 const TablesView: React.FC<TablesViewProps> = ({
     salary,
@@ -33,16 +34,18 @@ const TablesView: React.FC<TablesViewProps> = ({
     unemploymentInsurancYear,
     pensionInsuranceYear
 }) => {
+    const { t } = useTranslation();
+
     return (
         <div>
             <br />
 
             <center>
-                <h2>Aufgeschlüsselte <br />Berechnung</h2>
+                <h2>{t("tablesView_BreakdownCalculation")}</h2>
             </center>
 
             <IncomeBreakdown
-                title="Monatliches Gehalt (Ohne Sonderzahlungen)"
+                title={t("tablesView_MonthlySalaryWithoutBonuses")}
                 salary={salary}
                 salaryWithBonus={salaryWithBonus}
                 salaryAfterTax={salaryAfterTax}
@@ -58,7 +61,7 @@ const TablesView: React.FC<TablesViewProps> = ({
             />
             <br />
             <IncomeBreakdown
-                title="Jahresgehalt"
+                title={t("tablesView_YearlySalary")}
                 salary={parseFloat((salary * 12).toFixed(2))}
                 salaryWithBonus={parseFloat((salaryWithBonus * 12).toFixed(2))}
                 salaryAfterTax={salaryAfterAllTaxYear}
@@ -78,11 +81,10 @@ const TablesView: React.FC<TablesViewProps> = ({
                 profitSharing={profitSharing}
                 christmasBonus={christmasBonus}
                 salaryWithAllBonus={salaryWithAllBonus}
-
             />
             <br />
             <br />
-            <i>Das ist nur eine grobe Schätzrechnung ihres Einkommens und der Steuern/Sozialabgaben! Wir übernehmen keine Haftung für die Korrektheit der Ergebnisse.</i>
+            <i>{t("warning_calculationIsEstimation")}</i>
             <br />
             <br />
             <br />

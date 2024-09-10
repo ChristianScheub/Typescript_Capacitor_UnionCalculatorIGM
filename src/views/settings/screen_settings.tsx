@@ -47,20 +47,20 @@ const ViewSettings: React.FC<ViewSettingsProps> = ({
         <div className="after-login-container">
           {!isInfoStart && (
             <>
-              <h1>Einstellungen</h1>
+              <h1>{t("settings_Title")}</h1>
               <hr />
               <p
                 data-testid="settings-union"
                 onClick={() => onUnionSettingClick(navigate)}
               >
-                Tarif-/Gehalt Einstellungen
+                {t("settings_Union")}
               </p>
               <hr />
               <p
                 data-testid="settings-tax"
                 onClick={() => onTaxSettingClick(navigate)}
               >
-                Steuereinstellungen
+                {t("settings_Tax")}
               </p>
               <hr />
               <p
@@ -74,7 +74,7 @@ const ViewSettings: React.FC<ViewSettingsProps> = ({
               <SwitchSlider
                 checked={useLocalStorageRedux}
                 onChange={(event) => setUseLocalStorageRedux(event.target.checked)}
-                label="Lokal die Eingaben speichern"
+                label={t("settings_SaveLocally")}
               />
               <hr />
             </>
@@ -82,28 +82,28 @@ const ViewSettings: React.FC<ViewSettingsProps> = ({
 
           <div className="mb-3 margin2vw">
             <h1>{t("settings_Information")}</h1>
-            <i>Achtung: Das ist nur eine grobe Schätzrechnung ihres Einkommens und der Steuern/Sozialabgaben! Wir übernehmen keine Haftung für die Korrektheit der Ergebnisse.</i>
+            <i>{t("warning_calulcationIsEstimation")}</i>
 
             <hr />
             <p
               data-testid="settings-edatenschutz"
               onClick={() => onBonusInformationClick(navigate)}
             >
-              Sonderzahlungen Informationen
+              {t("settings_BonusInfo")}
             </p>
             <hr />
             <p
               data-testid="settings-edatenschutz"
               onClick={() => onTaxInformationClick(navigate)}
             >
-              Steuer Berechnung Information
+              {t("settings_TaxInfo")}
             </p>
             <hr />
             <p
               data-testid="settings-edatenschutz"
               onClick={() => onSocialSecurityInformationClick(navigate)}
             >
-              Berechnung der Sozialbeiträge Information
+              {t("settings_SocialSecurityInfo")}
             </p>
             <hr />
 
@@ -129,7 +129,7 @@ const ViewSettings: React.FC<ViewSettingsProps> = ({
               rel="noopener noreferrer"
               style={{ color: "inherit", textDecoration: "none" }}
             >
-              <p>GitHub Repository</p>
+              <p>{t("settings_GitHubRepo")}</p>
             </a>
             <hr />
             <br /> <br /> <br /> <br /> <br />

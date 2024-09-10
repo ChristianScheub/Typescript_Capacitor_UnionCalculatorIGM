@@ -32,7 +32,6 @@ const ViewWelcomeScreen3: React.FC<ViewWelcomeScreen3Props> = ({
         <br />
       </div>
     </div>
-
   );
 };
 

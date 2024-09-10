@@ -3,6 +3,7 @@ import { HomeViewProps } from "./HomeViewProps";
 import Card from "../../ui/Card/Card";
 import { YearlyBarChart } from "../../ui/YearlyBarChart";
 import { TaxAndInsurancePieChart } from "../../ui/TaxAndInsurancePieChart";
+import { useTranslation } from "react-i18next";
 
 const HomeView: React.FC<HomeViewProps> = ({
   salaryWithBonus,
@@ -26,45 +27,47 @@ const HomeView: React.FC<HomeViewProps> = ({
   hoursWageNetYear,
   hoursWageGrossYear
 }) => {
+  const { t } = useTranslation();
+
   return (
     <div>
       <br />
-      <center>      <h2>Einkommens- <br />übersicht</h2></center>
+      <center>      <h2> {t("homeView_title1")} <br />{t("homeView_title2")} </h2></center>
 
       <Card>
-        <b>Stundenlohn mit Sonderzahlungen umgelegt</b>
+      <b>{t("homeView_hourly_wage_with_bonus")}</b>
 
         <br />
         <br />
         <div style={{ display: 'flex', justifyContent: 'space-between', gap: '3vw' }}>
           <Card style={{ flex: 1 }}>
-            <b>Stundenlohn Brutto</b> <br /> {hoursWageGrossYearWithBonus.toFixed(2)}<br />
+          <b>{t("homeView_gross_hourly_wage")}</b> <br /> {hoursWageGrossYearWithBonus.toFixed(2)}<br />
           </Card>
           <Card style={{ flex: 1 }}>
-            <b>Stundenlohn Netto</b> <br /> {hoursWageNetYearWithBonus.toFixed(2)}
+          <b>{t("homeView_net_hourly_wage")}</b> <br /> {hoursWageNetYearWithBonus.toFixed(2)}
           </Card>
         </div>
       </Card>
 
       <br />
       <Card>
-        <b>Stundenlohn ohne Sonderzahlungen</b>
-        <br />
+      <b>{t("homeView_hourly_wage_without_bonus")}</b>
+      <br />
         <br />
         <div style={{ display: 'flex', justifyContent: 'space-between', gap: '3vw' }}>
           <Card style={{ flex: 1 }}>
-            <b>Stundenlohn Brutto</b> <br /> {hoursWageGrossYear.toFixed(2)}<br />
+          <b>{t("homeView_gross_hourly_wage")}</b> <br /> {hoursWageGrossYear.toFixed(2)}<br />
           </Card>
           <Card style={{ flex: 1 }}>
-            <b>Stundenlohn Netto</b> <br /> {hoursWageNetYear.toFixed(2)}
+          <b>{t("homeView_net_hourly_wage")}</b> <br /> {hoursWageNetYear.toFixed(2)}
           </Card>
         </div>
       </Card>
 
       <br />
       <YearlyBarChart
-        title="Brutto Gehaltsübersicht"
-        hint="Es wird angenommen das die Gewinnbeteiligung im April erfolgt"
+        title={t("homeView_gross_salary_overview")}
+        hint={t("homeView_profit_sharing_hint")}
         january={salaryWithBonus}
         february={salaryWithBonus + transformationsGeld}
         march={salaryWithBonus}
@@ -93,7 +96,7 @@ const HomeView: React.FC<HomeViewProps> = ({
 
       <br />
       <br />
-      <i>Das ist nur eine grobe Schätzrechnung ihres Einkommens und der Steuern/Sozialabgaben! Wir übernehmen keine Haftung für die Korrektheit der Ergebnisse.</i>
+      <i> {t("warning_calulcationIsEstimation")}</i>
       <br />
       <br />
       <br />

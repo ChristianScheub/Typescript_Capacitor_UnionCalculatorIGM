@@ -3,6 +3,7 @@ import Select from '../../ui/Select';
 import MaterialInput from '../../ui/MaterialInput';
 import { SalaryCalculatorViewProps } from './SalaryCalculatorViewProps';
 import Card from '../../ui/Card/Card';
+import { useTranslation } from "react-i18next";
 
 export const SalaryCalculatorView: React.FC<SalaryCalculatorViewProps> = ({
   regions,
@@ -26,11 +27,13 @@ export const SalaryCalculatorView: React.FC<SalaryCalculatorViewProps> = ({
   onChristmasBonusChange,
   onProfitSharingChange
 }) => {
+  const { t } = useTranslation();
+
   return (
     <div>
       <br />
       <Card>
-        <h3>Tarif auswählen</h3>
+        <h3>{t("salaryCalculatorView_select_tariff")}</h3>
         <br/>
 
         <div>
@@ -38,7 +41,7 @@ export const SalaryCalculatorView: React.FC<SalaryCalculatorViewProps> = ({
             options={regions.map(region => ({ value: region, label: region }))}
             value={regions.find(region => region === selectedRegion) || ''}
             onChange={(value) => onRegionChange(value)}
-            placeholder="Region auswählen"
+            placeholder={t("salaryCalculatorView_select_region")}
           />
         </div>
         <br />
@@ -48,7 +51,7 @@ export const SalaryCalculatorView: React.FC<SalaryCalculatorViewProps> = ({
             options={years.map(year => ({ value: year, label: year }))}
             value={years.find(year => year === selectedYear) || ''}
             onChange={(value) => onYearChange(value)}
-            placeholder="Jahr auswählen"
+            placeholder={t("salaryCalculatorView_select_year")}
           />
         </div>
         <br />
@@ -58,36 +61,35 @@ export const SalaryCalculatorView: React.FC<SalaryCalculatorViewProps> = ({
             options={salaryGroups.map(group => ({ value: group, label: group }))}
             value={salaryGroups.find(group => group === selectedSalaryGroup) || ''}
             onChange={(value) => onSalaryGroupChange(value)}
-            placeholder="Entgeltgruppe auswählen"
+            placeholder={t("salaryCalculatorView_select_salary_group")}
           />
         </div>
 
         <div>
           <MaterialInput
             value={workingHours}
-            label="Arbeitsstunden"
+            label={t("salaryCalculatorView_working_hours")}
             onChange={(event) => onWorkingHoursChange(event)}
             type="number"
           />
         </div>
         <br />
         <hr />
-        <b>Brutto Monatsgehalt (ohne Bonis) </b>
-        {salary ? `${salary}€` : 'Nicht verfügbar'}
+        <b>{t("salaryCalculatorView_gross_monthly_salary")}</b>
+        {salary ? `${salary}€` : t("salaryCalculatorView_not_available")}
 
       </Card>
       <br />
 
       <Card>
-        <h3>Zulagen</h3>
+        <h3>{t("salaryCalculatorView_bonuses")}</h3>
         <div>
           <MaterialInput
             value={bonus}
             onChange={(event) => onBonusChange(event)}
             type="number"
-            label="Leistungsentgelt"
-            helperText="Bitte in Prozent eingeben"
-
+            label={t("salaryCalculatorView_performance_bonus")}
+            helperText={t("salaryCalculatorView_enter_percentage")}
           />
         </div>
 
@@ -96,8 +98,8 @@ export const SalaryCalculatorView: React.FC<SalaryCalculatorViewProps> = ({
             value={christmasBonus}
             onChange={(event) => onChristmasBonusChange(event)}
             type="number"
-            label="Weihnachtsgeld"
-            helperText='Der Standardwert ist meist bei 50%'
+            label={t("salaryCalculatorView_christmas_bonus")}
+            helperText={t("salaryCalculatorView_christmas_bonus_default")}
           />
         </div>
 
@@ -106,19 +108,18 @@ export const SalaryCalculatorView: React.FC<SalaryCalculatorViewProps> = ({
             value={profitSharing}
             onChange={(event) => onProfitSharingChange(event)}
             type="number"
-            label="Gewinnbeteiligung (%)"
-            helperText='Prozentual basierend auf das Monatsgehalt'
+            label={t("salaryCalculatorView_profit_sharing")}
+            helperText={t("salaryCalculatorView_profit_sharing_percentage")}
           />
         </div>
-
 
         <div>
           <MaterialInput
             value={nonTariffBonusChange}
             onChange={(event) => onNonTariffBonusChange(event)}
             type="number"
-            label="Außertarifliche Zulagen"
-            helperText='Diese sind optional für Firmen und werden direkt in Euro angegeben'
+            label={t("salaryCalculatorView_non_tariff_allowances")}
+            helperText={t("salaryCalculatorView_non_tariff_allowances_hint")}
           />
         </div>
 
