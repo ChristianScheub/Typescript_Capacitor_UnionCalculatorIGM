@@ -5,13 +5,11 @@ import { PersistGate } from 'redux-persist/integration/react';
 import { store, persistor } from './stateManagement/store';
 import App from './App';
 
-// Funktion zum Überprüfen, ob die Speicherung erlaubt ist
 const isStorageAllowed = () => {
-  const allowedLocalStorageUse = localStorage.getItem('allowedLocalStorageUse');
+  const allowedLocalStorageUse = localStorage.getItem('storeReduxLocal');
   return allowedLocalStorageUse === 'true';
 };
 
-// Komponente mit PersistGate, falls Persistierung erlaubt ist
 const AppWithPersistGate = () => (
   <Provider store={store}>
     {persistor ? (
@@ -24,7 +22,6 @@ const AppWithPersistGate = () => (
   </Provider>
 );
 
-// Komponente ohne PersistGate, falls Persistierung nicht erlaubt ist
 const AppWithoutPersistGate = () => (
   <Provider store={store}>
     <App />

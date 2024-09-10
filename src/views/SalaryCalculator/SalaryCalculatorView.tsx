@@ -31,6 +31,7 @@ export const SalaryCalculatorView: React.FC<SalaryCalculatorViewProps> = ({
       <br />
       <Card>
         <h3>Tarif auswählen</h3>
+        <br/>
 
         <div>
           <Select

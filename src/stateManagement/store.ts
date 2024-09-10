@@ -9,7 +9,7 @@ import { combineReducers, Reducer } from 'redux';
 
 // Funktion zum Abrufen der Zustimmung
 const getStorage = () => {
-  const allowedLocalStorageUse = localStorage.getItem('allowedLocalStorageUse');
+  const allowedLocalStorageUse = localStorage.getItem('storeReduxLocal');
   return allowedLocalStorageUse === 'true' ? storage : null;
 };
 

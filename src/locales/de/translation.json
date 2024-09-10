@@ -6,5 +6,13 @@
     "settings_Datenschutz": "Datenschutz",
     "setting_Menu_OpenSourceModulList": "Verwendete Bibilotheken",
     "setting_OpenSurceModulListTItle": "Verwendete NPM Bibilotheken",
-    "setting_OpenSourceModulListClose": "Schließen"
+    "setting_OpenSourceModulListClose": "Schließen",
+    "welcomeScreen1_Headline": "Wilkommen beim inoffiziellen Tarifrechner!",
+    "welcomeOverlay.buttonText": "Weiter",
+    "welcomeScreen_Continue": "Weiter",
+    "welcomeScreen3_Headline": "Tarifdaten eingeben",
+    "welcomeScreen4_Headline": "Steuerdetails eingeben",
+    "welcomeScreen5_Headline2": "Sollen diese Werte lokal gespeichert werden?",
+    "welcomeScreen5_Option1": "Ja",
+    "welcomeScreen5_Option2": "Nein"
 }

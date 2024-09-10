@@ -1,0 +1,27 @@
+.welcome-container {
+  background-color: #66b0b0;
+  position: relative;
+  overflow-x: hidden;
+  width: 100%;
+  height: 100vh;
+}
+
+.screen {
+  position: absolute;
+  top: 0;
+  left: 100%; /* Startet außerhalb des Bildschirms */
+  width: 100%;
+  transition: transform 500ms ease-in-out;
+}
+
+.slide-in {
+  transform: translateX(-100%); /* Bewegt sich in den Bildschirm */
+}
+
+.slide-out {
+  transform: translateX(-200%); /* Bewegt sich aus dem Bildschirm heraus */
+}
+
+.hide {
+  display: none; /* Versteckt die Komponente, die nicht animiert wird */
+}
