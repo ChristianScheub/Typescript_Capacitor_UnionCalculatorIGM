@@ -1,6 +1,5 @@
 import React from "react";
 import "./screen-welcome4.css";
-import ProgressDots from "./ui/progressDots/progressDots";
 import GenericRadioOption from "./ui/radioBtns/generic-radioBtn";
 import { TFunction } from "i18next";
 import TaxClassContainer from "../../components/Settings/TaxCalculatorContainer";
@@ -9,14 +8,12 @@ interface ViewWelcomeScreen4Props {
   t: TFunction;
   usingTaxCalculator: boolean;
   setUsingTaxCalculator: React.Dispatch<React.SetStateAction<boolean>>;
-  availableScreens: number;
 }
 
 const ViewWelcomeScreen4: React.FC<ViewWelcomeScreen4Props> = ({
   t,
   usingTaxCalculator,
-  setUsingTaxCalculator,
-  availableScreens
+  setUsingTaxCalculator
 }) => {
 
   return (
@@ -50,10 +47,6 @@ const ViewWelcomeScreen4: React.FC<ViewWelcomeScreen4Props> = ({
         <TaxClassContainer />
 
       </div>
-      <ProgressDots
-        steps={availableScreens}
-        currentStep={3}
-      />
     </div>
   );
 };

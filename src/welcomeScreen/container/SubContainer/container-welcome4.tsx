@@ -2,13 +2,7 @@ import React, { useState } from "react";
 import WelcomeScreen4View from "../../screens/screen-welcome4";
 import { useTranslation } from "react-i18next";
 
-interface WelcomeScreen4ContainerProps {
-  availableScreens: number;
-}
-
-const WelcomeScreen4Container: React.FC<WelcomeScreen4ContainerProps> = ({
-  availableScreens,
-}) => {
+const WelcomeScreen4Container: React.FC = () => {
   const { t } = useTranslation();
   const [usingTaxCalculator, setUsingTaxCalculator] = useState<boolean>(false);
 
@@ -17,7 +11,6 @@ const WelcomeScreen4Container: React.FC<WelcomeScreen4ContainerProps> = ({
       t={t}
       usingTaxCalculator={usingTaxCalculator}
       setUsingTaxCalculator={setUsingTaxCalculator}
-      availableScreens={availableScreens}
     />
   );
 };

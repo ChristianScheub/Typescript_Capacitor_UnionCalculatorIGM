@@ -3,13 +3,7 @@ import { useTranslation } from "react-i18next";
 import WelcomeScreen1View from "../../screens/screen-welcome1";
 import { useNavigate } from "react-router-dom";
 
-interface ContainerWelcomeScreen1Props {
-  availableScreens: number;
-}
-
-const ContainerWelcomeScreen1: React.FC<ContainerWelcomeScreen1Props> = ({
-  availableScreens,
-}) => {
+const ContainerWelcomeScreen1: React.FC = () => {
   const { t } = useTranslation();
   const navigate = useNavigate();
 
@@ -19,10 +13,8 @@ const ContainerWelcomeScreen1: React.FC<ContainerWelcomeScreen1Props> = ({
 
   return (
     <WelcomeScreen1View
-      availableScreens={availableScreens}
       openInfo={openInfo}
-      t={t}
-    />
+      t={t}    />
   );
 };
 

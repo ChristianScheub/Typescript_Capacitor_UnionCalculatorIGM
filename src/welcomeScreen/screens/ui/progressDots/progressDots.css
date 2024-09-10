@@ -1,22 +1,25 @@
   .dot {
     width: 6vw;
     height: 10px;
-    background-color: #FFFFFF66;
+    background-color: #7fc4c4;
     border-radius: 5px;
     margin-right: 5px;
     transition: all 0.3s ease;
   }
-  
+
   .dot.active {
     width: 14vw;
-    background-color: #FFFFFF;
+    background-color: #3d6868;
   }
-  
+
   .dot:last-child {
     margin-right: 0;
   }
-  footer {
-    margin-top: auto;
-    padding: 1rem;
-    margin-bottom: 2vh;
+
+  .progressDots {
+    z-index: 9000;
+    width: 100%;
+    position: fixed;
+    bottom: 10vw;
+    z-index: 100;
   }

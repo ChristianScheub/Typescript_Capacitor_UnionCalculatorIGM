@@ -8,8 +8,7 @@ interface ProgressDotsProps {
 
 const ProgressDots: React.FC<ProgressDotsProps> = ({ steps, currentStep }) => {
   return (
-    <footer>
-      <div className="makeItCenter">
+      <div className="makeItCenter progressDots">
         {Array.from({ length: steps }, (_, index) => (
           <div
             key={index}
@@ -18,7 +17,6 @@ const ProgressDots: React.FC<ProgressDotsProps> = ({ steps, currentStep }) => {
           />
         ))}
       </div>
-    </footer>
   );
 };
 

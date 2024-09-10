@@ -1,16 +1,13 @@
 import React from "react";
 import "../WelcomeScreen.css";
-import ProgressDots from "./ui/progressDots/progressDots";
 import { TFunction } from "i18next";
 import SalaryCalculatorContainer from "../../components/Settings/SalaryCalculatorContainer";
 
 interface ViewWelcomeScreen3Props {
-  availableScreens: number;
   t: TFunction;
 }
 
 const ViewWelcomeScreen3: React.FC<ViewWelcomeScreen3Props> = ({
-  availableScreens,
   t,
 }) => {
 
@@ -34,7 +31,6 @@ const ViewWelcomeScreen3: React.FC<ViewWelcomeScreen3Props> = ({
 
         <br />
       </div>
-      <ProgressDots steps={availableScreens} currentStep={2} />
     </div>
 
   );
