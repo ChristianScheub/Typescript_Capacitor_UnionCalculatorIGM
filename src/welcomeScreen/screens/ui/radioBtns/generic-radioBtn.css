@@ -1,0 +1,19 @@
+.radio {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border: 2px solid gray;
+  }
+  
+  .radio.selected {
+    background-color: blue;
+  }
+  
+  .radio.dark {
+    background-color: rgb(192, 187, 187);
+  }
+  
+  .radio.selected.dark {
+    background-color: rgb(37, 107, 61);
+  }
+  

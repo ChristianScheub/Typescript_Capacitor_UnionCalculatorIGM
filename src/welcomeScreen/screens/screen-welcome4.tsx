@@ -31,15 +31,17 @@ const ViewWelcomeScreen4: React.FC<ViewWelcomeScreen4Props> = ({
       >
         <h1 className="welcome-screen-text" id="infoTitle4">{t("welcomeScreen4_Headline")}</h1>
         <br />
-        <div style={{ marginLeft: "10vw", marginTop: "2vh", display: "none" }}>
+        <div style={{ marginLeft: "10vw", marginTop: "2vh", display: "none", color:"black" }}>
           <GenericRadioOption
             label={t("welcomeScreen4_Option1")}
+            darkMode={false}
             value={"Nein"}
             selectedValue={usingTaxCalculator}
             onChange={setUsingTaxCalculator}
           />
           <GenericRadioOption
             label={t("welcomeScreen4_Option2")}
+            darkMode={false}
             value={"Ja"}
             selectedValue={usingTaxCalculator}
             onChange={setUsingTaxCalculator}
