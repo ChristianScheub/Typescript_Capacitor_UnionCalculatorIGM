@@ -6,8 +6,9 @@ import WelcomeScreen5Container from "./SubContainer/container-welcome5";
 import "./welcomeContainer.css";
 import { useSwipeable } from "react-swipeable";
 import FloatingBtn, { ButtonAlignment } from "../../ui/floatingBtn/floatingBtn";
-import { FaArrowRight } from "react-icons/fa";
+import { FaArrowRight, FaInfo } from "react-icons/fa";
 import { useTranslation } from "react-i18next";
+import { useNavigate } from "react-router-dom";
 
 
 interface WelcomeContainerProps {
@@ -20,6 +21,7 @@ const WelcomeContainer: React.FC<WelcomeContainerProps> = ({ closeOverlay }) => 
   const [storeReduxLocal, setStoreReduxLocal] = useState(false);
   const [allowedTechnicalStore, setAllowedTechnicalStore] = useState(false);
   const { t } = useTranslation();
+  const navigate = useNavigate();
 
 
 
@@ -57,6 +59,10 @@ const WelcomeContainer: React.FC<WelcomeContainerProps> = ({ closeOverlay }) => 
     nextScreen();
   }
 
+  const openInfo = () => {
+    navigate("/info");
+  }
+
 
   return (
     <div {...handlers} className="welcome-container" data-testid="welcome-container">
@@ -77,6 +83,11 @@ const WelcomeContainer: React.FC<WelcomeContainerProps> = ({ closeOverlay }) => 
         alignment={ButtonAlignment.RIGHT}
         icon={FaArrowRight}
         onClick={handleSubmit}
+      />
+      <FloatingBtn
+        alignment={ButtonAlignment.LEFT}
+        icon={FaInfo}
+        onClick={openInfo}
       />
     </div>
   );

@@ -4,6 +4,7 @@ import SettingsView from "../../views/settings/screen_settings"
 import HelpTextSocialSecurityContainer from "../HelpText/HelpTextSocialSecurityContainer";
 import HelpTextTaxContainer from "../HelpText/HelpTextTaxContainer";
 import HelpTextBonusContainer from "../HelpText/HelpTextBonusContainer";
+import { useTranslation } from "react-i18next";
 const ContainerSettings: React.FC = () => {
   const [isSocialSecurityPopupOpen, setSocialSecurityPopupOpen] = useState(false);
   const [isBonusPopupOpen, setBonusPopupOpen] = useState(false);
@@ -12,6 +13,8 @@ const ContainerSettings: React.FC = () => {
     const saved = localStorage.getItem('allowedLocalStorageUse');
     return saved ? JSON.parse(saved) : false;
   });
+  const { t } = useTranslation();
+
 
   const handleImpressumClick = (navigate: NavigateFunction) => {
     navigate("/impressum");
@@ -62,6 +65,14 @@ const ContainerSettings: React.FC = () => {
       window.location.reload();
     }
   };
+
+  const handleDeleteAllClick = async (): Promise<void> => {
+    if (window.confirm(t("settings_Dialog_DeleteAll"))) {
+      localStorage.clear();
+      alert(t("settings_Dialog_DeleteAllSuccessful"));
+      window.location.reload();
+    }
+  }; 
   
 
 
@@ -75,6 +86,7 @@ const ContainerSettings: React.FC = () => {
         onBonusInformationClick={handleBonusInformationClick}
         onTaxInformationClick={handleTaxInformationClick}
         onSocialSecurityInformationClick={handleSocialSecurityInformationClick}
+        onDeleteAllClick={handleDeleteAllClick}
         useLocalStorageRedux={useLocalStorageRedux}
         setUseLocalStorageRedux={handleLocalStorageChange}
       />

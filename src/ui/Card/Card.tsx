@@ -16,6 +16,8 @@ const styles: { [key: string]: CSSProperties } = {
     backgroundColor: "#ffffff", // White background for a clean look
     boxShadow: "0 4px 8px rgba(0,0,0,0.2)", // Stronger shadow for depth
     marginBottom: "16px", // Adjust margin for spacing
+    marginLeft: "3vw",
+    marginRight: "3vw",
     transition: "box-shadow 0.3s ease-in-out, transform 0.3s ease-in-out", // Smooth transition
     cursor: "pointer", // Pointer cursor to suggest interactivity
     overflow: "hidden", // Ensure that content does not spill outside the rounded corners

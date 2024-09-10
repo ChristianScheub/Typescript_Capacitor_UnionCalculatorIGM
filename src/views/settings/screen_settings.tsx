@@ -12,6 +12,7 @@ interface ViewSettingsProps {
   onTaxInformationClick: (navigate: NavigateFunction) => void;
   onBonusInformationClick: (navigate: NavigateFunction) => void;
   onSocialSecurityInformationClick: (navigate: NavigateFunction) => void;
+  onDeleteAllClick: () => void;
   useLocalStorageRedux: boolean;
   setUseLocalStorageRedux: (value: boolean) => void;
 }
@@ -24,6 +25,7 @@ const ViewSettings: React.FC<ViewSettingsProps> = ({
   onTaxInformationClick,
   onBonusInformationClick,
   onSocialSecurityInformationClick,
+  onDeleteAllClick,
   useLocalStorageRedux,
   setUseLocalStorageRedux
 }) => {
@@ -56,6 +58,14 @@ const ViewSettings: React.FC<ViewSettingsProps> = ({
             >
               Steuereinstellungen
             </p>
+            <hr />
+                <p
+                  data-testid="settings-delete-all"
+                  onClick={() => onDeleteAllClick()}
+                >
+                  {t("settings_DeleteAll")}
+                </p>
+                
             <hr />
             <SwitchSlider
               checked={useLocalStorageRedux}

@@ -19,21 +19,21 @@ const App: React.FC = () => {
   const [activeComponent, setActiveComponent] = useState<string>("home");
   const [showWelcome, setShowWelcome] = useState<boolean>(true);
   const store = useStore();
-  
+
   // Check if welcome has already been shown
   useEffect(() => {
     const welcomeDone = localStorage.getItem("welcomeDone");
     if (welcomeDone === "true") {
       setShowWelcome(false);
     }
-    
+
   }, []);
 
   // Function to close the welcome overlay
   const closeWelcomeOverlay = () => {
     localStorage.setItem("welcomeDone", "true");
     setShowWelcome(false);
-    if(localStorage.getItem("storeReduxLocal")==="true"){
+    if (localStorage.getItem("storeReduxLocal") === "true") {
       saveState(store);
       window.location.reload();
     }
@@ -42,23 +42,30 @@ const App: React.FC = () => {
   return (
     <Router>
       <div>
-          {showWelcome ? (
-            <WelcomeContainer closeOverlay={closeWelcomeOverlay} />
-          ) : (
-            <>
-              <Navbar setActiveComponent={setActiveComponent} activeComponent={activeComponent} />
-              <Routes>
-                <Route path="/" element={<HomeContainer />} />
-                <Route path="/salary" element={<SalaryCalculatorContainer />} />
-                <Route path="/government" element={<TaxClassContainer />} />
-                <Route path="/tables" element={<TablesContainer />} />
-                <Route path="/info" element={<ContainerSettings />} />
-                <Route path="/impressum" element={<Impressum />} />
-                <Route path="/datenschutz" element={<Datenschutz />} />
-                <Route path="*" element={<HomeContainer />} />
-              </Routes>
-            </>
-          )}
+        {showWelcome ? (
+          <div>
+            <Routes>
+              <Route path="/" element={<WelcomeContainer closeOverlay={closeWelcomeOverlay} />} />
+              <Route path="/info" element={<ContainerSettings />} />
+              <Route path="/impressum" element={<Impressum />} />
+              <Route path="/datenschutz" element={<Datenschutz />} />
+            </Routes>
+          </div>
+        ) : (
+          <>
+            <Navbar setActiveComponent={setActiveComponent} activeComponent={activeComponent} />
+            <Routes>
+              <Route path="/" element={<HomeContainer />} />
+              <Route path="/salary" element={<SalaryCalculatorContainer />} />
+              <Route path="/government" element={<TaxClassContainer />} />
+              <Route path="/tables" element={<TablesContainer />} />
+              <Route path="/info" element={<ContainerSettings />} />
+              <Route path="/impressum" element={<Impressum />} />
+              <Route path="/datenschutz" element={<Datenschutz />} />
+              <Route path="*" element={<HomeContainer />} />
+            </Routes>
+          </>
+        )}
       </div>
     </Router>
   );
