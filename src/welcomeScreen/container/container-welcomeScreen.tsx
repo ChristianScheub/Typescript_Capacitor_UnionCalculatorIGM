@@ -6,9 +6,8 @@ import WelcomeScreen5Container from "./SubContainer/container-welcome5";
 import "./welcomeContainer.css";
 import { useSwipeable } from "react-swipeable";
 import FloatingBtn, { ButtonAlignment } from "../../ui/floatingBtn/floatingBtn";
-import { FaArrowRight, FaInfo } from "react-icons/fa";
+import { FaArrowRight } from "react-icons/fa";
 import { useTranslation } from "react-i18next";
-import { useNavigate } from "react-router-dom";
 
 
 interface WelcomeContainerProps {

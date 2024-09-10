@@ -16,8 +16,8 @@ class Logger {
       for (let i = 2; i < stackLines.length; i++) {
         const line = stackLines[i].trim();
         if (!line.includes("Logger.")) {
-          const match = line.match(/at (\S+)/);
-          if (match && match[1]) {
+          const match = /at (\S+)/.exec(line);
+          if (match?.[1]) {
             return match[1];
           }
         }

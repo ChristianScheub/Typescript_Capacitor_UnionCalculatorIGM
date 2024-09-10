@@ -45,10 +45,10 @@ export const TaxAndInsurancePieChart: React.FC<TaxAndInsurancePieChartProps> = (
                             cy="50%"
                             outerRadius="80%"
                             fill="#8884d8"
-                            label={false} // Labels im Diagramm ausblenden
+                            label={false}
                         >
                             {data.map((entry, index) => (
-                                <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+                                <Cell key={entry.name} fill={COLORS[index % COLORS.length]} />
                             ))}
                         </Pie>
                         <Tooltip formatter={(value) => `${value}€`} />

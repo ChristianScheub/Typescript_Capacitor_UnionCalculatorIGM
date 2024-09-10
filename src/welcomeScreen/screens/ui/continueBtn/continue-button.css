@@ -18,9 +18,8 @@
 #div-welcome-btn {
   width: 100vw;
   text-align: right;
-  position: fixed; /* Ändere von absolute zu fixed */
-  position: fixed; /* fixed hält den Button an der festen Position */
-  bottom: 8vw;     /* Button bleibt 8vw vom unteren Rand entfernt */
-  right: 0;        /* Positionierung am rechten Rand */
-  z-index: 1000;   /* sorgt dafür, dass der Button immer über anderen Inhalten bleibt */
+  position: fixed;
+  bottom: 8vw;
+  right: 0;
+  z-index: 1000;
 }
