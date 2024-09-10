@@ -1,4 +1,4 @@
-import { NavigateFunction } from "react-router-dom";
+import { NavigateFunction, useLocation } from "react-router-dom";
 import React, { useState } from "react";
 import SettingsView from "../../views/settings/screen_settings"
 import HelpTextSocialSecurityContainer from "../HelpText/HelpTextSocialSecurityContainer";
@@ -6,15 +6,17 @@ import HelpTextTaxContainer from "../HelpText/HelpTextTaxContainer";
 import HelpTextBonusContainer from "../HelpText/HelpTextBonusContainer";
 import { useTranslation } from "react-i18next";
 const ContainerSettings: React.FC = () => {
-  const [isSocialSecurityPopupOpen, setSocialSecurityPopupOpen] = useState(false);
-  const [isBonusPopupOpen, setBonusPopupOpen] = useState(false);
-  const [isTaxPopupOpen, setTaxPopupOpen] = useState(false);
+  const [isSocialSecurityPopupOpen, setIsSocialSecurityPopupOpen] = useState(false);
+  const [isBonusPopupOpen, setIsBonusPopupOpen] = useState(false);
+  const [isTaxPopupOpen, setIsTaxPopupOpen] = useState(false);
   const [useLocalStorageRedux, setUseLocalStorageRedux] = useState(() => {
     const saved = localStorage.getItem('allowedLocalStorageUse');
     return saved ? JSON.parse(saved) : false;
   });
   const { t } = useTranslation();
+  const location = useLocation();
 
+  const isInfoStart = location.pathname.includes("infoStart");
 
   const handleImpressumClick = (navigate: NavigateFunction) => {
     navigate("/impressum");
@@ -30,24 +32,21 @@ const ContainerSettings: React.FC = () => {
   };
 
   const handleSocialSecurityInformationClick = () => {
-    setSocialSecurityPopupOpen(true);
+    setIsSocialSecurityPopupOpen(true);
   };
 
-  // Popup-Trigger für Bonusinformationen
   const handleBonusInformationClick = () => {
-    setBonusPopupOpen(true);
+    setIsBonusPopupOpen(true);
   };
 
-  // Popup-Trigger für Steuerinformationen
   const handleTaxInformationClick = () => {
-    setTaxPopupOpen(true);
+    setIsTaxPopupOpen(true);
   };
 
-  // Methode zum Schließen der Popups
   const handleClosePopup = () => {
-    setSocialSecurityPopupOpen(false);
-    setBonusPopupOpen(false);
-    setTaxPopupOpen(false);
+    setIsSocialSecurityPopupOpen(false);
+    setIsBonusPopupOpen(false);
+    setIsTaxPopupOpen(false);
   };
 
   const handleLocalStorageChange = (value: boolean) => {
@@ -87,6 +86,7 @@ const ContainerSettings: React.FC = () => {
         onTaxInformationClick={handleTaxInformationClick}
         onSocialSecurityInformationClick={handleSocialSecurityInformationClick}
         onDeleteAllClick={handleDeleteAllClick}
+        isInfoStart={isInfoStart}
         useLocalStorageRedux={useLocalStorageRedux}
         setUseLocalStorageRedux={handleLocalStorageChange}
       />

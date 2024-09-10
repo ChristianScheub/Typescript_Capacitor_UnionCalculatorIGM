@@ -13,7 +13,7 @@ const Datenschutz: React.FC = () => {
         }}
       >
         <div className="after-login-container">
-          <Card className="mb-3 backgroundColorHighlight margin2vw">
+          <Card className="mb-3 margin2vw">
             <Card.Header as="h2">Infos</Card.Header>
             <Card.Body>
               <CodeToTextParser code={datenschutz_text} />

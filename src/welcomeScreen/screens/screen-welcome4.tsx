@@ -7,8 +7,8 @@ import TaxClassContainer from "../../components/Settings/TaxCalculatorContainer"
 
 interface ViewWelcomeScreen4Props {
   t: TFunction;
-  usingTaxCalculator: Boolean;
-  setUsingTaxCalculator: React.Dispatch<React.SetStateAction<Boolean>>;
+  usingTaxCalculator: boolean;
+  setUsingTaxCalculator: React.Dispatch<React.SetStateAction<boolean>>;
   availableScreens: number;
 }
 

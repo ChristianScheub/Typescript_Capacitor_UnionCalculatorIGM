@@ -21,8 +21,6 @@ const WelcomeContainer: React.FC<WelcomeContainerProps> = ({ closeOverlay }) => 
   const [storeReduxLocal, setStoreReduxLocal] = useState(false);
   const [allowedTechnicalStore, setAllowedTechnicalStore] = useState(false);
   const { t } = useTranslation();
-  const navigate = useNavigate();
-
 
 
   const nextScreen = () => setCurrentScreen((current) => (current + 1) % availableScreens);
@@ -59,10 +57,6 @@ const WelcomeContainer: React.FC<WelcomeContainerProps> = ({ closeOverlay }) => 
     nextScreen();
   }
 
-  const openInfo = () => {
-    navigate("/info");
-  }
-
 
   return (
     <div {...handlers} className="welcome-container" data-testid="welcome-container">
@@ -84,11 +78,7 @@ const WelcomeContainer: React.FC<WelcomeContainerProps> = ({ closeOverlay }) => 
         icon={FaArrowRight}
         onClick={handleSubmit}
       />
-      <FloatingBtn
-        alignment={ButtonAlignment.LEFT}
-        icon={FaInfo}
-        onClick={openInfo}
-      />
+
     </div>
   );
 };

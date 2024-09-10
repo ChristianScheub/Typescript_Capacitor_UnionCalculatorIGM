@@ -14,7 +14,7 @@ const Impressum: React.FC = () => {
         }}
       >
         <div className="after-login-container">
-          <Card className="mb-3 backgroundColorHighlight margin2vw">
+          <Card className="mb-3 margin2vw">
             <Card.Header as="h2">Impressum / Legal Notice</Card.Header>
             <Card.Body>
               <CodeToTextParser code={impressum_text} />

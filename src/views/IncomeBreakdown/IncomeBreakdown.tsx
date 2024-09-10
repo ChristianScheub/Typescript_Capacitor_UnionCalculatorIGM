@@ -50,9 +50,7 @@ const IncomeBreakdown: React.FC<IncomeBreakdownProps> = ({
       </div>
       <hr />
       {hasBonuses && (
-        <>
           <h4 style={styles.textLeft}>Sonderzahlungen</h4>
-        </>
       )}
 
       {(christmasBonus !== undefined && christmasBonus !== 0) && (

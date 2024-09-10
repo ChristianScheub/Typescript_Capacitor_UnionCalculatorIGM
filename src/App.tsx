@@ -46,7 +46,7 @@ const App: React.FC = () => {
           <div>
             <Routes>
               <Route path="/" element={<WelcomeContainer closeOverlay={closeWelcomeOverlay} />} />
-              <Route path="/info" element={<ContainerSettings />} />
+              <Route path="/infoStart" element={<ContainerSettings />} />
               <Route path="/impressum" element={<Impressum />} />
               <Route path="/datenschutz" element={<Datenschutz />} />
             </Routes>

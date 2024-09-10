@@ -31,6 +31,10 @@ const ViewWelcomeScreen5: React.FC<ViewWelcomeScreen5Props> = ({
           zIndex: 5,
         }}
       >
+        <h1 className="welcome-screen-text infoTextWelcome2 makeItCenter" id="infoTitle2">
+          {t("welcomeScreen5_Headline")}
+        </h1>
+
         <Card>
           <h3> {t("welcomeScreen5_Headline2")}</h3>
           <br />
@@ -50,7 +54,6 @@ const ViewWelcomeScreen5: React.FC<ViewWelcomeScreen5Props> = ({
           />
         </Card>
         <br />
-
         <Card>
           <h3> {t("welcomeScreen5_Headline3")}</h3>
           <p className="infoText" >{t("welcomeScreen5_Info2")}</p>

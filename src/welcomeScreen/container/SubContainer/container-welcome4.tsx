@@ -10,7 +10,7 @@ const WelcomeScreen4Container: React.FC<WelcomeScreen4ContainerProps> = ({
   availableScreens,
 }) => {
   const { t } = useTranslation();
-  const [usingTaxCalculator, setUsingTaxCalculator] = useState<Boolean>(false);
+  const [usingTaxCalculator, setUsingTaxCalculator] = useState<boolean>(false);
 
   return (
     <WelcomeScreen4View

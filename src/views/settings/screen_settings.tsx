@@ -1,4 +1,4 @@
-import { useNavigate,NavigateFunction } from "react-router-dom";
+import { useNavigate, NavigateFunction } from "react-router-dom";
 import React from "react";
 import { useTranslation } from "react-i18next";
 import UsedLibsListContainer from "../../legal/usedLibs/container_usedLibList";
@@ -13,6 +13,7 @@ interface ViewSettingsProps {
   onBonusInformationClick: (navigate: NavigateFunction) => void;
   onSocialSecurityInformationClick: (navigate: NavigateFunction) => void;
   onDeleteAllClick: () => void;
+  isInfoStart: boolean;
   useLocalStorageRedux: boolean;
   setUseLocalStorageRedux: (value: boolean) => void;
 }
@@ -26,6 +27,7 @@ const ViewSettings: React.FC<ViewSettingsProps> = ({
   onBonusInformationClick,
   onSocialSecurityInformationClick,
   onDeleteAllClick,
+  isInfoStart,
   useLocalStorageRedux,
   setUseLocalStorageRedux
 }) => {
@@ -43,36 +45,40 @@ const ViewSettings: React.FC<ViewSettingsProps> = ({
       >
 
         <div className="after-login-container">
-          <h1>Einstellungen</h1>
-          <hr />
-            <p
-              data-testid="settings-union"
-              onClick={() => onUnionSettingClick(navigate)}
-            >
-               Tarif-/Gehalt Einstellungen
-            </p>
-          <hr />
-            <p
-              data-testid="settings-tax"
-              onClick={() => onTaxSettingClick(navigate)}
-            >
-              Steuereinstellungen
-            </p>
-            <hr />
-                <p
-                  data-testid="settings-delete-all"
-                  onClick={() => onDeleteAllClick()}
-                >
-                  {t("settings_DeleteAll")}
-                </p>
-                
-            <hr />
-            <SwitchSlider
-              checked={useLocalStorageRedux}
-              onChange={(event) => setUseLocalStorageRedux(event.target.checked)}
-              label="Lokal die Eingaben speichern"
-            />
-            <hr />
+          {!isInfoStart && (
+            <>
+              <h1>Einstellungen</h1>
+              <hr />
+              <p
+                data-testid="settings-union"
+                onClick={() => onUnionSettingClick(navigate)}
+              >
+                Tarif-/Gehalt Einstellungen
+              </p>
+              <hr />
+              <p
+                data-testid="settings-tax"
+                onClick={() => onTaxSettingClick(navigate)}
+              >
+                Steuereinstellungen
+              </p>
+              <hr />
+              <p
+                data-testid="settings-delete-all"
+                onClick={() => onDeleteAllClick()}
+              >
+                {t("settings_DeleteAll")}
+              </p>
+
+              <hr />
+              <SwitchSlider
+                checked={useLocalStorageRedux}
+                onChange={(event) => setUseLocalStorageRedux(event.target.checked)}
+                label="Lokal die Eingaben speichern"
+              />
+              <hr />
+            </>
+          )}
 
           <div className="mb-3 margin2vw">
             <h1>{t("settings_Information")}</h1>
@@ -83,7 +89,7 @@ const ViewSettings: React.FC<ViewSettingsProps> = ({
               data-testid="settings-edatenschutz"
               onClick={() => onBonusInformationClick(navigate)}
             >
-             Sonderzahlungen Informationen
+              Sonderzahlungen Informationen
             </p>
             <hr />
             <p
@@ -126,7 +132,7 @@ const ViewSettings: React.FC<ViewSettingsProps> = ({
               <p>GitHub Repository</p>
             </a>
             <hr />
-            <br/> <br/> <br/> <br/> <br/>
+            <br /> <br /> <br /> <br /> <br />
           </div>
         </div>
       </div>
