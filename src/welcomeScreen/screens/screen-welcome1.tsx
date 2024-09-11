@@ -16,7 +16,7 @@ const ViewWelcomeScreen1 = ({
     <div className="welcome-screen colorWhite">
 
       <p className="welcome-screen-text" id="infoText1">{t("welcomeScreen1_Headline")}</p>
-      <img src={illustration} alt="Illustration" className="illustration" />
+      <img src={illustration} alt="Illustration" className="illustration" loading="lazy" />
       <i className="welcome-screen-text" id="infoText2">{t("welcomeScreen1_info")}</i>
 
       <FloatingBtn

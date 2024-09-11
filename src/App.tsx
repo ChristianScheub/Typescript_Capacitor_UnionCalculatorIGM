@@ -53,6 +53,7 @@ const App: React.FC = () => {
           </div>
         ) : (
           <>
+          <div style={{paddingTop:"10vw"}}>
             <Navbar setActiveComponent={setActiveComponent} activeComponent={activeComponent} />
             <Routes>
               <Route path="/" element={<HomeContainer />} />
@@ -64,6 +65,8 @@ const App: React.FC = () => {
               <Route path="/datenschutz" element={<Datenschutz />} />
               <Route path="*" element={<HomeContainer />} />
             </Routes>
+            
+          </div>
           </>
         )}
       </div>

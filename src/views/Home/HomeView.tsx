@@ -32,34 +32,36 @@ const HomeView: React.FC<HomeViewProps> = ({
   return (
     <div>
       <br />
-      <center>      <h2> {t("homeView_title1")} <br />{t("homeView_title2")} </h2></center>
+      <center>
+        <h2> {t("homeView_title1")} <br />{t("homeView_title2")} </h2>
+      </center>
 
       <Card>
-      <b>{t("homeView_hourly_wage_with_bonus")}</b>
+        <b>{t("homeView_hourly_wage_with_bonus")}</b>
 
         <br />
         <br />
         <div style={{ display: 'flex', justifyContent: 'space-between', gap: '3vw' }}>
           <Card style={{ flex: 1 }}>
-          <b>{t("homeView_gross_hourly_wage")}</b> <br /> {hoursWageGrossYearWithBonus.toFixed(2)}<br />
+            <b>{t("homeView_gross_hourly_wage")}</b> <br /> {hoursWageGrossYearWithBonus.toFixed(2)}<br />
           </Card>
           <Card style={{ flex: 1 }}>
-          <b>{t("homeView_net_hourly_wage")}</b> <br /> {hoursWageNetYearWithBonus.toFixed(2)}
+            <b>{t("homeView_net_hourly_wage")}</b> <br /> {hoursWageNetYearWithBonus.toFixed(2)}
           </Card>
         </div>
       </Card>
 
       <br />
       <Card>
-      <b>{t("homeView_hourly_wage_without_bonus")}</b>
-      <br />
+        <b>{t("homeView_hourly_wage_without_bonus")}</b>
+        <br />
         <br />
         <div style={{ display: 'flex', justifyContent: 'space-between', gap: '3vw' }}>
           <Card style={{ flex: 1 }}>
-          <b>{t("homeView_gross_hourly_wage")}</b> <br /> {hoursWageGrossYear.toFixed(2)}<br />
+            <b>{t("homeView_gross_hourly_wage")}</b> <br /> {hoursWageGrossYear.toFixed(2)}<br />
           </Card>
           <Card style={{ flex: 1 }}>
-          <b>{t("homeView_net_hourly_wage")}</b> <br /> {hoursWageNetYear.toFixed(2)}
+            <b>{t("homeView_net_hourly_wage")}</b> <br /> {hoursWageNetYear.toFixed(2)}
           </Card>
         </div>
       </Card>
