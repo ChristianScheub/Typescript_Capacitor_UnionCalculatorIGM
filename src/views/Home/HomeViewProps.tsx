@@ -19,4 +19,5 @@ export interface HomeViewProps {
   hoursWageGrossYearWithBonus: number;
   hoursWageNetYear: number;
   hoursWageGrossYear: number;
+  isDesktop: boolean;
 }

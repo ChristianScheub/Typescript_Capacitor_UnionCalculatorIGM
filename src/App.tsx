@@ -15,10 +15,24 @@ import WelcomeContainer from "./welcomeScreen/container/container-welcomeScreen"
 import { saveState } from "./stateManagement/localStorage";
 import { useStore } from "react-redux";
 
+
 const App: React.FC = () => {
   const [activeComponent, setActiveComponent] = useState<string>("home");
   const [showWelcome, setShowWelcome] = useState<boolean>(true);
+  const [isDesktop, setIsDesktop] = useState<boolean>(false);
   const store = useStore();
+
+  // Check device type
+  useEffect(() => {
+    const checkDevice = async () => {
+      if (window.innerWidth >= 1024) {
+        // Assuming anything with a width >= 1024px is a laptop/desktop
+        setIsDesktop(true);
+      }
+    };
+
+    checkDevice();
+  }, []);
 
   // Check if welcome has already been shown
   useEffect(() => {
@@ -53,20 +67,22 @@ const App: React.FC = () => {
           </div>
         ) : (
           <>
-          <div style={{paddingTop:"10vw"}}>
-            <Navbar setActiveComponent={setActiveComponent} activeComponent={activeComponent} />
-            <Routes>
-              <Route path="/" element={<HomeContainer />} />
-              <Route path="/salary" element={<SalaryCalculatorContainer />} />
-              <Route path="/government" element={<TaxClassContainer />} />
-              <Route path="/tables" element={<TablesContainer />} />
-              <Route path="/info" element={<ContainerSettings />} />
-              <Route path="/impressum" element={<Impressum />} />
-              <Route path="/datenschutz" element={<Datenschutz />} />
-              <Route path="*" element={<HomeContainer />} />
-            </Routes>
-            
-          </div>
+            <div style={{
+              paddingTop: isDesktop ? undefined : "10vw"
+            }} className={isDesktop ? "desktop" : ""}>
+              <Navbar setActiveComponent={setActiveComponent} activeComponent={activeComponent} />
+              <Routes>
+                <Route path="/" element={<HomeContainer />} />
+                <Route path="/salary" element={<SalaryCalculatorContainer />} />
+                <Route path="/government" element={<TaxClassContainer />} />
+                <Route path="/tables" element={<TablesContainer />} />
+                <Route path="/info" element={<ContainerSettings />} />
+                <Route path="/impressum" element={<Impressum />} />
+                <Route path="/datenschutz" element={<Datenschutz />} />
+                <Route path="*" element={<HomeContainer />} />
+              </Routes>
+
+            </div>
           </>
         )}
       </div>

@@ -43,6 +43,11 @@ const HomeContainer: React.FC = () => {
   const [healthInsuranceYear, setHealthInsuranceYear] = useState(0);
   const [unemploymentInsuranceYear, setUnemploymentInsuranceYear] = useState(0);
   const [pensionInsuranceYear, setPensionInsuranceYear] = useState(0);
+  let isDesktop = false;
+  if (window.innerWidth >= 1024){
+    isDesktop = true;
+  }
+
 
 
   const calculateAllValues = useCallback(() => {
@@ -102,7 +107,6 @@ const HomeContainer: React.FC = () => {
     setPensionInsuranceYear(SocialSecurityCalculator.calculatePensionInsurance(
       salaryWithAllBonusYear / 12
     ) * 12);
-
   }, [salaryWithBonus, isChildless, salaryAfterAllTaxYear, salaryWithAllBonusYear, salaryAfterAllTaxMonthly]);
 
   useEffect(() => {
@@ -146,13 +150,13 @@ const HomeContainer: React.FC = () => {
       await AdMob.showBanner(options);
 
     }
-  };
-
+  };  
 
   useEffect(() => {
     initializeAds().catch((err) => {
       console.error("AdMob initialization error:", err);
     });
+
   }, []);
 
   return (
@@ -177,6 +181,7 @@ const HomeContainer: React.FC = () => {
       hoursWageGrossYearWithBonus={hoursWageGrossYearWithBonus}
       hoursWageNetYear={hoursWageNetYear}
       hoursWageGrossYear={hoursWageGrossYear}
+      isDesktop={isDesktop}
     />
   );
 };

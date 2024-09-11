@@ -21,7 +21,7 @@ interface SwitchSliderProps {
 const SwitchSlider: React.FC<SwitchSliderProps> = ({ checked, onChange, label }) => {
   return (
     <div style={{ display: 'flex', alignItems: 'center' }}>
-      <span style={{ marginLeft: 8 }}>{label}</span>
+      <span>{label}</span>
       <CustomSwitch checked={checked} onChange={onChange} />
     </div>
   );

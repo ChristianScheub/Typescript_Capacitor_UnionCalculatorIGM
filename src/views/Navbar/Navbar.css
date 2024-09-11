@@ -1,0 +1,29 @@
+.navbar {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 13vw;
+    width: 100%;
+    background-color: #66B0B0;
+    border-top: 1px solid #ddd;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    z-index: 1000;
+}
+
+.desktop .navbar {
+    height: 3vw;
+}
+
+.icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    color: #ffffff;
+}
+
+.icon svg {
+    fill: #ffffff;
+}

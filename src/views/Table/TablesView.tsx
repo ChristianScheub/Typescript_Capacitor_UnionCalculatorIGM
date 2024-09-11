@@ -42,49 +42,52 @@ const TablesView: React.FC<TablesViewProps> = ({
 
             <center>
                 <h2>{t("tablesView_BreakdownCalculation")}</h2>
-            </center>
 
-            <IncomeBreakdown
-                title={t("tablesView_MonthlySalaryWithoutBonuses")}
-                salary={salary}
-                salaryWithBonus={salaryWithBonus}
-                salaryAfterTax={salaryAfterTax}
-                tax={tax}
-                solidarityTax={solidarityTax}
-                churchTax={churchTax}
-                pensionInsurance={pensionInsurance}
-                unemploymentInsurance={unemploymentInsurance}
-                healthInsuranceSupplement={healthInsuranceSupplement}
-                healthInsurance={healthInsurance}
-                careInsurance={careInsurance}
-                calcultedSalaryAfterSocialSecurity={calcultedSalaryAfterSocialSecurity}
-            />
+                <IncomeBreakdown
+                    title={t("tablesView_MonthlySalaryWithoutBonuses")}
+                    salary={salary}
+                    salaryWithBonus={salaryWithBonus}
+                    salaryAfterTax={salaryAfterTax}
+                    tax={tax}
+                    solidarityTax={solidarityTax}
+                    churchTax={churchTax}
+                    pensionInsurance={pensionInsurance}
+                    unemploymentInsurance={unemploymentInsurance}
+                    healthInsuranceSupplement={healthInsuranceSupplement}
+                    healthInsurance={healthInsurance}
+                    careInsurance={careInsurance}
+                    calcultedSalaryAfterSocialSecurity={calcultedSalaryAfterSocialSecurity}
+                />
+                <br />
+                <IncomeBreakdown
+                    title={t("tablesView_YearlySalary")}
+                    salary={parseFloat((salary * 12).toFixed(2))}
+                    salaryWithBonus={parseFloat((salaryWithBonus * 12).toFixed(2))}
+                    salaryAfterTax={salaryAfterAllTaxYear}
+                    tax={taxYear}
+                    solidarityTax={solidarityTaxYear}
+                    churchTax={churchTaxYear}
+                    pensionInsurance={pensionInsuranceYear}
+                    unemploymentInsurance={unemploymentInsurancYear}
+                    healthInsuranceSupplement={healthInsuranceSupplementYear}
+                    healthInsurance={healthInsuranceYear}
+                    careInsurance={careInsuranceYear}
+                    calcultedSalaryAfterSocialSecurity={calcultedSalaryAfterSocialSecurityYear}
+                    transformationsGeld={transformationsGeld}
+                    tZugA={tZugA}
+                    tZugB={tZugB}
+                    vacationBonus={urlaubsgeld}
+                    profitSharing={profitSharing}
+                    christmasBonus={christmasBonus}
+                    salaryWithAllBonus={salaryWithAllBonus}
+                />
+                <br />
+                <br />
+                <i>{t("warning_calulcationIsEstimation")}</i>
+            </center>
             <br />
-            <IncomeBreakdown
-                title={t("tablesView_YearlySalary")}
-                salary={parseFloat((salary * 12).toFixed(2))}
-                salaryWithBonus={parseFloat((salaryWithBonus * 12).toFixed(2))}
-                salaryAfterTax={salaryAfterAllTaxYear}
-                tax={taxYear}
-                solidarityTax={solidarityTaxYear}
-                churchTax={churchTaxYear}
-                pensionInsurance={pensionInsuranceYear}
-                unemploymentInsurance={unemploymentInsurancYear}
-                healthInsuranceSupplement={healthInsuranceSupplementYear}
-                healthInsurance={healthInsuranceYear}
-                careInsurance={careInsuranceYear}
-                calcultedSalaryAfterSocialSecurity={calcultedSalaryAfterSocialSecurityYear}
-                transformationsGeld={transformationsGeld}
-                tZugA={tZugA}
-                tZugB={tZugB}
-                vacationBonus={urlaubsgeld}
-                profitSharing={profitSharing}
-                christmasBonus={christmasBonus}
-                salaryWithAllBonus={salaryWithAllBonus}
-            />
             <br />
             <br />
-            <i>{t("warning_calulcationIsEstimation")}</i>
             <br />
             <br />
             <br />
