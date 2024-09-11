@@ -84,7 +84,7 @@ const TablesView: React.FC<TablesViewProps> = ({
             />
             <br />
             <br />
-            <i>{t("warning_calculationIsEstimation")}</i>
+            <i>{t("warning_calulcationIsEstimation")}</i>
             <br />
             <br />
             <br />

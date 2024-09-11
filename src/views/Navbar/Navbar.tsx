@@ -40,7 +40,7 @@ const Navbar: React.FC<NavbarProps> = ({ setActiveComponent, activeComponent }) 
   );
 };
 
-const POSITION_FIXED: 'fixed' = 'fixed';
+const POSITION_FIXED = 'fixed' as const;
 
 const styles = {
   navbar: {
