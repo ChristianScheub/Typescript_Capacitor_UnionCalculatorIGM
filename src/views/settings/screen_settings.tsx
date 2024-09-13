@@ -29,20 +29,19 @@ const ViewSettings: React.FC<ViewSettingsProps> = ({
   onDeleteAllClick,
   isInfoStart,
   useLocalStorageRedux,
-  setUseLocalStorageRedux
+  setUseLocalStorageRedux,
 }) => {
   const navigate = useNavigate();
   const { t } = useTranslation();
 
   return (
-    <div
-      className="backgroundColor"
-    >
+    <div className="backgroundColor">
       <div
         style={{
           marginTop: "env(safe-area-inset-top)",
         }}
       >
+        <br />
 
         <div className="after-login-container">
           {!isInfoStart && (
@@ -73,7 +72,9 @@ const ViewSettings: React.FC<ViewSettingsProps> = ({
               <hr />
               <SwitchSlider
                 checked={useLocalStorageRedux}
-                onChange={(event) => setUseLocalStorageRedux(event.target.checked)}
+                onChange={(event) =>
+                  setUseLocalStorageRedux(event.target.checked)
+                }
                 label={t("settings_SaveLocally")}
               />
               <hr />
@@ -83,7 +84,6 @@ const ViewSettings: React.FC<ViewSettingsProps> = ({
           <div className="mb-3 margin2vw">
             <h1>{t("settings_Information")}</h1>
             <i>{t("warning_calulcationIsEstimation")}</i>
-
             <hr />
             <p
               data-testid="settings-edatenschutz"
@@ -106,7 +106,6 @@ const ViewSettings: React.FC<ViewSettingsProps> = ({
               {t("settings_SocialSecurityInfo")}
             </p>
             <hr />
-
             <p
               data-testid="settings-edatenschutz"
               onClick={() => onDatenschutzClick(navigate)}

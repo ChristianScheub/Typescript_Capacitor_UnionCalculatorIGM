@@ -68,7 +68,7 @@ const App: React.FC = () => {
         ) : (
           <>
             <div style={{
-              paddingTop: isDesktop ? undefined : "10vw"
+              paddingTop: isDesktop ? undefined : "15vw"
             }} className={isDesktop ? "desktop" : ""}>
               <Navbar setActiveComponent={setActiveComponent} activeComponent={activeComponent} />
               <Routes>
