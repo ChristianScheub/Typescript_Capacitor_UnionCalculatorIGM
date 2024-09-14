@@ -1,7 +1,7 @@
 
 # UnionCalculator IGM
 Last Edit: 09.2024 <br>
-Language: Typescript React Capacitor<br>
+Language: Typescript React Capacitor with Redux<br>
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=ChristianScheub_Typescript_Capacitor_UnionCalculatorIGM&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=ChristianScheub_Typescript_Capacitor_UnionCalculatorIGM)
 [![Security Rating](https://sonarcloud.io/api/project_badges/measure?project=ChristianScheub_Typescript_Capacitor_UnionCalculatorIGM&metric=security_rating)](https://sonarcloud.io/summary/new_code?id=ChristianScheub_Typescript_Capacitor_UnionCalculatorIGM) 
 [![Vulnerabilities](https://sonarcloud.io/api/project_badges/measure?project=ChristianScheub_Typescript_Capacitor_UnionCalculatorIGM&metric=vulnerabilities)](https://sonarcloud.io/summary/new_code?id=ChristianScheub_Typescript_Capacitor_UnionCalculatorIGM)
@@ -12,6 +12,14 @@ Language: Typescript React Capacitor<br>
 [![Code Smells](https://sonarcloud.io/api/project_badges/measure?project=ChristianScheub_Typescript_Capacitor_UnionCalculatorIGM&metric=code_smells)](https://sonarcloud.io/summary/new_code?id=ChristianScheub_Typescript_Capacitor_UnionCalculatorIGM) 
 [![Duplicated Lines (%)](https://sonarcloud.io/api/project_badges/measure?project=ChristianScheub_Typescript_Capacitor_UnionCalculatorIGM&metric=duplicated_lines_density)](https://sonarcloud.io/summary/new_code?id=ChristianScheub_Typescript_Capacitor_UnionCalculatorIGM)
 
+The Tarif Metall calculator is a powerful tool for calculating your hourly wage, both gross and net. Whether you want to take special payments into account or create a detailed salary overview for the year - our calculator offers you the flexibility and accuracy you need.
+
+Google Play Store: https://play.google.com/store/apps/details?id=de.scheub.ig_M_rechner&hl=gsw
+Apple App Store: (Coming soon)
+Galaxy App Store: (Coming soon)
+Website: https://lemon-bay-0f0bdf203.5.azurestaticapps.net/
+
+Deutsche Kurzbeschreibung: Mit dem Tarif Metall Rechner erhalten Sie eine leistungsstarke Anwendung, um Ihren Stundenlohn, sowohl brutto als auch netto, präzise zu berechnen. Egal, ob Sie Sonderzahlungen berücksichtigen oder eine detaillierte Gehaltsübersicht für das Jahr erstellen möchten – unser Rechner bietet Ihnen die notwendige Flexibilität und Genauigkeit.
 
 ## Architecture
 

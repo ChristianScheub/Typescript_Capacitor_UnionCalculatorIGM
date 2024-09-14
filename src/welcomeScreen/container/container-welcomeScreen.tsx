@@ -43,7 +43,6 @@ const WelcomeContainer: React.FC<WelcomeContainerProps> = ({ closeOverlay }) => 
   };
 
   const handleSubmit = () => {
-    console.log(currentScreen);
     if (currentScreen === 3) {
       if (!allowedTechnicalStore) {
         alert(t("welcomeScreen5_NeedTechnicalStorage"));

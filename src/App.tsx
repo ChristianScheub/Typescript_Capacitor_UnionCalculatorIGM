@@ -66,7 +66,6 @@ const App: React.FC = () => {
             </Routes>
           </div>
         ) : (
-          <>
             <div style={{
               paddingTop: isDesktop ? undefined : "15vw"
             }} className={isDesktop ? "desktop" : ""}>
@@ -83,7 +82,6 @@ const App: React.FC = () => {
               </Routes>
 
             </div>
-          </>
         )}
       </div>
     </Router>
