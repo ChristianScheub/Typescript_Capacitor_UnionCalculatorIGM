@@ -21,6 +21,7 @@ Website: https://lemon-bay-0f0bdf203.5.azurestaticapps.net/
 
 Deutsche Kurzbeschreibung: Mit dem Tarif Metall Rechner erhalten Sie eine leistungsstarke Anwendung, um Ihren Stundenlohn, sowohl brutto als auch netto, präzise zu berechnen. Egal, ob Sie Sonderzahlungen berücksichtigen oder eine detaillierte Gehaltsübersicht für das Jahr erstellen möchten – unser Rechner bietet Ihnen die notwendige Flexibilität und Genauigkeit.
 
+
 ## Architecture
 
 The components used are divided into four categories:

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import WelcomeScreen1Container from "./SubContainer/container-welcome1";
 import WelcomeScreen3Container from "./SubContainer/container-welcome3";
 import WelcomeScreen4Container from "./SubContainer/container-welcome4";
@@ -31,7 +31,7 @@ const WelcomeContainer: React.FC<WelcomeContainerProps> = ({ closeOverlay }) => 
 
 
   const handlers = useSwipeable({
-    onSwipedLeft: () => nextScreen(),
+    onSwipedLeft: () => handleSubmit(),
     onSwipedRight: () => prevScreen(),
     trackMouse: true,
     trackTouch: true,
@@ -55,6 +55,23 @@ const WelcomeContainer: React.FC<WelcomeContainerProps> = ({ closeOverlay }) => 
     }
     nextScreen();
   }
+
+    // UseEffect to handle key presses for arrow keys
+    useEffect(() => {
+      const handleKeyDown = (event: KeyboardEvent) => {
+        if (event.key === "ArrowRight") {
+          handleSubmit();
+        } else if (event.key === "ArrowLeft") {
+          prevScreen();
+        }
+      };
+  
+      window.addEventListener("keydown", handleKeyDown);
+      
+      return () => {
+        window.removeEventListener("keydown", handleKeyDown);
+      };
+    },);
 
 
   return (

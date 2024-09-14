@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom";
 import "./App.css";
 import SalaryCalculatorContainer from "./components/Settings/SalaryCalculatorContainer";
 import Navbar from "./views/Navbar/Navbar";
@@ -15,7 +15,6 @@ import WelcomeContainer from "./welcomeScreen/container/container-welcomeScreen"
 import { saveState } from "./stateManagement/localStorage";
 import { useStore } from "react-redux";
 
-
 const App: React.FC = () => {
   const [activeComponent, setActiveComponent] = useState<string>("home");
   const [showWelcome, setShowWelcome] = useState<boolean>(true);
@@ -26,7 +25,6 @@ const App: React.FC = () => {
   useEffect(() => {
     const checkDevice = async () => {
       if (window.innerWidth >= 1024) {
-        // Assuming anything with a width >= 1024px is a laptop/desktop
         setIsDesktop(true);
       }
     };
@@ -40,7 +38,6 @@ const App: React.FC = () => {
     if (welcomeDone === "true") {
       setShowWelcome(false);
     }
-
   }, []);
 
   // Function to close the welcome overlay
@@ -53,37 +50,47 @@ const App: React.FC = () => {
     }
   };
 
-  return (
-    <Router>
+  const MainApp = () => {
+    const location = useLocation();
+
+    return (
       <div>
         {showWelcome ? (
-          <div>
+          <div className={isDesktop ? "desktop" : ""}>
+            {location.pathname.includes('Start') && (
+              <Navbar setActiveComponent={setActiveComponent} activeComponent={activeComponent} />
+            )}
             <Routes>
               <Route path="/" element={<WelcomeContainer closeOverlay={closeWelcomeOverlay} />} />
               <Route path="/infoStart" element={<ContainerSettings />} />
               <Route path="/impressum" element={<Impressum />} />
               <Route path="/datenschutz" element={<Datenschutz />} />
+              <Route path="/impressumStart" element={<Impressum />} />
+              <Route path="/datenschutzStart" element={<Datenschutz />} />
             </Routes>
           </div>
         ) : (
-            <div style={{
-              paddingTop: isDesktop ? undefined : "15vw"
-            }} className={isDesktop ? "desktop" : ""}>
-              <Navbar setActiveComponent={setActiveComponent} activeComponent={activeComponent} />
-              <Routes>
-                <Route path="/" element={<HomeContainer />} />
-                <Route path="/salary" element={<SalaryCalculatorContainer />} />
-                <Route path="/government" element={<TaxClassContainer />} />
-                <Route path="/tables" element={<TablesContainer />} />
-                <Route path="/info" element={<ContainerSettings />} />
-                <Route path="/impressum" element={<Impressum />} />
-                <Route path="/datenschutz" element={<Datenschutz />} />
-                <Route path="*" element={<HomeContainer />} />
-              </Routes>
-
-            </div>
+          <div style={{ paddingTop: isDesktop ? undefined : "15vw" }} className={isDesktop ? "desktop" : ""}>
+            <Navbar setActiveComponent={setActiveComponent} activeComponent={activeComponent} />
+            <Routes>
+              <Route path="/" element={<HomeContainer />} />
+              <Route path="/salary" element={<SalaryCalculatorContainer />} />
+              <Route path="/government" element={<TaxClassContainer />} />
+              <Route path="/tables" element={<TablesContainer />} />
+              <Route path="/info" element={<ContainerSettings />} />
+              <Route path="/impressum" element={<Impressum />} />
+              <Route path="/datenschutz" element={<Datenschutz />} />
+              <Route path="*" element={<HomeContainer />} />
+            </Routes>
+          </div>
         )}
       </div>
+    );
+  };
+
+  return (
+    <Router>
+      <MainApp />
     </Router>
   );
 };

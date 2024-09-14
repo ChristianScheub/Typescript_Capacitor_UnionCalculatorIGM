@@ -44,7 +44,7 @@ const HomeContainer: React.FC = () => {
   const [unemploymentInsuranceYear, setUnemploymentInsuranceYear] = useState(0);
   const [pensionInsuranceYear, setPensionInsuranceYear] = useState(0);
   let isDesktop = false;
-  if (window.innerWidth >= 1024){
+  if (window.innerWidth >= 1024) {
     isDesktop = true;
   }
 
@@ -138,28 +138,28 @@ const HomeContainer: React.FC = () => {
         await AdMob.showConsentForm();
       }
 
-    let adId: string;
-    if (Capacitor.getPlatform() === 'android') {
-      adId = 'ca-app-pub-6250689577715326/5496005964'; // Android Ad ID
-    } else if (Capacitor.getPlatform() === 'ios') {
-      adId = 'ca-app-pub-6250689577715326/2958436560'; // iOS Ad ID
-    } else {
-// If another platform is used, use default ID or logic
-      adId = 'ca-app-pub-6250689577715326/5496005964';
-    }
+      let adId: string;
+      if (Capacitor.getPlatform() === 'android') {
+        adId = 'ca-app-pub-6250689577715326/5496005964'; // Android Ad ID
+      } else if (Capacitor.getPlatform() === 'ios') {
+        adId = 'ca-app-pub-6250689577715326/2958436560'; // iOS Ad ID
+      } else {
+        // If another platform is used, use default ID or logic
+        adId = 'ca-app-pub-6250689577715326/5496005964';
+      }
 
-    const options: BannerAdOptions = {
-      adId: adId,
-      adSize: BannerAdSize.BANNER,
-      position: BannerAdPosition.TOP_CENTER,
-      margin: 0,
-      isTesting: false,
-      // npa: true // Non-personalized ads if needed
-    };
+      const options: BannerAdOptions = {
+        adId: adId,
+        adSize: BannerAdSize.BANNER,
+        position: BannerAdPosition.TOP_CENTER,
+        margin: 0,
+        isTesting: false,
+        // npa: true // Non-personalized ads if needed
+      };
       await AdMob.showBanner(options);
 
     }
-  };  
+  };
 
   useEffect(() => {
     initializeAds().catch((err) => {

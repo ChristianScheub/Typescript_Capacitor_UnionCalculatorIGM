@@ -10,7 +10,7 @@ const ContainerSettings: React.FC = () => {
   const [isBonusPopupOpen, setIsBonusPopupOpen] = useState(false);
   const [isTaxPopupOpen, setIsTaxPopupOpen] = useState(false);
   const [useLocalStorageRedux, setUseLocalStorageRedux] = useState(() => {
-    const saved = localStorage.getItem('allowedLocalStorageUse');
+    const saved = localStorage.getItem('storeReduxLocal');
     return saved ? JSON.parse(saved) : false;
   });
   const { t } = useTranslation();
@@ -19,10 +19,20 @@ const ContainerSettings: React.FC = () => {
   const isInfoStart = location.pathname.includes("infoStart");
 
   const handleImpressumClick = (navigate: NavigateFunction) => {
-    navigate("/impressum");
+    if(isInfoStart){
+      navigate("/impressumStart");
+    }
+    else{
+      navigate("/impressum");
+    }
   };
   const handleDatenschutzClick = (navigate: NavigateFunction) => {
-    navigate("/datenschutz");
+    if(isInfoStart){
+      navigate("/datenschutzStart");
+    }
+    else{
+      navigate("/datenschutz");
+    }
   };
   const handleTaxClick = (navigate: NavigateFunction) => {
     navigate("/government");
@@ -51,17 +61,16 @@ const ContainerSettings: React.FC = () => {
 
   const handleLocalStorageChange = (value: boolean) => {
     const confirmation = window.confirm(
-      "Möchten Sie diese Einstellung wirklich ändern? Dies erfordert ein Neuladen der Webseite, und die derzeit gesetzten Werte werden verworfen."
+      t("settings_Dialog_ChangeStore")
     );
   
     if (confirmation) {
       setUseLocalStorageRedux(value);
       if (value) {
-        localStorage.setItem('allowedLocalStorageUse', JSON.stringify(true));
+        localStorage.setItem('storeReduxLocal', JSON.stringify(true));
       } else {
         localStorage.clear();
       }
-      window.location.reload();
     }
   };
 
@@ -69,7 +78,6 @@ const ContainerSettings: React.FC = () => {
     if (window.confirm(t("settings_Dialog_DeleteAll"))) {
       localStorage.clear();
       alert(t("settings_Dialog_DeleteAllSuccessful"));
-      window.location.reload();
     }
   }; 
   
