@@ -1,78 +1,38 @@
-import React, { useState, useEffect, useMemo } from "react";
-import { BrowserRouter as Router, Routes, Route, useNavigate,useLocation } from "react-router-dom";
-import { useSwipeable } from "react-swipeable";
+import React, { useState, useEffect } from "react";
+import { BrowserRouter as Router, useLocation } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
-import SalaryCalculatorContainer from "./components/Settings/SalaryCalculatorContainer";
 import NavbarView from "./views/Navbar/NavbarView";
-import HomeContainer from "./components/Calculations/HomeContainer";
-import TaxClassContainer from "./components/Settings/TaxCalculatorContainer";
-import ContainerSettings from "./components/Settings/SettingsContainer";
-import Impressum from "./legal/impressum";
-import Datenschutz from "./legal/datenschutz";
-import TablesContainer from "./components/Calculations/TablesContainer";
-import WelcomeContainer from "./welcomeScreen/container/container-welcomeScreen";
 import { saveState } from "./stateManagement/localStorage";
 import { useStore } from "react-redux";
 import "./i18n";
+import { useSwipeNavigation } from "./services/helper/navigationUtils";
+import { useDeviceCheck } from "./services/helper/useDeviceCheck";
+import { makeStatusBarTransparent } from "./services/helper/statusBarUtils";
+import { getRoutes } from "./routes";
 
 const MainApp: React.FC = () => {
   const [activeComponent, setActiveComponent] = useState<string>("home");
   const [showWelcome, setShowWelcome] = useState<boolean>(true);
-  const [isDesktop, setIsDesktop] = useState<boolean>(false);
+  const isDesktop = useDeviceCheck();
   const store = useStore();
-  const navigate = useNavigate();
+  const location = useLocation();
 
-  // Navigation-Links für Swipe-Funktion
-  const navLinks = useMemo(
-    () => [
+  // Swipe and Key Navigation
+  const handlers = useSwipeNavigation({
+    navLinks: [
       { path: "/", component: "home" },
       { path: "/tables", component: "tables" },
-      { path: "/info", component: "info" },
+      { path: "/info", component: "info" }
     ],
-    []
-  );
-
-  // Swipe-Handler
-  const handlers = useSwipeable({
-    onSwipedLeft: () => nextLink(),
-    onSwipedRight: () => prevLink(),
-    trackMouse: true,
+    activeComponent,
+    setActiveComponent,
+    enable: !showWelcome,
   });
-
-  const nextLink = () => {
-    const currentIndex = navLinks.findIndex((link) => link.component === activeComponent);
-    if (currentIndex < navLinks.length - 1) {
-      const nextLink = navLinks[currentIndex + 1];
-      setActiveComponent(nextLink.component);
-      navigate(nextLink.path);
-    }
-  };
-
-  const prevLink = () => {
-    const currentIndex = navLinks.findIndex((link) => link.component === activeComponent);
-    if (currentIndex > 0) {
-      const previousLink = navLinks[currentIndex - 1];
-      setActiveComponent(previousLink.component);
-      navigate(previousLink.path);
-    }
-  };
-
-  // Check device type
-  useEffect(() => {
-    const checkDevice = async () => {
-      if (window.innerWidth >= 1024) {
-        setIsDesktop(true);
-      }
-    };
-
-    checkDevice();
-  }, []);
 
   // Check if welcome has already been shown
   useEffect(() => {
-    const welcomeDone = localStorage.getItem("welcomeDone");
-    if (welcomeDone === "true") {
+    if (localStorage.getItem("welcomeDone") === "true") {
       setShowWelcome(false);
     }
   }, []);
@@ -87,39 +47,16 @@ const MainApp: React.FC = () => {
     }
   };
 
-  const location = useLocation();
+  makeStatusBarTransparent();
 
   return (
-    <div>
-      {showWelcome ? (
-         <div className={isDesktop ? "desktop" : ""}>
-         {location.pathname.includes('Start') && (
-           <NavbarView setActiveComponent={setActiveComponent} activeComponent={activeComponent} />
-         )}
-         <Routes>
-           <Route path="/" element={<WelcomeContainer closeOverlay={closeWelcomeOverlay} />} />
-           <Route path="/infoStart" element={<ContainerSettings />} />
-           <Route path="/impressum" element={<Impressum />} />
-           <Route path="/datenschutz" element={<Datenschutz />} />
-           <Route path="/impressumStart" element={<Impressum />} />
-           <Route path="/datenschutzStart" element={<Datenschutz />} />
-         </Routes>
-       </div>
-      ) : (
-        <div {...handlers} style={{ paddingTop: "9vh" }} className={isDesktop ? "desktop" : ""}>
-          <NavbarView setActiveComponent={setActiveComponent} activeComponent={activeComponent} />
-          <Routes>
-            <Route path="/" element={<HomeContainer />} />
-            <Route path="/salary" element={<SalaryCalculatorContainer />} />
-            <Route path="/government" element={<TaxClassContainer />} />
-            <Route path="/tables" element={<TablesContainer />} />
-            <Route path="/info" element={<ContainerSettings />} />
-            <Route path="/impressum" element={<Impressum />} />
-            <Route path="/datenschutz" element={<Datenschutz />} />
-            <Route path="*" element={<HomeContainer />} />
-          </Routes>
-        </div>
+    <div {...handlers} style={{ paddingTop: showWelcome ? "0" : "9vh" }} className={isDesktop ? "desktop" : ""}>
+      {(showWelcome && location.pathname.includes('Start')) && (
+        <NavbarView setActiveComponent={setActiveComponent} activeComponent={activeComponent} />
       )}
+      {!showWelcome && <NavbarView setActiveComponent={setActiveComponent} activeComponent={activeComponent} />}
+
+      {getRoutes(showWelcome, closeWelcomeOverlay)}
     </div>
   );
 };

@@ -13,7 +13,6 @@ const NavbarView: React.FC<NavbarViewProps> = ({ setActiveComponent, activeCompo
   const location = useLocation();
   const navigate = useNavigate();
 
-  // useMemo für navLinks
   const navLinks = useMemo(() => [
     { path: '/', component: 'home', icon: <FaHome size={30} />, key: 'home' },
     { path: '/tables', component: 'tables', icon: <FaTable size={30} />, key: 'tables' },
@@ -34,31 +33,6 @@ const NavbarView: React.FC<NavbarViewProps> = ({ setActiveComponent, activeCompo
   }, [location, setActiveComponent]);
 
   const getColor = (component: string) => (activeComponent === component ? '#66B0B0' : '#ffffff');
-
-  React.useEffect(() => {
-    const handleKeyDown = (event: KeyboardEvent) => {
-      if (!location.pathname.includes('Start')) {
-        const currentIndex = navLinks.findIndex(link => link.component === activeComponent);
-        
-        if (event.key === 'ArrowLeft' && currentIndex > 0) {
-          // Move to the previous link
-          const previousLink = navLinks[currentIndex - 1];
-          setActiveComponent(previousLink.component);
-          navigate(previousLink.path);
-        } else if (event.key === 'ArrowRight' && currentIndex < navLinks.length - 1) {
-          // Move to the next link
-          const nextLink = navLinks[currentIndex + 1];
-          setActiveComponent(nextLink.component);
-          navigate(nextLink.path);
-        }
-      }
-    };
-
-    window.addEventListener('keydown', handleKeyDown);
-    return () => {
-      window.removeEventListener('keydown', handleKeyDown);
-    };
-  }, [activeComponent, location, navigate, setActiveComponent, navLinks]); // useMemo prevents navLinks from causing issues
 
   return (
     <Navbar

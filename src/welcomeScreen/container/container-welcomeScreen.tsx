@@ -1,15 +1,14 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import WelcomeScreen1Container from "./SubContainer/container-welcome1";
 import WelcomeScreen3Container from "./SubContainer/container-welcome3";
 import WelcomeScreen4Container from "./SubContainer/container-welcome4";
 import WelcomeScreen5Container from "./SubContainer/container-welcome5";
 import "./welcomeContainer.css";
-import { useSwipeable } from "react-swipeable";
 import FloatingBtn, { ButtonAlignment } from "../../ui/floatingBtn/floatingBtn";
 import { FaArrowRight } from "react-icons/fa";
 import { useTranslation } from "react-i18next";
 import ProgressDots from "../../ui/progressDots/progressDots";
-
+import { useSwipeNavigation } from "../../services/helper/navigationUtils";
 
 interface WelcomeContainerProps {
   closeOverlay: () => void;
@@ -22,28 +21,25 @@ const WelcomeContainer: React.FC<WelcomeContainerProps> = ({ closeOverlay }) => 
   const [allowedTechnicalStore, setAllowedTechnicalStore] = useState(false);
   const { t } = useTranslation();
 
-
-  const nextScreen = () => setCurrentScreen((current) => (current + 1) % availableScreens);
-  const prevScreen = () => setCurrentScreen(current => {
-    if (current === 0) return current;
-    return (current - 1 + availableScreens) % availableScreens;
-  });
-
-
-  const handlers = useSwipeable({
-    onSwipedLeft: () => handleSubmit(),
-    onSwipedRight: () => prevScreen(),
-    trackMouse: true,
-    trackTouch: true,
-  });
-
-  const getScreenClassName = (screenNumber: number): string => {
-    if (currentScreen === screenNumber) return "slide-in";
-    return "hide";
-  };
+  const screens = [
+    { component: "welcome1", screen: <WelcomeScreen1Container /> },
+    { component: "welcome3", screen: <WelcomeScreen3Container /> },
+    { component: "welcome4", screen: <WelcomeScreen4Container /> },
+    {
+      component: "welcome5",
+      screen: (
+        <WelcomeScreen5Container
+          storeReduxLocal={storeReduxLocal}
+          setStoreReduxLocal={setStoreReduxLocal}
+          allowedTechnicalStore={allowedTechnicalStore}
+          setAllowedTechnicalStore={setAllowedTechnicalStore}
+        />
+      ),
+    },
+  ];
 
   const handleSubmit = () => {
-    if (currentScreen === 3) {
+    if (currentScreen === availableScreens - 1) {
       if (!allowedTechnicalStore) {
         alert(t("welcomeScreen5_NeedTechnicalStorage"));
         return;
@@ -52,43 +48,37 @@ const WelcomeContainer: React.FC<WelcomeContainerProps> = ({ closeOverlay }) => 
         localStorage.setItem("storeReduxLocal", storeReduxLocal.toString());
       }
       closeOverlay();
+    } else {
+      setCurrentScreen((current) => current + 1);
     }
-    nextScreen();
-  }
+  };
 
-    // UseEffect to handle key presses for arrow keys
-    useEffect(() => {
-      const handleKeyDown = (event: KeyboardEvent) => {
-        if (event.key === "ArrowRight") {
-          handleSubmit();
-        } else if (event.key === "ArrowLeft") {
-          prevScreen();
-        }
-      };
+  // Swipe and Key Navigation
+  const handlers = useSwipeNavigation({
+    navLinks: Array.from({ length: availableScreens }, (_, index) => ({
+      path: "", 
+      component: index.toString()
+    })),
+    activeComponent: currentScreen.toString(),
+    setActiveComponent: (component) => setCurrentScreen(parseInt(component)),
+    enable: true,
+    onEnd: handleSubmit
+  });
+
+  const getScreenClassName = (screenNumber: number): string => {
+    if (currentScreen === screenNumber) return "slide-in";
+    return "hide";
+  };
   
-      window.addEventListener("keydown", handleKeyDown);
-      
-      return () => {
-        window.removeEventListener("keydown", handleKeyDown);
-      };
-    },);
-
 
   return (
     <div {...handlers} className="welcome-container" data-testid="welcome-container">
-      <div className={`screen ${getScreenClassName(3)}`}>
-        <WelcomeScreen5Container storeReduxLocal={storeReduxLocal} setStoreReduxLocal={setStoreReduxLocal} allowedTechnicalStore={allowedTechnicalStore} setAllowedTechnicalStore={setAllowedTechnicalStore} />
-      </div>
+      {screens.map((screenObj, index) => (
+        <div key={index} className={`screen ${getScreenClassName(index)}`}>
+          {screenObj.screen}
+        </div>
+      ))}
 
-      <div className={`screen ${getScreenClassName(2)}`}>
-        <WelcomeScreen4Container />
-      </div>
-      <div className={`screen ${getScreenClassName(1)}`}>
-        <WelcomeScreen3Container />
-      </div>
-      <div className={`screen ${currentScreen === 0 ? "slide-in" : "slide-out"}`} data-testid="welcome-container1">
-        <WelcomeScreen1Container />
-      </div>
       <FloatingBtn
         alignment={ButtonAlignment.RIGHT}
         icon={FaArrowRight}
@@ -96,8 +86,6 @@ const WelcomeContainer: React.FC<WelcomeContainerProps> = ({ closeOverlay }) => 
         ariaLabelledBy="Continue Button"
       />
       <ProgressDots steps={availableScreens} currentStep={currentScreen} />
-
-
     </div>
   );
 };
