@@ -15,9 +15,12 @@ Language: Typescript React Capacitor with Redux<br>
 The Tarif Metall calculator is a powerful tool for calculating your hourly wage, both gross and net. Whether you want to take special payments into account or create a detailed salary overview for the year - our calculator offers you the flexibility and accuracy you need.
 
 Google Play Store: https://play.google.com/store/apps/details?id=de.scheub.ig_M_rechner&hl=gsw
-Apple App Store: (Coming soon)
-Galaxy App Store: (Coming soon)
-Website: https://lemon-bay-0f0bdf203.5.azurestaticapps.net/
+
+Apple App Store: (https://apps.apple.com/us/app/tarifrechner-metall/id6680195515)
+
+Galaxy App Store: https://galaxystore.samsung.com/detail/de.scheub.ig_M_rechner
+
+Website: https://www.tarifrechner-metall.de/ / https://lemon-bay-0f0bdf203.5.azurestaticapps.net/
 
 Deutsche Kurzbeschreibung: Mit dem Tarif Metall Rechner erhalten Sie eine leistungsstarke Anwendung, um Ihren Stundenlohn, sowohl brutto als auch netto, präzise zu berechnen. Egal, ob Sie Sonderzahlungen berücksichtigen oder eine detaillierte Gehaltsübersicht für das Jahr erstellen möchten – unser Rechner bietet Ihnen die notwendige Flexibilität und Genauigkeit.
 
