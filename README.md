@@ -24,6 +24,15 @@ Website: https://www.tarifrechner-metall.de/ / https://lemon-bay-0f0bdf203.5.azu
 
 Deutsche Kurzbeschreibung: Mit dem Tarif Metall Rechner erhalten Sie eine leistungsstarke Anwendung, um Ihren Stundenlohn, sowohl brutto als auch netto, präzise zu berechnen. Egal, ob Sie Sonderzahlungen berücksichtigen oder eine detaillierte Gehaltsübersicht für das Jahr erstellen möchten – unser Rechner bietet Ihnen die notwendige Flexibilität und Genauigkeit.
 
+## App Store Screens
+
+| App Store Screens                                                      |                                                       |
+| ----------------------------------------------------------------------- | ----------------------------------------------------------------------- |
+| <img src="images/screens/screen_1_1.png" alt="Start Screen" height="300"> | <img src="images/screens/screen_1_2.PNG" alt="Start Screen" height="300"> |
+| <img src="images/screens/screens1.png" alt="Start Screen" height="300"> | <img src="images/screens/screens2.PNG" alt="Start Screen" height="300"> |
+| <img src="images/screens/screens3.png" alt="Start Screen" height="300"> | <img src="images/screens/screens4.PNG" alt="Start Screen" height="300"> |
+| <img src="images/screens/screens5.png" alt="Start Screen" height="300">
+
 
 ## Architecture
 
@@ -43,15 +52,18 @@ In addition, the separation is not 100% sharp, partly because of these modules, 
 
 `UI-Elements`
 At the topmost level, UI-Elements are the fundamental building blocks of our interface. These are the atomic components that include buttons, input fields, and other basic interactive elements. They are styled and abstracted to be reusable across the application.
+Examples of this are the floating button, input fields, the cards, the pop-up, etc.
 
 `View-Components`
 View-Components are composed of UI-Elements and form parts of the application's screens. They are responsible for presenting data and handling user interactions. These components are often reusable within different parts of the application and can communicate with Container-Components for dynamic data fetching.
+A perfect example of the reuse of the individual view components is the IncomeBreakdown view or the views for adjusting the tariff/tax settings.
 
 `Container-Components`
 Container-Components serve as the data-fetching and state management layer in our architecture. They connect View-Components to the Service Layer, managing the application state and providing data to the components as necessary. They may also handle complex user interactions, form submissions, and communicate with services to send or receive data.
 
 `Service Layer`
 The Service Layer is the foundation of our application's client-side architecture. 
+There is a separate encapsulated service which is responsible for calculating tax and a separate one for calculating social security contributions. The generic helper methods / hooks also belong there, such as the methods for retrieving holiday days or the hook that allows you to swipe through the app.
 
 
 ## Available Scripts
@@ -154,7 +166,9 @@ According to the command npm list You can see the deeper NPM modules used and wh
 
 ├── react-router-dom@6.26.1
 
-├── react-scripts@5.0.1
+├── react-scripts@5.0.
+
+├── react-swipeable@7.0.1
 
 ├── react-swipeable@7.0.1
 
