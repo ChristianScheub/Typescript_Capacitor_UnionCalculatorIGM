@@ -91,9 +91,9 @@
     "taxCalculatorView_HealthInsuranceSupplementHelperText": "Geben Sie den gesamten Zusatzbeitrag in Prozent (%) an. Dieser variiert je nach Krankenkasse.",
     "taxCalculatorView_Expenses": "Werbungskosten",
     "taxCalculatorView_RouteToWork": "Arbeitsweg",
-    "taxCalculatorView_RouteToWorkHelperText": "Geben Sie den Arbeitsweg in km an, um die Pendlerpauschale zu berücksichtigen. Es wird davon ausgegangen, dass Sie jeden Arbeitstag im Büro waren, außer an den Feiertagen Ihres Bundeslandes.",
+    "taxCalculatorView_RouteToWorkHelperText": "Geben Sie den Arbeitsweg in km an, um die Pendlerpauschale zu berücksichtigen. Es wird davon ausgegangen, dass Sie jeden Arbeitstag im Büro waren, außer an den Feiertagen Ihres Bundeslandes. Zudem wird davon ausgegeangen das sie diesen Weg in ihre Lohnsteuerkarte bei ihrem Arbeitgeber angegeben haben. Sprich dies wirkt sich auch auf die Berechnung ihrer monatlichen Steuern aus!",
     "taxCalculatorView_WriteOff": "Weitere Werbungskosten",
-    "taxCalculatorView_WriteOffHelperText": "Zusätzliche Werbungskosten wie z.B. Fortbildungsbücher für das Jahr.",
+    "taxCalculatorView_WriteOffHelperText": "Zusätzliche Werbungskosten wie z.B. Fortbildungsbücher für das Jahr. Diese werden hier bei der Berechnung ihres Monatlichen Netto Lohns auch berücksichtig!",
     "tablesView_BreakdownCalculation": "Aufgeschlüsselte Berechnung",
     "tablesView_MonthlySalaryWithoutBonuses": "Monatliches Gehalt (Ohne Sonderzahlungen)",
     "tablesView_YearlySalary": "Jahresgehalt"
