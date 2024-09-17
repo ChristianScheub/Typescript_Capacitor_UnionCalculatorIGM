@@ -1,8 +1,8 @@
 import { useNavigate, NavigateFunction } from "react-router-dom";
 import React from "react";
+import SwitchSlider from "../../ui/switchSlider/SwitchSlider";
 import { useTranslation } from "react-i18next";
 import UsedLibsListContainer from "../../legal/usedLibs/container_usedLibList";
-import SwitchSlider from "../../ui/switchSlider/SwitchSlider";
 
 interface ViewSettingsProps {
   onDatenschutzClick: (navigate: NavigateFunction) => void;
