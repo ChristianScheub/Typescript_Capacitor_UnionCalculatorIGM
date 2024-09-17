@@ -2,7 +2,7 @@ import { useNavigate, NavigateFunction } from "react-router-dom";
 import React from "react";
 import { useTranslation } from "react-i18next";
 import UsedLibsListContainer from "../../legal/usedLibs/container_usedLibList";
-import SwitchSlider from "../../ui/SwitchSlider/SwitchSlider";
+import SwitchSlider from "../../ui/switchSlider/SwitchSlider";
 
 interface ViewSettingsProps {
   onDatenschutzClick: (navigate: NavigateFunction) => void;
@@ -36,11 +36,7 @@ const ViewSettings: React.FC<ViewSettingsProps> = ({
 
   return (
     <div className="backgroundColor">
-      <div
-        style={{
-          marginTop: "env(safe-area-inset-top)",
-        }}
-      >
+      <div>
         <br />
 
         <div className="after-login-container">

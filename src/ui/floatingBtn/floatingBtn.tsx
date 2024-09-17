@@ -13,10 +13,11 @@ interface FloatingBtnProps {
   alignment: ButtonAlignment;
   icon: IconType;
   onClick: () => void;
+  ariaLabelledBy?: string; 
 }
 
 
-const FloatingBtn: React.FC<FloatingBtnProps> = ({ alignment, icon, onClick }) => {
+const FloatingBtn: React.FC<FloatingBtnProps> = ({ alignment, icon, onClick, ariaLabelledBy }) => {
 
   let positionStyle: CSSProperties;
 
@@ -62,6 +63,7 @@ const FloatingBtn: React.FC<FloatingBtnProps> = ({ alignment, icon, onClick }) =
         className="backgroundColorHighlight shadow"
         onClick={onClick}
         data-testid="floating-btn" 
+        aria-labelledby={ariaLabelledBy}
       >
         {React.createElement(icon, { size: 35 })}
       </Button>

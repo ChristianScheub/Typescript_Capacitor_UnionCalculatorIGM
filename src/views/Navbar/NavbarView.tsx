@@ -1,14 +1,15 @@
 import React, { useMemo } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { FaHome, FaCog, FaTable, FaArrowLeft } from 'react-icons/fa';
-import './Navbar.css'; // Importiere die CSS-Datei
+import './Navbar.css';
+import { Navbar } from "react-bootstrap";
 
-interface NavbarProps {
+interface NavbarViewProps {
   setActiveComponent: (component: string) => void;
   activeComponent: string;
 }
 
-const Navbar: React.FC<NavbarProps> = ({ setActiveComponent, activeComponent }) => {
+const NavbarView: React.FC<NavbarViewProps> = ({ setActiveComponent, activeComponent }) => {
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -32,7 +33,7 @@ const Navbar: React.FC<NavbarProps> = ({ setActiveComponent, activeComponent }) 
     setActiveComponent(pathToComponentMap[location.pathname] || 'home');
   }, [location, setActiveComponent]);
 
-  const getColor = (component: string) => (activeComponent === component ? '#d3d3d3' : '#ffffff');
+  const getColor = (component: string) => (activeComponent === component ? '#66B0B0' : '#ffffff');
 
   React.useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
@@ -60,7 +61,11 @@ const Navbar: React.FC<NavbarProps> = ({ setActiveComponent, activeComponent }) 
   }, [activeComponent, location, navigate, setActiveComponent, navLinks]); // useMemo prevents navLinks from causing issues
 
   return (
-    <div className="navbar">
+    <Navbar
+    variant="dark"
+    className="navbarElement width100 shadow"
+  >
+    <div className="navbarContainer">
       {location.pathname.includes('Start') && (
         <Link to="/" className="icon" onClick={() => navigate(-1)}>
           <FaArrowLeft size={30} color={"#ffffff"} />
@@ -81,7 +86,8 @@ const Navbar: React.FC<NavbarProps> = ({ setActiveComponent, activeComponent }) 
         </>
       )}
     </div>
+    </Navbar>
   );
 };
 
-export default Navbar;
+export default NavbarView;

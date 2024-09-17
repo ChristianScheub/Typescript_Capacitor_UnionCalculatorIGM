@@ -31,6 +31,7 @@ export const SalaryCalculatorView: React.FC<SalaryCalculatorViewProps> = ({
 
   return (
     <div>
+      <center>
       <br />
       <Card>
         <h3>{t("salaryCalculatorView_select_tariff")}</h3>
@@ -76,6 +77,7 @@ export const SalaryCalculatorView: React.FC<SalaryCalculatorViewProps> = ({
         <br />
         <hr />
         <b>{t("salaryCalculatorView_gross_monthly_salary")}</b>
+        <br />
         {salary ? `${salary}€` : t("salaryCalculatorView_not_available")}
 
       </Card>
@@ -126,6 +128,7 @@ export const SalaryCalculatorView: React.FC<SalaryCalculatorViewProps> = ({
       </Card>
 
       <br /><br /><br />
+      </center>
     </div>
   );
 };

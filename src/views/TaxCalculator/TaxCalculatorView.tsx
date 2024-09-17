@@ -24,6 +24,8 @@ const TaxCalculatorView: React.FC<TaxCalculatorViewProps> = ({
 
   return (
     <div>
+      <center>
+      <br />
       <Card>
 
         <h3>{t("taxCalculatorView_TaxDetails")}</h3>
@@ -100,6 +102,7 @@ const TaxCalculatorView: React.FC<TaxCalculatorViewProps> = ({
       <br />
       <br />
       <br />
+      </center>
     </div>
   );
 };

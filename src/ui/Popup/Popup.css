@@ -9,7 +9,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    z-index: 1000; /* Stellt sicher, dass das Popup über allem liegt */
+    z-index: 9001; /* Stellt sicher, dass das Popup über allem liegt */
   }
   
   /* Popup-Container */

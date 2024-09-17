@@ -7,9 +7,19 @@ interface PopupProps {
 }
 
 export const Popup: React.FC<PopupProps> = ({ onClose, content }) => {
+  // Handler for overlay click (closes popup)
+  const handleOverlayClick = () => {
+    onClose();
+  };
+
+  // Handler for content click (prevents closing)
+  const handleContentClick = (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+    event.stopPropagation();
+  };
+
   return (
-    <div className="popup-overlay">
-      <div className="popup-container">
+    <div className="popup-overlay" onClick={handleOverlayClick}>
+      <div className="popup-container" onClick={handleContentClick}>
         <button className="popup-close" onClick={onClose}>
           x
         </button>

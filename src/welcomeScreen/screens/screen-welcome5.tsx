@@ -1,6 +1,6 @@
 import React from "react";
 import "./screen-welcome4.css";
-import GenericRadioOption from "./ui/radioBtns/generic-radioBtn";
+import GenericRadioOption from "../../ui/radioBtns/generic-radioBtn";
 import { TFunction } from "i18next";
 import Card from "../../ui/Card/Card";
 
@@ -28,13 +28,15 @@ const ViewWelcomeScreen5: React.FC<ViewWelcomeScreen5Props> = ({
           width: "100vw",
           position: "absolute",
           zIndex: 5,
-          paddingBottom: "10vh"
+          paddingBottom: "10vh",
+          textAlign: "left"
         }}
       >
         <h1 className="welcome-screen-text infoTextWelcome2 makeItCenter" id="infoTitle2">
           {t("welcomeScreen5_Headline")}
         </h1>
-
+        <br />
+        <center>
         <Card>
           <h3> {t("welcomeScreen5_Headline2")}</h3>
           <br />
@@ -72,6 +74,7 @@ const ViewWelcomeScreen5: React.FC<ViewWelcomeScreen5Props> = ({
             onChange={setAllowedTechnicalStore}
           />
         </Card>
+        </center>
       </div>
     </div>
   );

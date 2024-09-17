@@ -1,6 +1,6 @@
 import React from "react";
 import "./screen-welcome4.css";
-import GenericRadioOption from "./ui/radioBtns/generic-radioBtn";
+import GenericRadioOption from "../../ui/radioBtns/generic-radioBtn";
 import { TFunction } from "i18next";
 import TaxClassContainer from "../../components/Settings/TaxCalculatorContainer";
 
@@ -13,9 +13,8 @@ interface ViewWelcomeScreen4Props {
 const ViewWelcomeScreen4: React.FC<ViewWelcomeScreen4Props> = ({
   t,
   usingTaxCalculator,
-  setUsingTaxCalculator
+  setUsingTaxCalculator,
 }) => {
-
   return (
     <div className="welcome-screen colorWhite">
       <div
@@ -26,9 +25,20 @@ const ViewWelcomeScreen4: React.FC<ViewWelcomeScreen4Props> = ({
           zIndex: 5,
         }}
       >
-        <h1 className="welcome-screen-text" id="infoTitle4">{t("welcomeScreen4_Headline")}</h1>
+        <center>
+          <h1 className="welcome-screen-text" id="infoTitle4">
+            {t("welcomeScreen4_Headline")}
+          </h1>
+        </center>
         <br />
-        <div style={{ marginLeft: "10vw", marginTop: "2vh", display: "none", color:"black" }}>
+        <div
+          style={{
+            marginLeft: "10vw",
+            marginTop: "2vh",
+            display: "none",
+            color: "black",
+          }}
+        >
           <GenericRadioOption
             label={t("welcomeScreen4_Option1")}
             darkMode={false}
@@ -45,7 +55,6 @@ const ViewWelcomeScreen4: React.FC<ViewWelcomeScreen4Props> = ({
           />
         </div>
         <TaxClassContainer />
-
       </div>
     </div>
   );

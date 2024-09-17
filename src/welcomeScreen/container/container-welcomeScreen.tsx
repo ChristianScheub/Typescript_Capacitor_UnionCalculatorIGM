@@ -8,7 +8,7 @@ import { useSwipeable } from "react-swipeable";
 import FloatingBtn, { ButtonAlignment } from "../../ui/floatingBtn/floatingBtn";
 import { FaArrowRight } from "react-icons/fa";
 import { useTranslation } from "react-i18next";
-import ProgressDots from "../screens/ui/progressDots/progressDots";
+import ProgressDots from "../../ui/progressDots/progressDots";
 
 
 interface WelcomeContainerProps {
@@ -93,6 +93,7 @@ const WelcomeContainer: React.FC<WelcomeContainerProps> = ({ closeOverlay }) => 
         alignment={ButtonAlignment.RIGHT}
         icon={FaArrowRight}
         onClick={handleSubmit}
+        ariaLabelledBy="Continue Button"
       />
       <ProgressDots steps={availableScreens} currentStep={currentScreen} />
 

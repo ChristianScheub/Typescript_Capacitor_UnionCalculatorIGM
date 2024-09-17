@@ -4,6 +4,7 @@ import Card from "../../ui/Card/Card";
 import { YearlyBarChart } from "../../ui/YearlyBarChart";
 import { TaxAndInsurancePieChart } from "../../ui/TaxAndInsurancePieChart";
 import { useTranslation } from "react-i18next";
+import 'typeface-roboto';
 
 const HomeView: React.FC<HomeViewProps> = ({
   salaryWithBonus,
@@ -54,7 +55,7 @@ const HomeView: React.FC<HomeViewProps> = ({
         </h2>
       </center>
 
-      <div style={containerStyle}>
+      <div style={containerStyle} className="makeItCenter">
 
 
         <Card>
@@ -90,7 +91,7 @@ const HomeView: React.FC<HomeViewProps> = ({
       </div>
 
       <br />
-      <div style={containerStyle}>
+      <div style={containerStyle} className="makeItCenter">
         <YearlyBarChart
           title={t("homeView_gross_salary_overview")}
           hint={t("homeView_profit_sharing_hint")}
@@ -123,7 +124,7 @@ const HomeView: React.FC<HomeViewProps> = ({
 
       <br />
       <br />
-      <i> {t("warning_calulcationIsEstimation")}</i>
+      <i className="makeItCenter"> {t("warning_calulcationIsEstimation")}</i>
       <br />
       <br />
       <br />

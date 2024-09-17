@@ -1,5 +1,5 @@
 import React from "react";
-import Popup from "../../ui/Popup/Popup";
+import Popup from "../../ui/popup/Popup";
 
 
 interface HelpTextSocialSecurityContainerProps {

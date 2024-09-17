@@ -23,6 +23,7 @@ const ViewWelcomeScreen1 = ({
         alignment={ButtonAlignment.LEFT}
         icon={FaInfo}
         onClick={openInfo}
+        ariaLabelledBy="Legal Notes Button"
       />
     </div>
   );

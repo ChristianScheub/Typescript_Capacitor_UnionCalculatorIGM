@@ -151,7 +151,7 @@ const HomeContainer: React.FC = () => {
       const options: BannerAdOptions = {
         adId: adId,
         adSize: BannerAdSize.BANNER,
-        position: BannerAdPosition.TOP_CENTER,
+        position: BannerAdPosition.BOTTOM_CENTER,
         margin: 0,
         isTesting: false,
         // npa: true // Non-personalized ads if needed

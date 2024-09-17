@@ -1,24 +1,35 @@
-.navbar {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    height: 16vw;
-    width: 100%;
-    background-color: #66B0B0;
-    border-top: 1px solid #ddd;
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    z-index: 1000;
+.navbarContainer {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  min-height: 3em;
+  width: 100%;
+  background-color: #3d6868;
+  position: fixed;
+  left: 0;
+  z-index: 1000;
+  position: fixed;
+  padding-top: calc(env(safe-area-inset-top) + 2vh);
 }
 
-.desktop .navbar {
-    height: 3vw;
+.navbarElement {
+  position: fixed;
+  top: 0;
+  border-bottom: 1px solid #6c757d;
+  background-color: #3d6868;
+  height: 4em;
+  margin-bottom: 10vw;
+  z-index: 9000;
+}
+
+.desktop .navbarContainer {
+  height: 5vw;
 }
 
 .icon {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-decoration: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+  padding: 4vw;
 }
