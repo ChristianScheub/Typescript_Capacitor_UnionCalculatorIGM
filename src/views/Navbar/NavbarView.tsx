@@ -3,6 +3,7 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { FaHome, FaCog, FaTable, FaArrowLeft } from 'react-icons/fa';
 import './Navbar.css';
 import { Navbar } from "react-bootstrap";
+import { Capacitor } from '@capacitor/core';
 
 interface NavbarViewProps {
   setActiveComponent: (component: string) => void;
@@ -12,6 +13,8 @@ interface NavbarViewProps {
 const NavbarView: React.FC<NavbarViewProps> = ({ setActiveComponent, activeComponent }) => {
   const location = useLocation();
   const navigate = useNavigate();
+  const isNativeApp = Capacitor.getPlatform() !== 'web';
+
 
   const navLinks = useMemo(() => [
     { path: '/', component: 'home', icon: <FaHome size={30} />, key: 'home' },
@@ -35,6 +38,8 @@ const NavbarView: React.FC<NavbarViewProps> = ({ setActiveComponent, activeCompo
   const getColor = (component: string) => (activeComponent === component ? '#66B0B0' : '#ffffff');
 
   return (
+    <div className={isNativeApp ? 'nativeApp' : ''}>
+
     <Navbar
     variant="dark"
     className="navbarElement width100 shadow"
@@ -61,6 +66,7 @@ const NavbarView: React.FC<NavbarViewProps> = ({ setActiveComponent, activeCompo
       )}
     </div>
     </Navbar>
+    </div>
   );
 };
 
