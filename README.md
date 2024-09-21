@@ -28,10 +28,10 @@ Deutsche Kurzbeschreibung: Mit dem Tarif Metall Rechner erhalten Sie eine leistu
 
 | App Store Screens                                                      |                                                       |
 | ----------------------------------------------------------------------- | ----------------------------------------------------------------------- |
-| <img src="images/screens/screen_1_1.png" alt="Start Screen" height="300"> | <img src="images/screens/screen_1_2.PNG" alt="Start Screen" height="300"> |
-| <img src="images/screens/screens1.png" alt="Start Screen" height="300"> | <img src="images/screens/screens2.PNG" alt="Start Screen" height="300"> |
-| <img src="images/screens/screens3.png" alt="Start Screen" height="300"> | <img src="images/screens/screens4.PNG" alt="Start Screen" height="300"> |
-| <img src="images/screens/screens5.png" alt="Start Screen" height="300">
+| <img src="images/screens/Screen_1_1.png" alt="Start Screen" height="300"> | <img src="images/screens/Screen_1_2.png" alt="Start Screen" height="300"> |
+| <img src="images/screens/Screens1.png" alt="Start Screen" height="300"> | <img src="images/screens/Screens2.png" alt="Start Screen" height="300"> |
+| <img src="images/screens/Screens3.png" alt="Start Screen" height="300"> | <img src="images/screens/Screens4.png" alt="Start Screen" height="300"> |
+| <img src="images/screens/Screens5.png" alt="Start Screen" height="300">
 
 
 ## Architecture
