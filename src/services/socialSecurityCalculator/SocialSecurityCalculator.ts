@@ -1,6 +1,6 @@
 import { store } from "../../stateManagement/store";
 import Logger from "../logger/logger";
-import { socialSecurityRates, contributionLimits } from "../../config/socialSecurityConfig";
+import { socialSecurityRates, contributionLimits } from "./socialSecurityConfig";
 import { ISocialSecurityCalculator } from "./ISocialSecurityCalculator";
 import { isWestGermany } from "../isWestGermany/isWestGermany";
 import { calculateHourlyWage } from "../helper/hourlyWageCalculator";

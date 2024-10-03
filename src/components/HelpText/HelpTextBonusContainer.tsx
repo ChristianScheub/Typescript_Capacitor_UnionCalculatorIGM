@@ -34,11 +34,10 @@ export const HelpTextBonusContainer: React.FC<HelpTextBonusContainerProps> = ({ 
             </ul>
 
             <h3>4. T-Zug A und T-Zug B</h3>
-            <p>Diese zusätzlichen Zahlungen, auch bekannt als tarifliche Zusatzvergütungen, werden ebenfalls als prozentuale Boni berechnet:</p>
+            <p>Diese zusätzlichen Zahlungen, auch bekannt als tarifliche Zusatzvergütungen, werden ebenfalls als prozentuale Boni berechnet. T-Zug A basierend auf ihr individuelles Monatsentgelt und T-Zug B basierend auf das Eckentgelts in ihrer Region.</p>
             <ul>
                 <li>T-Zug A Prozentsatz: 27,5%</li>
                 <li>T-Zug B Prozentsatz: 18,5%</li>
-                <li>Beispiel: Bei einem Gehalt von 3.000 EUR ergeben sich T-Zug A = 825 EUR und T-Zug B = 555 EUR.</li>
             </ul>
 
             <h3>5. Urlaubsgeld</h3>
