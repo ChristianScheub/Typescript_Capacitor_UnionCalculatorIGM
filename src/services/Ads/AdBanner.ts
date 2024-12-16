@@ -1,4 +1,4 @@
-import { AdMob, AdmobConsentStatus, BannerAdOptions, BannerAdPosition, BannerAdSize } from "@capacitor-community/admob";
+import { AdMob, BannerAdOptions, BannerAdPosition, BannerAdSize } from "@capacitor-community/admob";
 import { Capacitor } from "@capacitor/core";
 
 const showBanner = async () => {
