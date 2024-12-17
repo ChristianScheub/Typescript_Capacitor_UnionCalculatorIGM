@@ -42,6 +42,8 @@ The components used are divided into four categories:
 - `View-Componets`
 - `Container-Componets`
 - `ServiceLayer`
+- `Config`
+
 
 Note: Some of the modules are used from other Web Apps from me like the UsedLibs Modul or the Impressum/Imprint Modules.
 As a result of the use from the modules, some files have an the name "note" instead of "todoList" inside and there is also one configuration file:
@@ -65,6 +67,16 @@ Container-Components serve as the data-fetching and state management layer in ou
 The Service Layer is the foundation of our application's client-side architecture. 
 There is a separate encapsulated service which is responsible for calculating tax and a separate one for calculating social security contributions. The generic helper methods / hooks also belong there, such as the methods for retrieving holiday days or the hook that allows you to swipe through the app.
 
+`Config`
+The configuration layer contains different configurations for the application which should make it as easy as possible to maintain in the long term.
+For example, the current tax rates/staggering, tax class factors, social security rates, amounts of special payments, imprint text, etc.
+
+
+![Union Calculator Architecture](images/srcDiagramMetallSalary.png)
+<i>Attention, the UI elements are not shown here to simplify the display.
+In addition, the logger service is not included, as it has links to almost everything... 
+Furthermore, there are other simplifications such as the App.tsx is not included etc.
+It is therefore only intended as a rough guide.</i>
 
 ## Available Scripts
 
