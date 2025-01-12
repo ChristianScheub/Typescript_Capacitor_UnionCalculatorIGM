@@ -4,52 +4,59 @@ import initializeAds from "./AdConsentForm";
 import showBanner from "./AdBanner";
 import showAdInterstitial from "./AdInterstitial";
 
+const AD_INTERVAL_MINUTES = 10;
+
 export const AdManager: React.FC = () => {
-  const startAdInterval = () => {
-    const interval = setInterval(async () => {
+  const canShowAd = (): boolean => {
+    Logger.info("Check if full screen ad can be shown");
+    const lastAdTime = localStorage.getItem("lastAdTime");
+    if (!lastAdTime) return true;
+
+    const lastAdTimestamp = parseInt(lastAdTime, 10);
+    const now = Date.now();
+    const elapsedMinutes = (now - lastAdTimestamp) / (1000 * 60);
+    return elapsedMinutes >= AD_INTERVAL_MINUTES;
+  };
+
+  const showAdWithCheck = async () => {
+    if (canShowAd()) {
       try {
+        Logger.info("Try to show full screen ad");
         await showAdInterstitial();
+        localStorage.setItem("lastAdTime", Date.now().toString());
       } catch (err) {
         Logger.error("Error showing Interstitial ads: " + err);
       }
-    }, 90000); // 90 seconds interval
-
-    return () => clearInterval(interval);
+    }
   };
 
-  const showFirstAd = () => {
-    setTimeout(async () => {
-      try {
-        await showAdInterstitial();
-      } catch (err) {
-        Logger.error("Error showing Interstitial ads: " + err);
-      }
-
-      // Start the interval for subsequent ads
-      startAdInterval();
-    }, 6000); // Delay of 6 seconds
-  };
-
-  // Function to initialize ads and banner
   const initialize = async () => {
     try {
       await initializeAds();
       await showBanner();
+      Logger.info("Init Ad Manager");
     } catch (err) {
       Logger.error("Error initializing ads or showing banner: " + err);
     }
 
-    // Show the first interstitial ad
-    showFirstAd();
+    setTimeout(() => {
+      showAdWithCheck();
+    }, 6000);
   };
 
   useEffect(() => {
-    // Initialize ads with a 1-second delay
     const timer = setTimeout(() => {
       initialize();
     }, 1000);
 
-    return () => clearTimeout(timer);
+    const interval = setInterval(() => {
+      showAdWithCheck();
+    }, 60000);
+
+    return () => {
+      clearTimeout(timer);
+      clearInterval(interval);
+    };
   }, []);
 
   return null;
