@@ -12,7 +12,7 @@
     "welcomeScreen5_Headline3": "Technically Necessary Local Data Storage",
     "welcomeScreen5_Info2": "We store locally that you have already seen this welcome screen and your detected language.",
     "welcomeScreen5_NeedTechnicalStorage": "Please accept the technically necessary local data storage for the application to function properly.",
-    "warning_calulcationIsEstimation": "This calculation is only a rough estimate of your income as well as taxes and social contributions. We do not guarantee the accuracy of the results.",
+    "warning_calulcationIsEstimation": "This calculation is only a rough estimate of your income, taxes, and social security contributions. It is based partly on data from 2024 and partly on data from 2025. We do not guarantee the accuracy of the results. For more accurate information, please contact a tax advisor and feel free to get involved in the project on GitHub.",
     "homeView_title1": "Income",
     "homeView_title2": "Overview",
     "homeView_income_overview": "Income Overview",
@@ -96,5 +96,6 @@
     "taxCalculatorView_WriteOffHelperText": "Additional expenses such as professional development books for the year.",
     "tablesView_BreakdownCalculation": "Detailed Calculation",
     "tablesView_MonthlySalaryWithoutBonuses": "Monthly Salary (Without Bonuses)",
-    "tablesView_YearlySalary": "Yearly Salary"
+    "tablesView_YearlySalary": "Yearly Salary",
+    "update2025_Note": "Note: This version includes updated tariff and tax data for 2025. Please check your settings to ensure everything is correct. Keep in mind that some tariff data were hard to obtain and may contain minor discrepancies. The tax calculations are largely estimates and only partially updated for 2025. If you have deeper knowledge in this area, we would greatly appreciate your support on GitHub to help improve the project. Thank you for your understanding, and enjoy using the app!"
 }

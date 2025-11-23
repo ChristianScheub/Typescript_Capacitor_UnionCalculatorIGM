@@ -12,16 +12,19 @@ export const HelpTextTaxContainer: React.FC<HelpTextTaxContainerProps> = ({ onCl
     const helpTextContent = (
         <div>
             <h2>Erklärung der Steuerberechnung</h2>
+         <i> Bitte beachten sie das ich diese Werte versucht habe auf 2025 zu aktualisieren, aber viele Zahlen konnte ich nicht so leicht finden und sie sind auf dem Stand von 2024 geblieben und sind teilweise da schon nicht korrekt gewesen.</i> <br /> <br />
+
             <p>In Deutschland wird die Einkommensteuer progressiv berechnet. Das bedeutet, je höher das Einkommen, desto höher der Steuersatz. Die Berechnung erfolgt gestaffelt nach verschiedenen Einkommensgrenzen.</p>
 
             <h3>1. Berechnung für höhere Einkommen</h3>
             <p>Für verschiedene Einkommensstufen werden unterschiedliche Formeln verwendet:</p>
+            <i>Lediglich die Einkommensgrenzen zwischen den Gruppen habe ich auf 2025 aktualisiert, der Rest ist gleich geblieben aber war da schon eventuell nicht korrekt. Und die Steuerklassen Faktoren etc. konnte ich auch nicht aktualisiert finden.</i>
             <ul>
-                <li><strong>Einkommen zwischen 11.605 EUR und 17.005 EUR:</strong> Hier wird die Formel <code>(y * 922.98 + 1400) * y</code> angewendet, wobei <code>y = (Einkommen - 11.604 EUR) / 10.000</code>. Beispiel: Bei einem Einkommen von 15.000 EUR beträgt die Steuer 527,89 EUR.</li>
+                <li><strong>Einkommen zwischen 12.096 EUR und 17.430 EUR:</strong> Hier wird die Formel <code>(y * 922.98 + 1400) * y</code> angewendet, wobei <code>y = (Einkommen - 12.096EUR) / 10.000</code>.</li>
 
-                <li><strong>Einkommen zwischen 17.006 EUR und 66.760 EUR:</strong> In dieser Spanne gilt die Formel <code>(z * 181.19 + 2397) * z + 1025.38</code>, wobei <code>z = (Einkommen - 17.006 EUR) / 10.000</code>. Beispiel: Bei einem Einkommen von 30.000 EUR beträgt die Steuer 3.834,12 EUR.</li>
+                <li><strong>Einkommen zwischen 17.431 EUR und 68.430 EUR:</strong> In dieser Spanne gilt die Formel <code>(z * 181.19 + 2397) * z + 1025.38</code>, wobei <code>z = (Einkommen - 17.430 EUR) / 10.000</code>.</li>
 
-                <li><strong>Einkommen zwischen 66.761 EUR und 277.825 EUR:</strong> Hier wird ein fester Steuersatz von 42% auf das Einkommen angewendet, mit der Formel <code>0.42 * Einkommen - 10.602,13 EUR</code>. Beispiel: Bei einem Einkommen von 100.000 EUR beträgt die Steuer 31.397,87 EUR.</li>
+                <li><strong>Einkommen zwischen 68.430EUR und 277.825 EUR:</strong> Hier wird ein fester Steuersatz von 42% auf das Einkommen angewendet, mit der Formel <code>0.42 * Einkommen - 10.602,13 EUR</code>. Beispiel: Bei einem Einkommen von 100.000 EUR beträgt die Steuer 31.397,87 EUR.</li>
 
                 <li><strong>Einkommen über 277.826 EUR:</strong> Hier gilt der Höchststeuersatz von 45%, mit der Formel <code>0.45 * Einkommen - 18.936,88 EUR</code>. Beispiel: Bei einem Einkommen von 300.000 EUR beträgt die Steuer 116.063,12 EUR.</li>
             </ul>

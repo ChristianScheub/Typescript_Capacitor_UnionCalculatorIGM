@@ -1,14 +1,13 @@
 // Purpose: Define constants for the tax calculation.
 
-// Define income limits as constants
 export const incomeLimits = {
-  lowerLimit1: 11604,  // Lower limit for the first income bracket
-  upperLimit1: 17005,  // Upper limit for the first income bracket
-  lowerLimit2: 17006,  // Lower limit for the second income bracket
-  upperLimit2: 66760,  // Upper limit for the second income bracket
-  lowerLimit3: 66761,  // Lower limit for the third income bracket
-  upperLimit3: 277825, // Upper limit for the third income bracket
-  lowerLimit4: 277826, // Lower limit for the fourth income bracket
+  lowerLimit1: 12096,      // Grundfreibetrag 2025
+  upperLimit1: 17430,      // erste Progressionszone endet bei ~17.430 €
+  lowerLimit2: 17431,
+  upperLimit2: 68430,      // zweite Zone bis zum Spitzensteuersatz
+  lowerLimit3: 68431,
+  upperLimit3: 277825,     // Spitzenzone bis Reichensteuersatz
+  lowerLimit4: 277826      // ab hier gilt 45 %-Satz
 };
 
 // Define tax rates and constants as constants

@@ -12,7 +12,7 @@
     "welcomeScreen5_Headline3": "Technisch notwendige lokale Datenspeicherung",
     "welcomeScreen5_Info2": "Wir speichern lokal, dass Sie diesen Willkommensscreen bereits gesehen haben sowie Ihre erkannte Sprache.",
     "welcomeScreen5_NeedTechnicalStorage": "Bitte akzeptieren Sie die technisch notwendige lokale Datenspeicherung, damit die Anwendung ordnungsgemäß funktioniert.",
-    "warning_calulcationIsEstimation": "Diese Berechnung dient nur als grobe Schätzung für Ihr Einkommen sowie für Steuern und Sozialabgaben. Wir übernehmen keine Garantie für die Genauigkeit der Ergebnisse.",
+    "warning_calulcationIsEstimation": "Diese Berechnung dient nur als grobe Schätzung für Ihr Einkommen sowie für Steuern und Sozialabgaben. Sie basiert teilweise auf Daten von 2024 und teilweise auf Daten von 2025. Wir übernehmen keine Garantie für die Genauigkeit der Ergebnisse. Für genauere Hinweise kontaktieren Sie einen Steuerberater und engagieren sie sich gerne in dem Projekt auf GitHub.",
     "homeView_title1": "Einkommens",
     "homeView_title2": "übersicht",
     "homeView_income_overview": "Einkommensübersicht",
@@ -96,5 +96,6 @@
     "taxCalculatorView_WriteOffHelperText": "Zusätzliche Werbungskosten wie z.B. Fortbildungsbücher für das Jahr. Diese werden hier bei der Berechnung ihres Monatlichen Netto Lohns auch berücksichtig!",
     "tablesView_BreakdownCalculation": "Aufgeschlüsselte Berechnung",
     "tablesView_MonthlySalaryWithoutBonuses": "Monatliches Gehalt (Ohne Sonderzahlungen)",
-    "tablesView_YearlySalary": "Jahresgehalt"
+    "tablesView_YearlySalary": "Jahresgehalt",
+    "update2025_Note": "Hinweis: Diese Version enthält aktualisierte Tarif- und Steuerdaten für 2025. Bitte prüfen Sie Ihre Einstellungen, um sicherzugehen, dass alles korrekt ist. Beachten Sie, dass einige Tarifdaten nur schwer verfügbar waren und daher eventuell Abweichungen enthalten können. Auch die Steuerberechnung basiert größtenteils auf Schätzungen und ist nur teilweise auf 2025 aktualisiert. Wenn Sie sich hier besser auskennen, freuen wir uns sehr über Ihre Unterstützung auf GitHub, um das Projekt gemeinsam zu verbessern. Vielen Dank für Ihr Verständnis und viel Freude bei der Nutzung der App!"
 }
