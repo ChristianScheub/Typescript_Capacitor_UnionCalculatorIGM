@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useCallback } from "react";
 import Logger from "../logger/logger";
 import initializeAds from "./AdConsentForm";
 import showBanner from "./AdBanner";
@@ -18,7 +18,7 @@ export const AdManager: React.FC = () => {
     return elapsedMinutes >= AD_INTERVAL_MINUTES;
   };
 
-  const showAdWithCheck = async () => {
+  const showAdWithCheck = useCallback(async () => {
     if (canShowAd()) {
       try {
         Logger.info("Try to show full screen ad");
@@ -28,9 +28,9 @@ export const AdManager: React.FC = () => {
         Logger.error("Error showing Interstitial ads: " + err);
       }
     }
-  };
+  }, []);
 
-  const initialize = async () => {
+  const initialize = useCallback(async () => {
     try {
       await initializeAds();
       await showBanner();
@@ -42,7 +42,7 @@ export const AdManager: React.FC = () => {
     setTimeout(() => {
       showAdWithCheck();
     }, 6000);
-  };
+  }, [showAdWithCheck]);
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -57,7 +57,7 @@ export const AdManager: React.FC = () => {
       clearTimeout(timer);
       clearInterval(interval);
     };
-  }, []);
+  }, [initialize, showAdWithCheck]);
 
   return null;
 };

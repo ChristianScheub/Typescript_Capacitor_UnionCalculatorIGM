@@ -1,4 +1,5 @@
 import { render, fireEvent, screen, waitFor } from "@testing-library/react";
+import { vi } from 'vitest';
 import UsedLibListScreen from "./screen_usedLibList";
 
 describe("UsedLibListScreen", () => {
@@ -13,7 +14,7 @@ describe("UsedLibListScreen", () => {
 
   test("clicking list item opens module repository in new tab", () => {
     // Mock window.open
-    const mockWindowOpen = jest.fn();
+    const mockWindowOpen = vi.fn();
     window.open = mockWindowOpen;
 
     render(
