@@ -1,16 +1,20 @@
 import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import { BrowserRouter as Router } from 'react-router-dom';
+import { vi } from 'vitest';
 import Datenschutz from './datenschutz';
 
-jest.mock('../app_configuration/app_texts', () => ({
+vi.mock('./app_texts', () => ({
     datenschutz_text: 'Mocked Datenschutz Text'
 }));
 
-jest.mock('react-router-dom', () => ({
-    ...jest.requireActual('react-router-dom'),
-    useNavigate: jest.fn(),
-}));
+vi.mock('react-router-dom', async () => {
+    const actual = await vi.importActual('react-router-dom');
+    return {
+        ...actual,
+        useNavigate: vi.fn(),
+    };
+});
 
 
 describe('Datenschutz Card Tests', () => {

@@ -1,5 +1,5 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { createRoot } from 'react-dom/client';
 import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react';
 import { store, persistor } from './stateManagement/store';
@@ -28,7 +28,10 @@ const AppWithoutPersistGate = () => (
   </Provider>
 );
 
-ReactDOM.render(
-  isStorageAllowed() ? <AppWithPersistGate /> : <AppWithoutPersistGate />,
-  document.getElementById('root')
+const container = document.getElementById('root');
+if (!container) throw new Error('Failed to find the root element');
+const root = createRoot(container);
+
+root.render(
+  isStorageAllowed() ? <AppWithPersistGate /> : <AppWithoutPersistGate />
 );

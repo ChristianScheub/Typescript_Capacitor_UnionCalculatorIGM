@@ -1,4 +1,3 @@
-import React from "react";
 import { Routes, Route } from "react-router-dom";
 import WelcomeContainer from "./welcomeScreen/container/container-welcomeScreen";
 import HomeContainer from "./components/Calculations/HomeContainer";
