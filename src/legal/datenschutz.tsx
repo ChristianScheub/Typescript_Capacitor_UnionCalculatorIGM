@@ -1,7 +1,6 @@
 import { Card, CardHeader, CardContent, Typography } from "@mui/material";
 import { datenschutz_text } from "./app_texts";
 import CodeToTextParser from "./codeToTextParser";
-import React from "react";
 
 const Datenschutz: React.FC = () => {
 

@@ -1,7 +1,6 @@
 import { Card, CardHeader, CardContent, Typography } from "@mui/material";
 import { impressum_text } from "./app_texts";
 import CodeToTextParser from "./codeToTextParser";
-import React from "react";
 
 const Impressum: React.FC = () => {
 
