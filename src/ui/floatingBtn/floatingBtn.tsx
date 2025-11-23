@@ -1,5 +1,5 @@
 import React, { CSSProperties } from "react";
-import { IconButton } from "@mui/material";
+import { Button } from "react-bootstrap";
 import { IconType } from "react-icons";
 
 
@@ -53,25 +53,20 @@ const FloatingBtn: React.FC<FloatingBtnProps> = ({ alignment, icon, onClick, ari
 
   return (
     <div style={positionStyle} data-testid="floating-btnDiv">
-      <IconButton
-        sx={{
+      <Button
+        style={{
           height: "4rem",
           width: "4rem",
           borderColor: "#0a58ca",
           borderRadius: '50%',
-          backgroundColor: 'var(--highlight-color, #0a58ca)',
-          color: 'white',
-          '&:hover': {
-            backgroundColor: 'var(--highlight-color-hover, #084298)',
-          },
         }}
-        className="shadow"
+        className="backgroundColorHighlight shadow"
         onClick={onClick}
         data-testid="floating-btn" 
         aria-labelledby={ariaLabelledBy}
       >
         {React.createElement(icon, { size: 35 })}
-      </IconButton>
+      </Button>
     </div>
   );
 };

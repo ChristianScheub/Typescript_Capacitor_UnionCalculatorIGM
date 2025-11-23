@@ -17,7 +17,7 @@ export default defineConfig({
         manualChunks: {
           vendor: ['react', 'react-dom', 'react-router-dom'],
           redux: ['@reduxjs/toolkit', 'react-redux', 'redux-persist'],
-          ui: ['@mui/material', '@emotion/react', '@emotion/styled', 'bootstrap'],
+          ui: ['@mui/material', '@emotion/react', '@emotion/styled', 'react-bootstrap', 'bootstrap'],
         },
       },
     },
