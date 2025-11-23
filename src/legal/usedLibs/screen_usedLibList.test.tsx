@@ -1,4 +1,4 @@
-import { render, fireEvent, screen, waitFor } from "@testing-library/react";
+import { render, fireEvent, screen } from "@testing-library/react";
 import { vi } from 'vitest';
 import UsedLibListScreen from "./screen_usedLibList";
 
@@ -38,14 +38,12 @@ describe("UsedLibListScreen", () => {
 
   });
 
-  test("closing modal works correctly", async () => {
-    render(<UsedLibListScreen open={true} handleClose={() => {}} npmModules={mockNpmModules} />);
+  test("closing modal works correctly", () => {
+    const mockHandleClose = vi.fn();
+    render(<UsedLibListScreen open={true} handleClose={mockHandleClose} npmModules={mockNpmModules} />);
 
-    fireEvent.click(screen.getByTestId("usedLib_Open_Btn"));
     fireEvent.click(screen.getByTestId("close-btn-lib-list-modal"));
 
-    await waitFor(() => {
-      expect(screen.queryByTestId("used-lib-list-modal")).toBeNull();
-    });
+    expect(mockHandleClose).toHaveBeenCalled();
   });
 });

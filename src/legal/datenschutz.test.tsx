@@ -4,7 +4,7 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import { vi } from 'vitest';
 import Datenschutz from './datenschutz';
 
-vi.mock('../app_configuration/app_texts', () => ({
+vi.mock('./app_texts', () => ({
     datenschutz_text: 'Mocked Datenschutz Text'
 }));
 
