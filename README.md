@@ -1,4 +1,3 @@
-
 # UnionCalculator IGM
 Last Dependencies update:  11.2025
 Last Edit: 09.2024 <br>
