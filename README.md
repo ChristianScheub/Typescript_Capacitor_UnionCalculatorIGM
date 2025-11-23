@@ -128,70 +128,40 @@ To learn React, check out the [React documentation](https://reactjs.org/).
 # Used NPM Modules
 According to the command npm list You can see the deeper NPM modules used and which of these are used in the licenses.json.
 
-├── @capacitor-community/admob@6.0.0
-
-├── @capacitor/android@6.1.2
-
-├── @capacitor/cli@6.1.2
-
-├── @capacitor/core@6.1.2
-
-├── @capacitor/ios@6.1.2
-
-├── @emotion/react@11.13.0
-
-├── @emotion/styled@11.13.0
-
-├── @mui/material@5.16.7
-
-├── @reduxjs/toolkit@2.2.7
-
-├── @testing-library/jest-dom@5.17.0
-
-├── @testing-library/react@13.4.0
-
-├── @testing-library/user-event@13.5.0
-
-├── @types/jest@27.5.2
-
-├── @types/node@16.18.105
-
-├── @types/react-dom@18.3.0
-
-├── @types/react@18.3.3
-
-├── bootstrap@5.3.3
-
-├── i18next-browser-languagedetector@8.0.0
-
-├── i18next@23.14.0
-
-├── react-bootstrap@2.10.4
-
-├── react-dom@18.3.1
-
-├── react-i18next@15.0.1
-
-├── react-icons@5.3.0
-
-├── react-redux@9.1.2
-
-├── react-router-dom@6.26.1
-
-├── react-scripts@5.0.
-
-├── react-swipeable@7.0.1
-
-├── react-swipeable@7.0.1
-
-├── react@18.3.1
-
-├── recharts@2.12.7
-
-├── redux-persist@6.0.0
-
-├── typeface-roboto@1.1.13
-
-├── typescript@4.9.5
-
-└── web-vitals@2.1.4
+<br />├── @capacitor-community/admob@7.2.0
+<br />├── @capacitor/android@7.4.4
+<br />├── @capacitor/cli@7.4.4
+<br />├── @capacitor/core@7.4.4
+<br />├── @capacitor/ios@7.4.4
+<br />├── @capacitor/status-bar@7.0.3
+<br />├── @emotion/react@11.14.0
+<br />├── @emotion/styled@11.14.1
+<br />├── @mui/material@7.3.5
+<br />├── @reduxjs/toolkit@2.10.1
+<br />├── @testing-library/jest-dom@6.9.1
+<br />├── @testing-library/react@16.3.0
+<br />├── @testing-library/user-event@14.6.1
+<br />├── @types/node@24.10.1
+<br />├── @types/react-dom@18.3.7
+<br />├── @types/react@18.3.27
+<br />├── @vitejs/plugin-react@4.7.0
+<br />├── @vitest/ui@3.2.4
+<br />├── bootstrap@5.3.8
+<br />├── i18next-browser-languagedetector@8.2.0
+<br />├── i18next@25.6.3
+<br />├── jsdom@26.1.0
+<br />├── react-bootstrap@2.10.10
+<br />├── react-dom@18.3.1
+<br />├── react-i18next@16.3.5
+<br />├── react-icons@5.5.0
+<br />├── react-redux@9.2.0
+<br />├── react-router-dom@6.30.2
+<br />├── react-swipeable@7.0.2
+<br />├── react@18.3.1
+<br />├── recharts@2.15.4
+<br />├── redux-persist@6.0.0
+<br />├── typeface-roboto@1.1.13
+<br />├── typescript@5.9.3
+<br />├── vite@6.4.1
+<br />├── vitest@3.2.4
+<br />└── web-vitals@5.1.0
