@@ -1,5 +1,6 @@
 
 # UnionCalculator IGM
+Last Dependencies update:  11.2025
 Last Edit: 09.2024 <br>
 Language: Typescript React Capacitor with Redux<br>
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=ChristianScheub_Typescript_Capacitor_UnionCalculatorIGM&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=ChristianScheub_Typescript_Capacitor_UnionCalculatorIGM)
