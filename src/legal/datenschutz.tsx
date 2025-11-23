@@ -1,4 +1,4 @@
-import { Card } from "react-bootstrap";
+import { Card, CardHeader, CardContent, Typography } from "@mui/material";
 import { datenschutz_text } from "./app_texts";
 import CodeToTextParser from "./codeToTextParser";
 import React from "react";
@@ -14,10 +14,12 @@ const Datenschutz: React.FC = () => {
       >
         <div className="after-login-container">
           <Card className="mb-3 margin2vw">
-            <Card.Header as="h2">Infos</Card.Header>
-            <Card.Body>
+            <CardHeader 
+              title={<Typography variant="h5">Infos</Typography>}
+            />
+            <CardContent>
               <CodeToTextParser code={datenschutz_text} />
-            </Card.Body>
+            </CardContent>
           </Card>
         </div>
       </div>

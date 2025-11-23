@@ -1,4 +1,4 @@
-import { Card } from "react-bootstrap";
+import { Card, CardHeader, CardContent, Typography } from "@mui/material";
 import { impressum_text } from "./app_texts";
 import CodeToTextParser from "./codeToTextParser";
 import React from "react";
@@ -15,10 +15,12 @@ const Impressum: React.FC = () => {
       >
         <div className="after-login-container">
           <Card className="mb-3 margin2vw">
-            <Card.Header as="h2">Impressum / Legal Notice</Card.Header>
-            <Card.Body>
+            <CardHeader 
+              title={<Typography variant="h5">Impressum / Legal Notice</Typography>}
+            />
+            <CardContent>
               <CodeToTextParser code={impressum_text} />
-            </Card.Body>
+            </CardContent>
           </Card>
         </div>
       </div>

@@ -2,7 +2,7 @@ import React, { useMemo } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { FaHome, FaCog, FaTable, FaArrowLeft } from 'react-icons/fa';
 import './Navbar.css';
-import { Navbar } from "react-bootstrap";
+import { AppBar, Toolbar } from "@mui/material";
 import { Capacitor } from '@capacitor/core';
 
 interface NavbarViewProps {
@@ -40,11 +40,11 @@ const NavbarView: React.FC<NavbarViewProps> = ({ setActiveComponent, activeCompo
   return (
     <div className={isNativeApp ? 'nativeApp' : ''}>
 
-    <Navbar
-    variant="dark"
+    <AppBar
+    position="static"
     className="navbarElement width100 shadow"
   >
-    <div className="navbarContainer">
+    <Toolbar className="navbarContainer">
       {location.pathname.includes('Start') && (
         <Link to="/" className="icon" onClick={() => navigate(-1)}>
           <FaArrowLeft size={30} color={"#ffffff"} />
@@ -64,8 +64,8 @@ const NavbarView: React.FC<NavbarViewProps> = ({ setActiveComponent, activeCompo
           ))}
         </>
       )}
-    </div>
-    </Navbar>
+    </Toolbar>
+    </AppBar>
     </div>
   );
 };
