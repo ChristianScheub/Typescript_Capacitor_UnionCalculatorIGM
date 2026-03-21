@@ -27,9 +27,20 @@ function walkDir(dir, callback) {
 
 console.log('\n\x1b[36m🔍 Running Pre-Build Checks...\x1b[0m\n');
 
+// 1. Run Tests
+console.log('Running tests...');
+try {
+  execSync('npm test -- --run', { stdio: 'inherit' });
+  console.log('\n\x1b[32m✅ All tests passed!\x1b[0m\n');
+} catch (error) {
+  console.error('\n\x1b[31m❌ Tests failed!\x1b[0m\n');
+  console.error('\x1b[33mPlease fix the test failures above before building.\x1b[0m\n');
+  process.exit(1);
+}
+
 const violations = [];
 
-// 1. FileName Check - views folder (View.tsx, ViewProps.tsx, or .css)
+// 2. FileName Check - views folder (View.tsx, ViewProps.tsx, or .css)
 console.log('Checking views folder naming convention...');
 const viewsDir = path.join(srcDir, 'views');
 if (fs.existsSync(viewsDir)) {
@@ -58,7 +69,7 @@ if (fs.existsSync(viewsDir)) {
   });
 }
 
-// 2. FileName Check - components folder (Container.tsx)
+// 3. FileName Check - components folder (Container.tsx)
 console.log('Checking components folder naming convention...');
 const componentsDir = path.join(srcDir, 'components');
 if (fs.existsSync(componentsDir)) {
@@ -80,7 +91,7 @@ if (fs.existsSync(componentsDir)) {
   });
 }
 
-// 3. FileName Check - ui folder (.tsx or .css)
+// 4. FileName Check - ui folder (.tsx or .css)
 console.log('Checking ui folder naming convention...');
 const uiDir = path.join(srcDir, 'ui');
 if (fs.existsSync(uiDir)) {
@@ -98,7 +109,240 @@ if (fs.existsSync(uiDir)) {
   });
 }
 
-// 4. Console Log Check
+// 5. Logic/State/Redux/Navigation Hook Check in ui and views folders
+console.log('Checking ui and views folders for forbidden logic/state/redux/navigation hooks...');
+
+const FORBIDDEN_PATTERNS = [
+  // React Hooks (Logik-Bausteine)
+  { pattern: /\buseEffect\b/,        label: 'useEffect' },
+  { pattern: /\buseState\b/,         label: 'useState' },
+  { pattern: /\buseCallback\b/,      label: 'useCallback' },
+  { pattern: /\buseMemo\b/,          label: 'useMemo' },
+  { pattern: /\buseContext\b/,       label: 'useContext' },
+  // Redux
+  { pattern: /\buseSelector\b/,      label: 'useSelector' },
+  { pattern: /\buseReducer\b/,       label: 'useReducer' },
+  { pattern: /\bRootState\b/,        label: 'RootState' },
+  // Navigation
+  { pattern: /\buseLocation\b/,      label: 'useLocation' },
+  { pattern: /\bNavigateFunction\b/, label: 'NavigateFunction' },
+];
+
+// Files to skip entirely (relative paths from project root, using forward slashes)
+const HOOK_CHECK_IGNORED_FILES = [
+  'src/views/Navbar/NavbarView.tsx',
+];
+
+// Per-file pattern allowlists (relative paths → set of allowed labels)
+const HOOK_CHECK_FILE_ALLOWLIST = {
+  'src/views/settings/SettingsView.tsx': new Set(['useNavigate', 'NavigateFunction']),
+};
+
+const foldersToCheck = ['ui', 'views'];
+
+foldersToCheck.forEach((folderName) => {
+  const folderPath = path.join(srcDir, folderName);
+  if (!fs.existsSync(folderPath)) return;
+
+  walkDir(folderPath, (file) => {
+    if (!file.endsWith('.ts') && !file.endsWith('.tsx')) return;
+
+    const relFile = path.relative(projectRoot, file).split(path.sep).join('/');
+
+    // Skip ignored files entirely
+    if (HOOK_CHECK_IGNORED_FILES.includes(relFile)) return;
+
+    const content = fs.readFileSync(file, 'utf8');
+    const allowedLabels = HOOK_CHECK_FILE_ALLOWLIST[relFile] ?? new Set();
+
+    FORBIDDEN_PATTERNS.forEach(({ pattern, label }) => {
+      if (allowedLabels.has(label)) return;
+      if (pattern.test(content)) {
+        violations.push(
+          `Logic/Hook Check (${folderName}): File '${relFile}' contains forbidden pattern '${label}'. ` +
+          `Files in '${folderName}/' must be pure presentational components without logic, state, redux or navigation hooks.`
+        );
+      }
+    });
+  });
+});
+
+// 6. Unused Exports Check - services folder
+console.log('Checking services folder for unused exports...');
+
+const servicesDir = path.join(srcDir, 'services');
+
+if (fs.existsSync(servicesDir)) {
+  // Collect all non-test src files for usage search
+  const allSrcFiles = [];
+  walkDir(srcDir, (file) => {
+    if (!file.endsWith('.ts') && !file.endsWith('.tsx')) return;
+    if (file.includes('.test.')) return;
+    allSrcFiles.push(file);
+  });
+
+  // Regex to extract named exports from service files:
+  //   export const foo ...
+  //   export function foo ...
+  //   export async function foo ...
+  //   export default function foo ... (named)
+  //   export default class Foo ...
+  //   export class Foo ...
+  //   export abstract class Foo ...
+  const EXPORT_NAME_REGEX =
+    /^export\s+(?:default\s+)?(?:async\s+)?(?:function|const|class|abstract\s+class)\s+([A-Za-z_$][A-Za-z0-9_$]*)/gm;
+
+  walkDir(servicesDir, (file) => {
+    if (!file.endsWith('.ts') && !file.endsWith('.tsx')) return;
+    if (file.includes('.test.')) return;
+
+    const content = fs.readFileSync(file, 'utf8');
+    const relFile = path.relative(projectRoot, file).split(path.sep).join('/');
+
+    // Usage content = all non-test src files EXCEPT the file being checked itself
+    const usageContents = allSrcFiles
+      .filter((f) => f !== file)
+      .map((f) => fs.readFileSync(f, 'utf8'))
+      .join('\n');
+
+    let match;
+    EXPORT_NAME_REGEX.lastIndex = 0;
+    while ((match = EXPORT_NAME_REGEX.exec(content)) !== null) {
+      const exportName = match[1];
+
+      const usageRegex = new RegExp(`\\b${exportName}\\b`);
+      if (!usageRegex.test(usageContents)) {
+        violations.push(
+          `Unused Export Check (services): '${exportName}' in '${relFile}' is exported but never used in src (excluding test files).`
+        );
+      }
+    }
+  });
+}
+
+// 7. Layer Boundary / Import Check
+console.log('Checking layer boundary import rules...');
+
+// views/ and ui/ must not import from services/ or stateManagement/
+const PRESENTATION_LAYER_FOLDERS = ['views', 'ui'];
+const FORBIDDEN_IMPORTS_IN_PRESENTATION = [
+  { pattern: /from\s+['"][^'"]*\/services\//, label: 'services/' },
+  { pattern: /from\s+['"][^'"]*\/stateManagement\//, label: 'stateManagement/' },
+];
+
+// Per-file import allowlists (relative paths → set of allowed forbidden labels)
+const IMPORT_CHECK_FILE_ALLOWLIST = {
+  'src/views/TaxCalculator/TaxCalculatorView.tsx': new Set(['services/']),
+};
+
+PRESENTATION_LAYER_FOLDERS.forEach((folderName) => {
+  const folderPath = path.join(srcDir, folderName);
+  if (!fs.existsSync(folderPath)) return;
+
+  walkDir(folderPath, (file) => {
+    if (!file.endsWith('.ts') && !file.endsWith('.tsx')) return;
+
+    const relFile = path.relative(projectRoot, file).split(path.sep).join('/');
+    const content = fs.readFileSync(file, 'utf8');
+    const allowedLabels = IMPORT_CHECK_FILE_ALLOWLIST[relFile] ?? new Set();
+
+    FORBIDDEN_IMPORTS_IN_PRESENTATION.forEach(({ pattern, label }) => {
+      if (allowedLabels.has(label)) return;
+      if (pattern.test(content)) {
+        violations.push(
+          `Layer Boundary Check (${folderName}): File '${relFile}' imports from forbidden layer '${label}'. ` +
+          `Presentational files must not depend on services or state management directly.`
+        );
+      }
+    });
+  });
+});
+
+// services/ must not import from components/, views/, or ui/
+const FORBIDDEN_IMPORTS_IN_SERVICES = [
+  { pattern: /from\s+['"][^'"]*\/components\//, label: 'components/' },
+  { pattern: /from\s+['"][^'"]*\/views\//, label: 'views/' },
+  { pattern: /from\s+['"][^'"]*\/ui\//, label: 'ui/' },
+];
+
+if (fs.existsSync(servicesDir)) {
+  walkDir(servicesDir, (file) => {
+    if (!file.endsWith('.ts') && !file.endsWith('.tsx')) return;
+
+    const relFile = path.relative(projectRoot, file).split(path.sep).join('/');
+    const content = fs.readFileSync(file, 'utf8');
+
+    FORBIDDEN_IMPORTS_IN_SERVICES.forEach(({ pattern, label }) => {
+      if (pattern.test(content)) {
+        violations.push(
+          `Layer Boundary Check (services): File '${relFile}' imports from forbidden layer '${label}'. ` +
+          `Services must not depend on UI layers.`
+        );
+      }
+    });
+  });
+}
+
+// 8. Magic Number Check - calculator files in services/
+console.log('Checking services calculator files for magic numbers...');
+
+// Config files are exempt - they ARE the named-constant definitions
+const MAGIC_NUMBER_FILE_IGNORE_PATTERNS = [
+  /Config\.ts$/,
+  /config\.ts$/,
+  /\.test\./,
+];
+
+// Numbers that are universally acceptable without a named constant:
+//   12  → months per year
+//   0   → zero/guard value
+//   1   → identity/unit
+//   100 → percentage base
+//   2   → factor (e.g. "both ways")
+//   0.01 → convergence epsilon / rounding guard
+const MAGIC_NUMBER_WHITELIST = new Set([0, 1, 2, 12, 100]);
+const MAGIC_NUMBER_EPSILON = 0.01; // any float <= this is treated as a convergence guard
+
+// Matches a bare numeric literal used as an operand in an arithmetic expression:
+//   * 0.055   /12   + 52.14   - 18.4
+// Excludes numbers inside object literals (property: VALUE) — those belong in config files
+const MAGIC_NUMBER_REGEX =
+  /(?:[\*\/\+\-]\s*|-\s*)(\d+(?:\.\d+)?)(?!\s*[:,}\]])/g;
+
+if (fs.existsSync(servicesDir)) {
+  walkDir(servicesDir, (file) => {
+    if (!file.endsWith('.ts') && !file.endsWith('.tsx')) return;
+    if (MAGIC_NUMBER_FILE_IGNORE_PATTERNS.some((p) => p.test(file))) return;
+
+    const relFile = path.relative(projectRoot, file).split(path.sep).join('/');
+    const lines = fs.readFileSync(file, 'utf8').split('\n');
+
+    lines.forEach((line, idx) => {
+      // Skip comment lines and import lines
+      const trimmed = line.trim();
+      if (trimmed.startsWith('//') || trimmed.startsWith('*') || trimmed.startsWith('import')) return;
+
+      // Strip inline comments before matching
+      const codePart = line.replace(/\/\/.*$/, '');
+
+      let m;
+      MAGIC_NUMBER_REGEX.lastIndex = 0;
+      while ((m = MAGIC_NUMBER_REGEX.exec(codePart)) !== null) {
+        const num = parseFloat(m[1]);
+        if (MAGIC_NUMBER_WHITELIST.has(num)) continue;
+        if (num <= MAGIC_NUMBER_EPSILON) continue; // convergence epsilon guard
+
+        // Warning only – does not block the build
+        console.warn(
+          `\x1b[33m⚠ Magic Number Check (services): File '${relFile}' line ${idx + 1}: ` +
+          `bare number '${m[1]}' used directly in calculation. Consider extracting it into a named constant in a *Config.ts file.\x1b[0m`
+        );
+      }
+    });
+  });
+}
+
+// 10. Console Log Check
 console.log('Checking for console.log violations...');
 const consoleLogViolations = [];
 walkDir(srcDir, (file) => {
@@ -128,17 +372,6 @@ if (violations.length > 0) {
   console.error('\n\x1b[31m❌ Pre-Build Checks failed!\x1b[0m\n');
   violations.forEach((msg) => console.error('- ' + msg));
   console.error('\n\x1b[33mPlease fix the violations above before building.\x1b[0m\n');
-  process.exit(1);
-}
-
-// 5. Run Tests
-console.log('Running tests...');
-try {
-  execSync('npm test -- --run', { stdio: 'inherit' });
-  console.log('\n\x1b[32m✅ All tests passed!\x1b[0m\n');
-} catch (error) {
-  console.error('\n\x1b[31m❌ Tests failed!\x1b[0m\n');
-  console.error('\x1b[33mPlease fix the test failures above before building.\x1b[0m\n');
   process.exit(1);
 }
 
