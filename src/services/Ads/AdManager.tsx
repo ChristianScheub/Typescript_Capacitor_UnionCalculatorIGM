@@ -1,4 +1,5 @@
 import { useEffect, useCallback } from "react";
+import { Capacitor } from "@capacitor/core";
 import Logger from "../logger/logger";
 import initializeAds from "./AdConsentForm";
 import showBanner from "./AdBanner";
@@ -19,6 +20,10 @@ export const AdManager: React.FC = () => {
   };
 
   const showAdWithCheck = useCallback(async () => {
+    if (Capacitor.getPlatform() === "ios") {
+      Logger.info("Interstitial ads disabled on iOS, only banner is shown");
+      return;
+    }
     if (canShowAd()) {
       try {
         Logger.info("Try to show full screen ad");
