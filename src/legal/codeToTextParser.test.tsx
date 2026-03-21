@@ -21,7 +21,7 @@ describe('CodeToTextParser Component', () => {
         render(<CodeToTextParser code={code} />);
         expect(screen.getByText(/Hello,/i)).toBeInTheDocument();
         expect(screen.getByText(/world/i)).toBeInTheDocument();
-        expect(screen.getByText(/world/i)).toHaveStyle('font-weight: bolder');
+        expect(screen.getByText(/world/i)).toHaveStyle('font-weight: bold');
     });
 
     it('should handle string with multiple bold tags correctly', () => {
@@ -29,10 +29,10 @@ describe('CodeToTextParser Component', () => {
         render(<CodeToTextParser code={code} />);
         expect(screen.getByText("This is a")).toBeInTheDocument();
         expect(screen.getByText("test")).toBeInTheDocument();
-        expect(screen.getByText("test")).toHaveStyle('font-weight: bolder');
+        expect(screen.getByText("test")).toHaveStyle('font-weight: bold');
         expect(screen.getByText("string with")).toBeInTheDocument();
         expect(screen.getByText("multiple")).toBeInTheDocument();
-        expect(screen.getByText("multiple")).toHaveStyle('font-weight: bolder');
+        expect(screen.getByText("multiple")).toHaveStyle('font-weight: bold');
         expect(screen.getByText("bold tags.")).toBeInTheDocument();
     });
     
@@ -41,7 +41,7 @@ describe('CodeToTextParser Component', () => {
         render(<CodeToTextParser code={code} />);
         expect(screen.getByText("Hello,")).toBeInTheDocument();
         expect(screen.getByText("world")).toBeInTheDocument();
-        expect(screen.getByText("world")).toHaveStyle('font-weight: bolder');
+        expect(screen.getByText("world")).toHaveStyle('font-weight: bold');
         expect(screen.getByText("!")).toBeInTheDocument();
         expect(screen.getByText("React!")).toBeInTheDocument();
     });
@@ -50,7 +50,7 @@ describe('CodeToTextParser Component', () => {
         const code: string = 'Text before bold <strong>bold text</strong>';
         render(<CodeToTextParser code={code} />);
         expect(screen.getByText(/Text before bold/i)).toBeInTheDocument();
-        expect(screen.getByText(/bold text/i)).toHaveStyle('font-weight: bolder');
+        expect(screen.getByText(/bold text/i)).toHaveStyle('font-weight: bold');
     });
 
     it('should handle absence of text before bold tag correctly', () => {
@@ -58,7 +58,7 @@ describe('CodeToTextParser Component', () => {
         render(<CodeToTextParser code={code} />);
         const boldText = screen.getByText('bold text');
         expect(boldText).toBeInTheDocument();
-        expect(boldText).toHaveStyle('font-weight: bolder');
+        expect(boldText).toHaveStyle('font-weight: bold');
         expect(screen.queryByText(/Text before bold/i)).toBeNull();
     });
 });

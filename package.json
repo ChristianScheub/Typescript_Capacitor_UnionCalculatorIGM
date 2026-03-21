@@ -5,7 +5,8 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc && vite build",
+    "prebuild": "node prebuild-check.js",
+    "build": "npm run prebuild && tsc && vite build",
     "preview": "vite preview",
     "test": "vitest",
     "test:ui": "vitest --ui",
@@ -48,10 +49,10 @@
     "@types/react-dom": "^19.2.3",
     "@vitejs/plugin-react": "^6.0.1",
     "@vitest/ui": "^4.0.18",
-    "jsdom": "^29.0.1",
+    "jsdom": "^25.0.0",
     "typescript": "^5.9.3",
     "vite": "^8.0.1",
-    "vitest": "^4.0.18"
+    "vitest": "^3.2.4"
   },
   "browserslist": {
     "production": [
