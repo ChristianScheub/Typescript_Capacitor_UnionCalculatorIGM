@@ -14,10 +14,16 @@ export default defineConfig({
     sourcemap: true,
     rollupOptions: {
       output: {
-        manualChunks: {
-          vendor: ['react', 'react-dom', 'react-router-dom'],
-          redux: ['@reduxjs/toolkit', 'react-redux', 'redux-persist'],
-          ui: ['@mui/material', '@emotion/react', '@emotion/styled', 'react-bootstrap', 'bootstrap'],
+        manualChunks: (id) => {
+          if (['react', 'react-dom', 'react-router-dom'].some(pkg => id.includes(`/node_modules/${pkg}/`))) {
+            return 'vendor';
+          }
+          if (['@reduxjs/toolkit', 'react-redux', 'redux-persist'].some(pkg => id.includes(`/node_modules/${pkg}/`))) {
+            return 'redux';
+          }
+          if (['@mui/material', '@emotion/react', '@emotion/styled', 'react-bootstrap', 'bootstrap'].some(pkg => id.includes(`/node_modules/${pkg}/`))) {
+            return 'ui';
+          }
         },
       },
     },
