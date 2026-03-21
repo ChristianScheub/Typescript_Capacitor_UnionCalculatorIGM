@@ -1,6 +1,6 @@
 import { NavigateFunction, useLocation } from "react-router-dom";
 import React, { useState } from "react";
-import SettingsView from "../../views/settings/screen_settings"
+import SettingsView from "../../views/settings/SettingsView"
 import HelpTextSocialSecurityContainer from "../HelpText/HelpTextSocialSecurityContainer";
 import HelpTextTaxContainer from "../HelpText/HelpTextTaxContainer";
 import HelpTextBonusContainer from "../HelpText/HelpTextBonusContainer";

@@ -1,6 +1,6 @@
 import React from "react";
 import { TablesViewProps } from "./TablesViewProps";
-import IncomeBreakdown from "../IncomeBreakdown/IncomeBreakdown";
+import IncomeBreakdown from "../IncomeBreakdown/IncomeBreakdownView";
 import { useTranslation } from "react-i18next";
 
 const TablesView: React.FC<TablesViewProps> = ({

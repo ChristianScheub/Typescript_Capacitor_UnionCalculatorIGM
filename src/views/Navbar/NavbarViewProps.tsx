@@ -1,4 +1,4 @@
-export interface NavbarProps {
+export interface NavbarViewProps {
     setActiveComponent: (component: string) => void;
     activeComponent: string;
   }

@@ -4,11 +4,7 @@ import { FaHome, FaCog, FaTable, FaArrowLeft } from 'react-icons/fa';
 import './Navbar.css';
 import { Navbar } from "react-bootstrap";
 import { Capacitor } from '@capacitor/core';
-
-interface NavbarViewProps {
-  setActiveComponent: (component: string) => void;
-  activeComponent: string;
-}
+import { NavbarViewProps } from './NavbarViewProps';
 
 const NavbarView: React.FC<NavbarViewProps> = ({ setActiveComponent, activeComponent }) => {
   const location = useLocation();

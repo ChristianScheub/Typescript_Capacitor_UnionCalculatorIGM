@@ -1,5 +1,5 @@
 import React, { CSSProperties } from 'react';
-import { IncomeBreakdownProps } from "./IncomeBreakdownProps";
+import { IncomeBreakdownProps } from "./IncomeBreakdownViewProps";
 import Card from "../../ui/Card/Card";
 import { useTranslation } from "react-i18next";
 

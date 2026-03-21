@@ -32,7 +32,6 @@ const HomeView: React.FC<HomeViewProps> = ({
   const { t } = useTranslation();
 
   type FlexDirection = 'row' | 'column' | 'row-reverse' | 'column-reverse';
-
   const containerStyle: React.CSSProperties = {
     display: 'flex',
     flexDirection: (isDesktop ? 'row' : 'column') as FlexDirection,
