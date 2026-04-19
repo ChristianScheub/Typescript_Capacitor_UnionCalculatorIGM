@@ -137,11 +137,14 @@ jobs:
       # ── 7. IPA exportieren ───────────────────────────────────────────────────
       - name: Export IPA
         run: |
+          security unlock-keychain -p "${KEYCHAIN_PASSWORD}" "${KEYCHAIN_PATH}"
+          security default-keychain -s "${KEYCHAIN_PATH}"
           xcodebuild \
             -exportArchive \
             -archivePath "$RUNNER_TEMP/FireRechner.xcarchive" \
             -exportOptionsPlist "$RUNNER_TEMP/ExportOptions-export.plist" \
-            -exportPath "$RUNNER_TEMP/export"
+            -exportPath "$RUNNER_TEMP/export" \
+            -allowProvisioningUpdates
           VERSION="${GITHUB_REF_NAME:-dev}"
           cp "$RUNNER_TEMP/export/App.ipa" "fireCalculator-${VERSION}.ipa"
           echo "IPA_PATH=fireCalculator-${VERSION}.ipa" >> "$GITHUB_ENV"
@@ -149,11 +152,14 @@ jobs:
       # ── 8. TestFlight Upload ─────────────────────────────────────────────────
       - name: Upload to TestFlight
         run: |
+          security unlock-keychain -p "${KEYCHAIN_PASSWORD}" "${KEYCHAIN_PATH}"
+          security default-keychain -s "${KEYCHAIN_PATH}"
           xcodebuild \
             -exportArchive \
             -archivePath "$RUNNER_TEMP/FireRechner.xcarchive" \
             -exportOptionsPlist "$RUNNER_TEMP/ExportOptions-upload.plist" \
             -exportPath "$RUNNER_TEMP/upload" \
+            -allowProvisioningUpdates \
             -authenticationKeyPath "${ASC_KEY_PATH}" \
             -authenticationKeyID "${{ secrets.ASC_API_KEY_ID }}" \
             -authenticationKeyIssuerID "${{ secrets.ASC_API_ISSUER_ID }}"
