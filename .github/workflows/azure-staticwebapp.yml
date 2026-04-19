@@ -30,4 +30,4 @@ jobs:
         repo_token: ${{ secrets.GITHUB_TOKEN }}
         action: 'upload'
         app_location: '/'  # Verzeichnis der React-App
-        output_location: 'build'  # Ausgabe-Verzeichnis nach dem Build
+        output_location: 'dist'  # Ausgabe-Verzeichnis nach dem Build
