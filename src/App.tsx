@@ -3,8 +3,6 @@ import { BrowserRouter as Router, useLocation } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 import NavbarView from "./views/Navbar/NavbarView";
-import { saveState } from "./stateManagement/localStorage";
-import { useStore } from "react-redux";
 import "./i18n";
 import { useSwipeNavigation } from "./services/helper/navigationUtils";
 import { useDeviceCheck } from "./services/helper/useDeviceCheck";
@@ -15,7 +13,6 @@ const MainApp: React.FC = () => {
   const [activeComponent, setActiveComponent] = useState<string>("home");
   const [showWelcome, setShowWelcome] = useState<boolean>(true);
   const isDesktop = useDeviceCheck();
-  const store = useStore();
   const location = useLocation();
 
   // Swipe and Key Navigation
@@ -41,10 +38,6 @@ const MainApp: React.FC = () => {
   const closeWelcomeOverlay = () => {
     localStorage.setItem("welcomeDone", "true");
     setShowWelcome(false);
-    if (localStorage.getItem("storeReduxLocal") === "true") {
-      saveState(store);
-      window.location.reload();
-    }
   };
 
   makeStatusBarTransparent();

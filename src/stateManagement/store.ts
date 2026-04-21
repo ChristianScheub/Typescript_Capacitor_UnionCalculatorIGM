@@ -1,38 +1,10 @@
 import { configureStore } from '@reduxjs/toolkit';
-import { persistStore, persistReducer } from 'redux-persist';
-import createWebStorage from 'redux-persist/lib/storage/createWebStorage';
 import taxReducer from './slices/TaxSlice';
 import salaryReducer from './slices/SalarySlice';
 import bonusReducer from './slices/BonusSlice';
 import unionContractReducer from './slices/UnionContractSlice';
-import { combineReducers, Reducer } from 'redux';
+import { combineReducers } from 'redux';
 
-// Sicherer localStorage-Wrapper, der auch in Umgebungen ohne localStorage funktioniert
-const createNoopStorage = () => ({
-  getItem: (_key: string) => Promise.resolve(null),
-  setItem: (_key: string, _value: unknown) => Promise.resolve(),
-  removeItem: (_key: string) => Promise.resolve(),
-});
-
-const safeStorage = (() => {
-  try {
-    return createWebStorage('local');
-  } catch {
-    return createNoopStorage();
-  }
-})();
-
-// Funktion zum Abrufen der Zustimmung
-const getStorage = () => {
-  try {
-    const allowedLocalStorageUse = localStorage.getItem('storeReduxLocal');
-    return allowedLocalStorageUse === 'true' ? safeStorage : null;
-  } catch {
-    return null;
-  }
-};
-
-// Kombinierte Reducer
 const rootReducer = combineReducers({
   tax: taxReducer,
   salary: salaryReducer,
@@ -40,38 +12,58 @@ const rootReducer = combineReducers({
   unionContract: unionContractReducer,
 });
 
-const storageAllowed = getStorage() !== null;
-
-const storeConfig: {
-  reducer: Reducer<any, any>;
-} = {
-  reducer: rootReducer,
+const isStorageAllowed = (): boolean => {
+  try {
+    return localStorage.getItem('storeReduxLocal') === 'true';
+  } catch {
+    return false;
+  }
 };
 
-if (storageAllowed) {
-  // Konfiguration für redux-persist
-  const persistConfig = {
-    key: 'root',
-    storage: safeStorage,
-  };
-
-  // Erstelle den persistierten Reducer
-  const persistedReducer = persistReducer(persistConfig, rootReducer);
-
-  storeConfig.reducer = persistedReducer as Reducer<any, any>; // Typanpassung
-}
+// Synchrones Laden aus localStorage — kein async, kein Timing-Problem
+const loadPersistedState = () => {
+  try {
+    if (!isStorageAllowed()) return undefined;
+    const serialized = localStorage.getItem('persist:root');
+    if (!serialized) return undefined;
+    const raw = JSON.parse(serialized);
+    return {
+      tax: raw.tax ? JSON.parse(raw.tax) : undefined,
+      salary: raw.salary ? JSON.parse(raw.salary) : undefined,
+      bonus: raw.bonus ? JSON.parse(raw.bonus) : undefined,
+      unionContract: raw.unionContract ? JSON.parse(raw.unionContract) : undefined,
+    };
+  } catch {
+    return undefined;
+  }
+};
 
 export const store = configureStore({
-  ...storeConfig,
-  middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware({
-      serializableCheck: {
-        ignoredActions: ['persist/PERSIST', 'persist/REHYDRATE', 'persist/PAUSE', 'persist/PURGE', 'persist/FLUSH', 'persist/REGISTER'],
-      },
-    }),
+  reducer: rootReducer,
+  preloadedState: loadPersistedState(),
+  middleware: (getDefaultMiddleware) => getDefaultMiddleware(),
 });
 
-export const persistor = storageAllowed ? persistStore(store) : undefined;
+// Automatisches Speichern bei jeder State-Änderung
+if (isStorageAllowed()) {
+  store.subscribe(() => {
+    try {
+      const state = store.getState();
+      const serialized = JSON.stringify({
+        tax: JSON.stringify(state.tax),
+        salary: JSON.stringify(state.salary),
+        bonus: JSON.stringify(state.bonus),
+        unionContract: JSON.stringify(state.unionContract),
+      });
+      localStorage.setItem('persist:root', serialized);
+    } catch {
+      // ignore write errors
+    }
+  });
+}
+
+// persistor wird nicht mehr benötigt, bleibt undefined für Kompatibilität
+export const persistor = undefined;
 
 export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;
