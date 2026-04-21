@@ -17,7 +17,10 @@ export const calculateSoli: ITaxCalculatorService['calculateSoli'] = (income, fo
       : soliThresholdSingle;
 
   if (income > soliThreshold) {
-    const soli = tax * 0.055;
+    let soli = tax * 0.055;
+    if (!forYear) {
+      soli = soli / 12;
+    }
     return Number(soli.toFixed(2));
   }
   return 0;

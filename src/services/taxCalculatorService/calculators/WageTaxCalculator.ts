@@ -63,8 +63,8 @@ export const calculateTaxAfterChurch = (income: number): number => {
     const y = (adjustedIncome - incomeLimits.lowerLimit1) / 10000;
     tax = (taxRates.b1Coefficient * y + taxRates.b1Intercept) * y;
   } else if (income <= incomeLimits.upperLimit2) {
-    // c) From 17,006 EUR to 66,760 EUR
-    const z = (adjustedIncome - incomeLimits.lowerLimit2) / 10000;
+    // c) From 17,800 EUR to 69,878 EUR
+    const z = (adjustedIncome - incomeLimits.upperLimit1) / 10000;
     tax = (taxRates.c1Coefficient * z + taxRates.c1Intercept) * z + taxRates.c2Intercept;
   } else if (income <= incomeLimits.upperLimit3) {
     // d) From 66,761 EUR to 277,825 EUR
