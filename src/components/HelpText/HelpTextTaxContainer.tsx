@@ -8,46 +8,72 @@ interface HelpTextTaxContainerProps {
 
 export const HelpTextTaxContainer: React.FC<HelpTextTaxContainerProps> = ({ onClose }) => {
 
-    // HTML Content als JSX Element
     const helpTextContent = (
         <div>
             <h2>Erklärung der Steuerberechnung</h2>
-         <i> Bitte beachten sie das ich diese Werte versucht habe auf 2025 zu aktualisieren, aber viele Zahlen konnte ich nicht so leicht finden und sie sind auf dem Stand von 2024 geblieben und sind teilweise da schon nicht korrekt gewesen.</i> <br /> <br />
 
-            <p>In Deutschland wird die Einkommensteuer progressiv berechnet. Das bedeutet, je höher das Einkommen, desto höher der Steuersatz. Die Berechnung erfolgt gestaffelt nach verschiedenen Einkommensgrenzen.</p>
+            <div style={{ background: '#fff3cd', border: '1px solid #ffc107', borderRadius: '6px', padding: '12px', marginBottom: '16px' }}>
+                <strong>⚠️ Wichtiger Hinweis – Keine Steuerberatung</strong>
+                <p style={{ margin: '8px 0 0 0' }}>
+                    Diese App dient ausschließlich zur <strong>groben Orientierung</strong> und stellt <strong>keine steuerliche oder rechtliche Beratung</strong> dar.
+                    Die Berechnungen sind vereinfacht und berücksichtigen nicht alle individuellen Faktoren Ihrer persönlichen Steuersituation.
+                    Für verbindliche Auskünfte wenden Sie sich bitte an einen <strong>zugelassenen Steuerberater</strong> oder das zuständige Finanzamt.
+                </p>
+            </div>
 
-            <h3>1. Berechnung für höhere Einkommen</h3>
-            <p>Für verschiedene Einkommensstufen werden unterschiedliche Formeln verwendet:</p>
-            <i>Lediglich die Einkommensgrenzen zwischen den Gruppen habe ich auf 2025 aktualisiert, der Rest ist gleich geblieben aber war da schon eventuell nicht korrekt. Und die Steuerklassen Faktoren etc. konnte ich auch nicht aktualisiert finden.</i>
+            <div style={{ background: '#f8d7da', border: '1px solid #f5c2c7', borderRadius: '6px', padding: '12px', marginBottom: '16px' }}>
+                <strong>⚠️ Haftungsausschluss</strong>
+                <p style={{ margin: '8px 0 0 0' }}>
+                    Die Entwickler dieser App übernehmen <strong>keinerlei Haftung</strong> für die Richtigkeit, Vollständigkeit oder Aktualität der angezeigten Werte.
+                    Entscheidungen, die auf Basis dieser Berechnungen getroffen werden, liegen in der alleinigen Verantwortung des Nutzers.
+                    Steuergesetze können sich jederzeit ändern – die angezeigten Werte basieren auf dem Stand von <strong>2026 (§32a EStG)</strong> und wurden nicht von einem Steuerberater geprüft.
+                </p>
+            </div>
+
+            <p>In Deutschland wird die Einkommensteuer progressiv berechnet. Je höher das Einkommen, desto höher der Steuersatz. Die Berechnung basiert auf dem <strong>zu versteuernden Einkommen (zvE)</strong>, das nach Abzug aller Freibeträge und Pauschalen vom Bruttoeinkommen übrig bleibt.</p>
+
+            <h3>1. Abzüge vom Bruttoeinkommen</h3>
+            <p>Bevor die Steuer berechnet wird, werden folgende Beträge vom Jahresbruttolohn abgezogen:</p>
             <ul>
-                <li><strong>Einkommen zwischen 12.096 EUR und 17.430 EUR:</strong> Hier wird die Formel <code>(y * 922.98 + 1400) * y</code> angewendet, wobei <code>y = (Einkommen - 12.096EUR) / 10.000</code>.</li>
-
-                <li><strong>Einkommen zwischen 17.431 EUR und 68.430 EUR:</strong> In dieser Spanne gilt die Formel <code>(z * 181.19 + 2397) * z + 1025.38</code>, wobei <code>z = (Einkommen - 17.430 EUR) / 10.000</code>.</li>
-
-                <li><strong>Einkommen zwischen 68.430EUR und 277.825 EUR:</strong> Hier wird ein fester Steuersatz von 42% auf das Einkommen angewendet, mit der Formel <code>0.42 * Einkommen - 10.602,13 EUR</code>. Beispiel: Bei einem Einkommen von 100.000 EUR beträgt die Steuer 31.397,87 EUR.</li>
-
-                <li><strong>Einkommen über 277.826 EUR:</strong> Hier gilt der Höchststeuersatz von 45%, mit der Formel <code>0.45 * Einkommen - 18.936,88 EUR</code>. Beispiel: Bei einem Einkommen von 300.000 EUR beträgt die Steuer 116.063,12 EUR.</li>
+                <li><strong>Arbeitnehmer-Pauschbetrag:</strong> 1.230 EUR (automatisch für Werbungskosten)</li>
+                <li><strong>Sonderausgaben-Pauschbetrag:</strong> 36 EUR</li>
+                <li><strong>Vorsorgepauschale:</strong> Arbeitnehmeranteile zur Renten- (9,3%), Kranken- (7,3% + halber Zusatzbeitrag) und Pflegeversicherung (1,7% / 2,3% für Kinderlose), jeweils bis zur Beitragsbemessungsgrenze</li>
+                <li><strong>Steuerklasse 2:</strong> zusätzlich Entlastungsbetrag Alleinerziehend (4.260 EUR)</li>
+                <li><strong>Werbungskosten / Fahrtkosten:</strong> individuell eingebbar</li>
             </ul>
+            <p>Das Ergebnis ist das zvE, auf das die §32a-Formel angewendet wird.</p>
 
-            <h3>2. Kirchensteuer</h3>
-            <p>Die Kirchensteuer wird auf die berechnete Einkommensteuer aufgeschlagen. Sie beträgt 8% oder 9%, je nach Bundesland. Die Formel zur Berechnung lautet:</p>
-            <p><code>Kirchensteuer = Einkommensteuer * Kirchensteuersatz</code></p>
-            <p>Beispiel: Wenn die Einkommensteuer 10.000 EUR beträgt und der Kirchensteuersatz bei 9% liegt, ergibt sich eine Kirchensteuer von 900 EUR.</p>
-
-            <h4>Kappung der Kirchensteuer</h4>
-            <p>In einigen Bundesländern wird die Kirchensteuer auf einen bestimmten Prozentsatz des Einkommens begrenzt (z.B. 3%). Die Formel für die Kappung lautet:</p>
-            <p><code>Maximale Kirchensteuer = Einkommen * Kappungsrate</code></p>
-            <p>Beispiel: Bei einem Einkommen von 100.000 EUR und einer Kappungsrate von 3% beträgt die maximale Kirchensteuer 3.000 EUR. Falls die berechnete Kirchensteuer 3.200 EUR wäre, wird sie auf 3.000 EUR gekappt.</p>
-
-            <h3>3. Solidaritätszuschlag (Soli)</h3>
-            <p>Der Solidaritätszuschlag wird nur erhoben, wenn das Einkommen über bestimmten Schwellenwerten liegt:</p>
+            <h3>2. Steuertarif §32a EStG 2026</h3>
+            <p>Auf das zvE werden folgende Steuersätze angewendet:</p>
             <ul>
-                <li>Für Alleinstehende: 96.820 EUR</li>
-                <li>Für Verheiratete: 193.641 EUR</li>
+                <li><strong>Bis 12.348 EUR (Grundfreibetrag):</strong> 0 EUR Steuer</li>
+                <li><strong>12.349 – 17.799 EUR:</strong> Formel <code>(914,51 × y + 1.400) × y</code>, wobei <code>y = (zvE − 12.348) / 10.000</code></li>
+                <li><strong>17.800 – 69.878 EUR:</strong> Formel <code>(173,10 × z + 2.397) × z + 1.034,87</code>, wobei <code>z = (zvE − 17.799) / 10.000</code></li>
+                <li><strong>69.879 – 277.825 EUR:</strong> <code>0,42 × zvE − 11.135,63 EUR</code></li>
+                <li><strong>Ab 277.826 EUR:</strong> <code>0,45 × zvE − 19.470,38 EUR</code></li>
             </ul>
-            <p>Liegt das Einkommen über diesen Werten, beträgt der Soli 5,5% der Einkommensteuer:</p>
-            <p><code>Solidaritätszuschlag = Einkommensteuer * 0.055</code></p>
-            <p>Beispiel: Bei einer Einkommensteuer von 20.000 EUR beträgt der Solidaritätszuschlag 1.100 EUR.</p>
+            <p><strong>Steuerklasse 3</strong> verwendet das Splitting-Verfahren: zvE wird halbiert, die Steuer berechnet und das Ergebnis verdoppelt.</p>
+
+            <h3>3. Kirchensteuer</h3>
+            <p>Die Kirchensteuer beträgt je nach Bundesland 8% oder 9% der Einkommensteuer:</p>
+            <p><code>Kirchensteuer = Einkommensteuer × Kirchensteuersatz</code></p>
+            <p>In vielen Bundesländern wird die Kirchensteuer zusätzlich auf einen Prozentsatz des Einkommens gekappt (z.B. 3%).</p>
+
+            <h3>4. Solidaritätszuschlag (Soli)</h3>
+            <p>Der Soli wird nur erhoben, wenn das Einkommen über folgenden Freigrenzen liegt:</p>
+            <ul>
+                <li>Alleinstehende (SK 1, 2, 5, 6): 98.403 EUR</li>
+                <li>Verheiratete (SK 3, 4): 196.806 EUR</li>
+            </ul>
+            <p>Darüber hinaus beträgt der Soli 5,5% der Einkommensteuer:</p>
+            <p><code>Solidaritätszuschlag = Einkommensteuer × 0,055</code></p>
+
+            <div style={{ background: '#e2e3e5', border: '1px solid #d3d6d8', borderRadius: '6px', padding: '12px', marginTop: '16px', fontSize: '0.85em' }}>
+                <p style={{ margin: '0' }}>
+                    Die dargestellten Berechnungen sind eine stark vereinfachte Schätzung und können aus zahlreichen Gründen von Ihrer tatsächlichen Steuerlast abweichen.
+                    Für Ihre persönliche Situation maßgeblich ist ausschließlich Ihre individuelle Steuererklärung bzw. der Bescheid Ihres Finanzamts.
+                </p>
+            </div>
         </div>
     );
 
