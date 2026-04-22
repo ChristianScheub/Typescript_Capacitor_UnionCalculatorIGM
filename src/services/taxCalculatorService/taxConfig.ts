@@ -23,15 +23,6 @@ export const taxRates = {
   eIntercept: 19470.38,   // Constant for the fifth tax bracket (§32a EStG 2026)
 };
 
-// Steuerklassenfaktoren (Grundfreibetrag 2026 = 12.348 €)
-export const taxClassFactors: Record<number, number> = {
-  1: 12348, // Ledig (GFB 2026)
-  2: 16608, // Alleinerziehend (GFB 12.348 + Entlastungsbetrag 4.260)
-  3: 24696, // Verheiratet (besserverdienender Partner, 2 × GFB)
-  4: 12348, // Verheiratet (beide Partner gleich verdienend)
-  5: 0,     // Verheiratet (weniger verdienender Partner)
-  6: 0,     // Zweitjob
-};
 
 export const taxClassOptions = [
   { value: "1", label: 'Ledig' },
